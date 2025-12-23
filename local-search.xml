@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>JDE：具有中国特色的供应链重构</title>
+    <link href="/2025/12/23/%E6%96%87%E7%8C%AE/%E7%83%AD%E7%82%B9/JDE-%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%8D%E6%9E%84/"/>
+    <url>/2025/12/23/%E6%96%87%E7%8C%AE/%E7%83%AD%E7%82%B9/JDE-%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%8D%E6%9E%84/</url>
+    
+    <content type="html"><![CDATA[<p>本文深入解读了发表在 <strong>Journal of Development Economics</strong> 上的论文《Relocation from China (with Chinese Characteristics)》，分析全球供应链重构、FDI转移以及中国、美国与第三方国家之间的间接贸易关系。</p><p><strong>点击下方链接查看完整解读：</strong></p><p><a href="/LR/jde-relocation/" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #2299dd; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">查看完整文献解读 →</a></p><hr><p><strong>论文信息：</strong></p><ul><li><strong>标题</strong>: Relocation from China (with Chinese Characteristics)</li><li><strong>期刊</strong>: Journal of Development Economics</li><li><strong>关键词</strong>: China, Relocation, Supply Chain, FDI, Trade War, US Import, Manufacturing</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>文献</category>
+      
+      <category>热点</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>文献带读</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>如何创建自己的学术主页</title>
+    <link href="/2025/10/15/blog-setup/"/>
+    <url>/2025/10/15/blog-setup/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>教程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>哈佛大学:生成式人工智能作为偏向资历的技术变革</title>
+    <link href="/2025/09/26/%E6%96%87%E7%8C%AE/%E7%83%AD%E7%82%B9/LR20250926/"/>
+    <url>/2025/09/26/%E6%96%87%E7%8C%AE/%E7%83%AD%E7%82%B9/LR20250926/</url>
+    
+    <content type="html"><![CDATA[<p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEC_Slo1rk72Fyzi1TPbAYVPiiymcgPFQAC1EEAAoMDsFYPbQwXZ44fPjYE.png" alt="ca083e51-1e2a-46fb-a171-e37f8ed4df3e.png"></p><blockquote><ul><li><p><strong>论文题目</strong>：《Generative AI as Seniority-Biased Technological Change: Evidence from U.S. Résumé and Job Posting Data》（生成式人工智能作为偏向资历的技术变革：来自美国简历和职位发布数据的证据）</p></li><li><p><strong>发表期刊</strong>：初步研究报告，2025年8月 。 (注：这是一篇工作论文，尚未在期刊正式发表)</p></li><li><p><strong>作者背景</strong>：Seyed M. Hosseini (哈佛大学) ，Guy Lichtinger (哈佛大学) 。</p></li></ul></blockquote><h4 id="引言"><a href="#引言" class="headerlink" title="引言"></a><strong>引言</strong></h4><p><strong>研究背景</strong></p><p>        随着生成式人工智能（AI）技术的飞速发展，其对劳动力市场，尤其是对高技能、白领岗位初级员工（Junior Workers）的影响，引起了学术界和公众的广泛关注 。在许多职业中，员工的职业生涯始于执行基础性、重复性但需要认知能力的“智力单调型”任务，例如审查法律文件或调试代码 。这些任务恰好是最新AI技术最容易渗透和替代的领域 。随着经验的积累，员工会晋升到更高级的职位，承担更复杂的解决问题或管理职责 。如果AI不成比例地替代了这些入门级任务，那么传统职业发展的“阶梯”底层可能正在被侵蚀 。</p><p>        这一问题的潜在影响是深远的。大学毕业生的终身薪资增长在很大程度上依赖于从低薪入门级岗位开始的内部晋升 。同时，职业生涯早期的收入对长期不平等有持久影响 。因此，若AI对初级岗位产生不成比例的冲击，将可能对大学教育的工资溢价、社会向上流动性和收入差距产生持久的负面影响 。</p><p><strong>研究意义</strong></p><p>        理论上，生成式AI对初级员工就业的影响是模糊的。一方面，实验性研究表明AI工具能显著提高经验不足员工的生产力，可能成为初级员工的“互补品”，从而增加劳动力需求 。另一方面，对常规认知任务的自动化可能会直接“替代”初级员工的工作 。现实世界中，自2022年底以来，美国应届大学毕业生的失业率急剧上升，而青年工人的整体失业率保持稳定（见附录图A.1），这为AI可能带来的负面冲击提供了初步的宏观证据 。</p><p>        本文的创新之处在于，它超越了传统的“技能偏向型技术变革”（Skill-Biased Technological Change, SBTC）框架，提出了一个新颖的视角——“<strong>资历偏向型技术变革</strong>”（Seniority-Biased Technological Change） 。文章不再仅仅关注技术对不同教育水平或职业群体的影响，而是深入到企业内部，探究技术变革是否对不同资历（初级 vs. 资深）的员工产生了差异化影响。通过使用大规模的企业层面数据和一种新颖的AI采纳识别方法，本研究为理解生成式AI如何重塑企业内部的劳动力结构提供了首批、最直接的微观证据。</p><p>    </p><h4 id="3-研究问题"><a href="#3-研究问题" class="headerlink" title="3. 研究问题"></a><strong>3. 研究问题</strong></h4><p>本文的核心研究问题是：<strong>企业采纳生成式AI是否对初级员工相对于资深员工的就业产生了不成比例的负面影响？</strong> 为了回答这个核心问题，文章进一步探讨了以下几个子问题：</p><ol><li><p>这种潜在的就业影响背后的机制是什么？它主要是通过<strong>减少招聘</strong>、<strong>增加解雇</strong>还是<strong>影响内部晋升</strong>来实现的？</p></li><li><p>生成式AI对初级员工就业的影响在<strong>不同行业</strong>中是否存在差异？</p></li><li><p>这种影响是否因初级员工的<strong>人力资本水平</strong>（以毕业院校的声望为代理变量）而异？</p></li></ol><p>    </p><h4 id="4-研究方法"><a href="#4-研究方法" class="headerlink" title="4. 研究方法"></a><strong>4. 研究方法</strong></h4><p>本文采用定量实证分析方法，其研究设计精巧，具体如下：</p><ul><li><p><strong>数据与样本</strong>：研究使用了来自Revelio Labs的领英（LinkedIn）简历和职位发布匹配数据，时间跨度为2015年至2025年 。该数据集覆盖了近28.5万家美国公司、约6200万名独立员工的1.5亿条雇佣记录，以及2.45亿条职位发布信息 。最终样本包含了在2021年1月至2025年3月期间活跃招聘的284,974家公司 。</p></li><li><p><strong>核心研究变量</strong>：</p><ul><li><p><strong>员工资历（Seniority）</strong>：使用Revelio Labs提供的标准化资历分类，将职位分为7个等级。研究将其合并为两大类：“<strong>初级员工</strong>”（入门级&#x2F;初级）和“<strong>资深员工</strong>”（助理级及以上） 。</p></li><li><p><strong>AI采纳（AI Adoption）</strong>：这是本文方法论的核心创新。作者通过识别企业发布的“<strong>AI整合者</strong>”（AI integrator）职位来判断其是否采纳AI 。具体分为两步：首先，使用AI相关关键词筛选出超过60万个职位发布；然后，利用大语言模型（LLM）对这些职位进行分类，精准识别出那些致力于在组织内部署和实施AI系统的“AI整合者”角色 。如果一家公司发布了至少一个此类职位，则被定义为“<strong>AI采纳者</strong>” 。样本中共有10,599家（约3.7%）公司被识别为AI采纳者 。</p></li><li><p><strong>人力资本</strong>：使用OpenAI的模型对员工毕业的大学进行声望评级（1-5级，1级为顶尖精英），作为衡量其人力资本水平的代理变量 。</p></li></ul></li><li><p><strong>模型设计</strong>：</p></li></ul><ol><li><p>**双重差分模型 (Difference-in-Differences, DiD)**：首先，文章分别针对初级和资深员工，比较AI采纳公司与非采纳公司在2023年（生成式AI普及）前后的就业变化趋势。模型如下：</p><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEC_Vxo1sfK-c3AfwF6GVmqKjVw3cahCwACNUIAAoMDsFYk2DnjllKFozYE.png" alt="equ1.png"></p><p>其中，Adopt是代表企业i是否采纳AI的虚拟变量，β​系数捕捉了每个季度j采纳组相对于控制组的就业差异。</p></li><li><p>**三重差分模型 (Triple-Differences, DDD)**：为更严格地控制企业层面的异质性和随时间变化的冲击，文章采用了DDD模型。该模型比较了在采纳AI的公司内部，初级员工相对于资深员工的就业变化。模型形式如下：</p><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEC_V1o1sh7j_vtIjdIKplIcPhOQcC6FQACOkIAAoMDsFbJIhGQJnBVajYE.png" alt="equ2.png"></p><p>该模型包含了<strong>公司×时间</strong>的固定效应 (γit​)，这意味着可以吸收一切企业-时间层面的影响因素（代替控制变量），并识别完全来自于同一公司、同一时间点，初级与资深员工之间的差异。</p></li></ol><p> </p><h4 id="5-研究结论"><a href="#5-研究结论" class="headerlink" title="5. 研究结论"></a><strong>5. 研究结论</strong></h4><ul><li><p><strong>描述性发现：AI采纳公司的特征与AI采纳时点</strong></p><ul><li><p><strong>表1：描述性统计</strong></p><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEC_TNo1rlIa2Hg9zRFsqL1ejtRvk6WKwAC4EEAAoMDsFa0IflLBP2q5TYE.png" alt="table1.png"></p><p>该表显示，AI采纳公司与非采纳公司存在系统性差异。采纳AI的公司通常<strong>规模更大</strong>，<strong>员工队伍更偏资深</strong>，员工流动率（招聘和离职）更高，更倾向于从<strong>顶尖大学招聘</strong>，并且高度集中在<strong>信息技术</strong>和<strong>专业服务</strong>等知识密集型行业 。</p><p>    </p></li><li><p><strong>图1：公司首次发布AI整合者职位的时间</strong></p><p>该图显示，在2023年初之前，每月新增的AI采纳公司数量很少且稳定。但从<strong>2023年初开始，该数量急剧飙升</strong>，这与ChatGPT等生成式AI工具的广泛普及时间点高度吻合，验证了该指标的有效性 。</p><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEC_Spo1rk8yF5lgOUgD2mV0Rs3KDlzjgAC1kEAAoMDsFb9sheg3QIVPjYE.png" alt="fig1.png"></p><p>      </p></li><li><p><strong>图2：初级与资深员工就业的时间序列</strong></p><p>从宏观层面看，2022年中期之前，初级和资深员工的就业增长趋势基本一致。然而，从<strong>2022年中期开始出现显著分化</strong>：资深员工的就业继续稳步增长，而初级员工的就业则趋于平缓，并从2023年开始<strong>转为下降</strong> 。这为后续的因果分析提供了宏观背景。</p><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEC_Sto1rk9lm2sPXybmMdWtiL7OrzVNwAC10EAAoMDsFZXaWOZAAE78NQ2BA.png" alt="fig2.png"></p></li></ul><p>    </p></li><li><p><strong>核心因果分析结果</strong></p><ul><li><p><strong>图3：DiD模型结果——采纳与非采纳公司的就业差异</strong></p><p>该图是本文的核心证据之一。结果显示，对于初级员工（红色曲线），在2022年底之前，AI采纳公司与非采纳公司的就业增长遵循“平行趋势”假设。但从<strong>2023年第一季度开始，采纳公司的初级员工就业相对于非采纳公司急剧下降</strong>，在6个季度后下降了约7.7% 。相比之下，对于资深员工（蓝色曲线），采纳公司一直保持着更快的增长速度，并且在2023年后这一趋势并未中断 。这清晰地表明，AI采纳的负面影响具有显著的<strong>资历偏向性</strong>。</p><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEC_Sxo1rk9J9upVA3WuKbSOKW5ze6SxQAC2EEAAoMDsFZxFWqjbCqtHzYE.png" alt="fig3.png"></p><p>    </p></li><li><p><strong>图4：DDD模型结果——公司内部初级与资深员工的相对就业</strong></p><p>该图通过更严格的DDD模型验证了上述发现。图中系数反映了在采纳AI的公司内部，初级员工相对于资深员工的就业规模。结果显示，在2023年第一季度出现了一个<strong>明显的结构性断点</strong>，曲线<strong>斜率急剧变陡</strong>，表明采纳AI的公司内部，初级员工的相对雇佣规模下降了约12% 。这一结果排除了公司层面的其他冲击，将影响锁定在AI采纳对初级岗位的替代效应上。</p><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEC_S1o1rk9FaC-QK5Hx0x6JCJPP-Z-JwAC2UEAAoMDsFbkgk7xTicjfjYE.png" alt="fig4.png"></p></li></ul><p>  </p></li><li><p><strong>机制与异质性分析</strong></p><ul><li><p><strong>表2：AI采纳对招聘、离职和晋升的影响</strong></p><p>该表揭示了就业下降的机制。结果表明，采纳AI的公司初级员工数量的减少<strong>主要源于招聘的大幅缩减</strong>（平均每季度减少3.7名初级员工招聘），而非裁员增加 。有趣的是，这些公司的初级员工<strong>离职率甚至略有下降</strong>，而<strong>内部晋升的机会反而增加了</strong> 。这说明，公司在减少外部初级岗位招聘的同时，可能在加速培养和提拔现有的初级员工。</p><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEC_TJo1rlIHt0Niogf_xsRLJvWzBqHiAAC30EAAoMDsFbyixBDck6_0TYE.png" alt="tabble2.png"></p><p>    </p></li><li><p><strong>图5：生成式AI对各行业招聘的影响</strong></p><p>该图显示，<strong>几乎所有行业</strong>的AI采纳公司都显著减少了对初级员工的招聘，其中<strong>批发和零售业</strong>的降幅最大，达到约40% 。而所有行业对资深员工的招聘均未受到负面影响，进一步证实了影响的资历偏向性 。</p><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEC_TFo1rlHmxk0TFMZrzhS2gGTLZt8zAAC3kEAAoMDsFZ5-r5jczUbBDYE.png" alt="fig5.png"></p><p>  </p></li><li><p><strong>图6和图7：按毕业院校声望划分的异质性影响</strong></p><ul><li><p><strong>图6：按学校质量划分的结果</strong></p><p>该图揭示了一个<strong>U型模式</strong>。就业下降最严重的是来自<strong>中等偏上层次大学</strong>（第2和第3梯队）的毕业生 。而来自顶尖精英大学（第1梯队）和较低层次大学（第4、5梯队）的毕业生受到的影响则小得多，尤其是第5梯队的毕业生，其影响在统计上不显著 。</p><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEC_TBo1rlHivp4rJjvhZe6zS2yR7z1BgAC3UEAAoMDsFagliEtwq3VkzYE.png" alt="fig6.png"></p><p>    </p></li><li><p><strong>图7：按学校质量划分的预测薪酬（2022年）</strong></p><p>该图为U型模式提供了解释。它显示，毕业院校声望越高的初级员工，其薪资也越高 。结合图6，研究者推断存在一种权衡：顶尖大学毕业生虽然昂贵，但其高质量和独特技能使其难以被AI替代；底层大学毕业生虽然技能可替代性强，但其低廉的劳动力成本形成了一道“保护屏障”；而<strong>处于中间地带的毕业生，既不够顶尖，也不够便宜，因此成为最容易被AI替代的群体</strong> 。</p><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEC_S9o1rlHbLKH_tPx4IJwHGlYnLBFXQAC3EEAAoMDsFZ-84ft1RjshjYE.png" alt="fig7.png"></p></li></ul></li></ul></li></ul><p>        </p><h4 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a><strong>6. 总结</strong></h4><p>本文通过对美国大规模微观就业数据的严谨分析，讲述了一个关于生成式AI如何重塑劳动力市场的引人入胜的故事。研究发现，自2023年以来，积极采纳生成式AI技术的公司显著减少了对初级白领员工的招聘，而对资深员工的需求并未减少。这表明生成式AI正在扮演一种 <strong>“偏向资历的技术变革”</strong> 的角色，它替代了传统上由入门级员工执行的常规认知任务，从而侵蚀了职业阶梯的底层。</p><p><strong>本文的价值与创新点主要体现在：</strong></p><ol><li><p><strong>理论贡献</strong>：首次提出并用大规模数据验证了“资历偏向型技术变革”这一新概念，深化了我们对技术与劳动力市场相互作用的理解。</p></li><li><p><strong>方法创新</strong>：开发了一种基于“AI整合者”招聘职位来识别企业实际AI采纳的创新方法，相比于传统的基于职业暴露度的宏观研究，这种方法更加精准和微观。</p></li><li><p><strong>数据优势</strong>：利用独特的雇主-雇员匹配数据，得以深入剖析企业内部的劳动力动态调整机制，如招聘、离职和晋升，这为理解就业变化的全貌提供了关键信息。</p></li><li><p><strong>现实意义</strong>：研究结论对教育政策、企业人才培养战略以及担忧日益加剧的社会不平等问题都具有重要的启示。它警示我们，AI的影响可能并非简单地“技能升级”，而是可能导致入门级就业机会的“空心化”，尤其对中等层次人力资本的年轻人构成巨大挑战。</p></li></ol><p>尽管作者承认研究存在一些局限性，如AI采纳的非随机性、分析窗口较短等 ，但本文无疑为理解当前这轮AI技术浪潮的早期影响提供了迄今为止最全面、最可信的证据之一。它揭示了AI对职业生涯起点、企业人才发展模式以及新技术收益分配的深远影响。</p><p>值得一提的是该论文引起了科技圈的广泛讨论，链接见<a href="https://www.hckrnws.com/stories/45261930">Generative AI as Seniority-Biased Technological Change</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>文献</category>
+      
+      <category>热点</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>文献带读</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Nature_三种AI助力科研的方式</title>
+    <link href="/2025/09/03/%E4%B8%93%E9%A2%98/AI%E7%A7%91%E7%A0%94/Nature_%E4%B8%89%E7%A7%8DAI%E5%8A%A9%E5%8A%9B%E7%A7%91%E7%A0%94%E7%9A%84%E6%96%B9%E5%BC%8F/"/>
+    <url>/2025/09/03/%E4%B8%93%E9%A2%98/AI%E7%A7%91%E7%A0%94/Nature_%E4%B8%89%E7%A7%8DAI%E5%8A%A9%E5%8A%9B%E7%A7%91%E7%A0%94%E7%9A%84%E6%96%B9%E5%BC%8F/</url>
+    
+    <content type="html"><![CDATA[<p>    </p><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAL-i2i4WZFNuOiQ5K7u1sH8TgPgsxmyAAIyHQACc5zBVacIv3i22_zWNgQ.png" alt="Nature Three ways ChatGPT helps me in my academic writing"></p><h3 id="指令1：优化学术写作"><a href="#指令1：优化学术写作" class="headerlink" title="指令1：优化学术写作"></a>指令1：优化学术写作</h3><ul><li><p>对高影响力期刊来说，写作的流畅性和语言的精准度可能决定了文章能否被接收。因此，学术写作优化的作用就是帮助作者打磨论文，将科学思想清晰传递给审稿人和读者，这一步看似简单，却至关重要。</p></li><li><p><strong>指令1：</strong>“I am drafting a paper on XXX. The key idea of the following section is [specific idea]. Please help rewrite it to make it more concise, logical, and engaging. Ensure the steps are actionable and easy to follow. Avoid jargon but maintain a professional and informative tone.”</p></li><li><p><strong>中文翻译：</strong>“我正在撰写一篇关于XXX的学术论文。以下部分的核心思想是[具体观点]。请帮助重新表述，使其更加简洁、逻辑清晰且吸引人，并确保步骤可操作且易于理解。避免术语，保持专业且具有信息性的语气。”</p></li></ul><h3 id="指令2：提升同行评审"><a href="#指令2：提升同行评审" class="headerlink" title="指令2：提升同行评审"></a><strong>指令2：提升同行评审</strong></h3><p>提升同行评审的目的，是帮助作者更从容地应对评审意见，甚至能预测潜在的评审问题。提前了解文章可能在哪些地方被质疑，比如方法是否详细、数据是否可靠或结论是否充分，就能在提交前先行优化这些内容。</p><ul><li><p><strong>指令2：”Assume you are an expert in academic writing and peer review. Based on the following summary of [topic], provide constructive feedback in this order: 1) briefly summarize the main strategies; 2) identify gaps or areas for improvement; 3) rank the improvements by practical importance and explain their significance for effective peer review. Use a professional and direct tone.”</strong></p></li><li><p><strong>翻译：“假设你是一位在学术写作与同行评审方面经验丰富的专家。根据以下关于【主题】的总结，按以下顺序提供建设性意见：1）简要概述主要策略；2）指出不足或改进空间；3）按实际重要性排序改进建议，并解释这些改进对有效评审的重要意义。语气需专业且直截了当。”</strong></p></li></ul><h3 id="指令3：优化编辑反馈"><a href="#指令3：优化编辑反馈" class="headerlink" title="指令3：优化编辑反馈"></a><strong>指令3：优化编辑反馈</strong></h3><p>优化编辑反馈的意义在于，它帮助我们学会有效回应编辑的建议，确保每一条反馈都得到了充分处理。比如，如果编辑指出某些地方的表述不够清楚，我们需要知道如何用简洁的语言重新表达；如果涉及到格式问题，我们也要快速适应期刊要求。</p><ul><li><p><strong>指令3：”Based on the following notes, draft a clear and actionable letter that emphasizes the importance of thoroughly addressing each comment, improving the clarity of the manuscript, and adhering to journal requirements. The tone should be direct and professional, avoiding unnecessary technical language.”</strong></p></li><li><p><strong>中文翻译：“基于以下笔记，起草一封清晰且可操作的信件，重点突出全面回应每条意见的重要性，提升稿件清晰度，并符合期刊要求。语气需直截了当且专业，避免使用多余的技术语言。”</strong></p></li></ul><p>注：此外，Nature还推荐了30条GPT科研工作指令，可查看</p><ul><li><a href="/2025/09/03/%E4%B8%93%E9%A2%98/AI%E7%A7%91%E7%A0%94/Nature%E6%8E%A8%E8%8D%90_30%E6%9D%A1AI%E7%A7%91%E7%A0%94%E5%B7%A5%E4%BD%9C%E6%8C%87%E4%BB%A4/" title="Nature推荐_30条AI科研工作指令">Nature推荐_30条AI科研工作指令</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>专题</category>
+      
+      <category>AI+科研</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>教程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Nature推荐_30条AI科研工作指令</title>
+    <link href="/2025/09/03/%E4%B8%93%E9%A2%98/AI%E7%A7%91%E7%A0%94/Nature%E6%8E%A8%E8%8D%90_30%E6%9D%A1AI%E7%A7%91%E7%A0%94%E5%B7%A5%E4%BD%9C%E6%8C%87%E4%BB%A4/"/>
+    <url>/2025/09/03/%E4%B8%93%E9%A2%98/AI%E7%A7%91%E7%A0%94/Nature%E6%8E%A8%E8%8D%90_30%E6%9D%A1AI%E7%A7%91%E7%A0%94%E5%B7%A5%E4%BD%9C%E6%8C%87%E4%BB%A4/</url>
+    
+    <content type="html"><![CDATA[<h2 id="一、科研选题与方向确认"><a href="#一、科研选题与方向确认" class="headerlink" title="一、科研选题与方向确认"></a>一、科研选题与方向确认</h2><h3 id="1-头脑风暴选题指令"><a href="#1-头脑风暴选题指令" class="headerlink" title="1. 头脑风暴选题指令"></a>1. 头脑风暴选题指令</h3><blockquote><p><strong>Brainstorm potential research topics within [你的研究领域], focusing on areas with limited existing research and significant potential impact. For each topic, provide a concise explanation of its relevance, potential challenges, and anticipated outcomes. Consider interdisciplinary approaches and emerging trends within the field.</strong></p><p><strong>中文翻译</strong>：在 <strong>[你的研究领域]</strong> 内，集思广益，找出一些潜在的研究课题，重点关注现有研究有限且具有重大潜在影响的领域。对于每个课题，简要解释其相关性、潜在挑战和预期成果。考虑跨学科方法和该领域的新兴趋势。</p></blockquote><h3 id="2-分析研究方向指令"><a href="#2-分析研究方向指令" class="headerlink" title="2. 分析研究方向指令"></a>2. 分析研究方向指令</h3><blockquote><p><strong>Analyze the existing literature on [特定研究方向], identifying key research gaps and unresolved questions. Propose several specific, measurable, achievable, relevant, and time-bound (SMART) research questions that could address these gaps, along with a brief justification for each.</strong></p><p><strong>中文翻译</strong>：分析关于 <strong>[特定研究方向]</strong> 的现有文献，找出关键的研究空白和未解决的问题。提出几个具体的、可衡量的、可实现的、相关的、有时限的(SMART)研究问题，以解决这些差距，并对每个问题进行简要论证。</p></blockquote><h3 id="3-评估研究想法指令"><a href="#3-评估研究想法指令" class="headerlink" title="3. 评估研究想法指令"></a>3. 评估研究想法指令</h3><blockquote><p><strong>Critically evaluate the feasibility and potential impact of the following research idea: [你的研究想法]. Consider factors such as resource availability, ethical implications, technical limitations, and potential contributions to the field. Provide a SWOT analysis (Strengths, Weaknesses, Opportunities, Threats) to comprehensively assess the research idea.</strong></p><p><strong>中文翻译</strong>：批判性地评估以下研究想法的可行性和潜在影响：**[你的研究想法]**。考虑资源可用性、伦理意义、技术限制以及对该领域的潜在贡献等因素。提供SWOT分析（优势、劣势、机会、威胁），以全面评估研究想法。</p></blockquote><hr><h2 id="二、文献综述与研究过程"><a href="#二、文献综述与研究过程" class="headerlink" title="二、文献综述与研究过程"></a>二、文献综述与研究过程</h2><h3 id="4-总结文献关键信息指令"><a href="#4-总结文献关键信息指令" class="headerlink" title="4. 总结文献关键信息指令"></a>4. 总结文献关键信息指令</h3><blockquote><p><strong>Summarize the key findings, methodologies, limitations, and contributions of the following papers: [列出文献链接或DOI]. Organize the summary thematically, highlighting common themes and contrasting perspectives across the selected papers.</strong></p><p><strong>中文翻译</strong>：总结以下论文的主要发现、方法、局限性和贡献：**[列出文献链接或DOI]**。按主题组织总结，突出所选论文的共同主题和对比观点。</p></blockquote><h3 id="5-查找高影响力文献指令"><a href="#5-查找高影响力文献指令" class="headerlink" title="5. 查找高影响力文献指令"></a>5. 查找高影响力文献指令</h3><blockquote><p><strong>Identify the most influential and impactful papers published in the last 5 years on [你的研究主题]. Consider metrics such as citation count, journal impact factor, and altmetrics. Provide a brief analysis of why these papers are considered influential.</strong></p><p><strong>中文翻译</strong>：确定过去5年发表的关于 <strong>[你的研究主题]</strong> 的最有影响力和最有冲击力的论文。考虑诸如引用次数、期刊影响因子和替代指标等指标。简要分析为什么这些论文被认为具有影响力。</p></blockquote><h3 id="6-创建文献综述大纲指令"><a href="#6-创建文献综述大纲指令" class="headerlink" title="6. 创建文献综述大纲指令"></a>6. 创建文献综述大纲指令</h3><blockquote><p><strong>Create a detailed literature review outline for a paper on [你的研究主题], including key themes, subtopics, and relevant supporting literature for each. Structure the outline logically to provide a coherent narrative and demonstrate the progression of research in the field.</strong></p><p><strong>中文翻译</strong>：为一篇关于 <strong>[你的研究主题]</strong> 的论文创建一个详细的文献综述大纲，包括关键主题、子主题以及每个主题的相关支持文献。按照逻辑构建大纲，以提供连贯的叙述并展示该领域研究的进展。</p></blockquote><h3 id="7-建议研究方法指令"><a href="#7-建议研究方法指令" class="headerlink" title="7. 建议研究方法指令"></a>7. 建议研究方法指令</h3><blockquote><p><strong>Suggest appropriate research methods and experimental designs for investigating [你的研究问题], taking into account the nature of the research question, available resources, and ethical considerations. Provide a rationale for the chosen methods and discuss potential limitations.</strong></p><p><strong>中文翻译</strong>：建议用于调查 <strong>[你的研究问题]</strong> 的合适研究方法和实验设计，同时考虑到研究问题的性质、可用资源和伦理考虑。提供选择这些方法的基本原理并讨论潜在的局限性。</p></blockquote><h3 id="8-设计实验指令"><a href="#8-设计实验指令" class="headerlink" title="8. 设计实验指令"></a>8. 设计实验指令</h3><blockquote><p><strong>Design a robust experiment to test the hypothesis that [你的假设]. Include detailed information on the experimental setup, materials and methods, data collection procedures, statistical analysis plan, and anticipated results. Address potential confounding variables and control measures.</strong></p><p><strong>中文翻译</strong>：设计一个稳健的实验来检验 **[你的假设]**。包括实验设置、材料和方法、数据收集程序、统计分析计划和预期结果的详细信息。解决潜在的混杂变量和控制措施。</p></blockquote><h3 id="9-评估研究方法优缺点指令"><a href="#9-评估研究方法优缺点指令" class="headerlink" title="9. 评估研究方法优缺点指令"></a>9. 评估研究方法优缺点指令</h3><blockquote><p><strong>Critically evaluate the strengths and weaknesses of using [特定研究方法] for [你的研究问题]. Compare and contrast this method with alternative approaches, considering factors such as validity, reliability, cost-effectiveness, and ethical implications.</strong></p><p><strong>中文翻译</strong>：批判性地评估使用 <strong>[特定研究方法]</strong> 解决 <strong>[你的研究问题]</strong> 的优势和劣势。将此方法与其他方法进行比较和对比，考虑诸如有效性、可靠性、成本效益和伦理影响等因素。</p></blockquote><h3 id="10-数据分析指令"><a href="#10-数据分析指令" class="headerlink" title="10. 数据分析指令"></a>10. 数据分析指令</h3><blockquote><p><strong>Analyze the following data [粘贴你的数据] and identify any statistically significant trends, patterns, or correlations. Provide visualizations (e.g., graphs, charts) to illustrate the findings and interpret their meaning in the context of the research question.</strong></p><p><strong>中文翻译</strong>：分析以下数据 **[粘贴你的数据]**，并识别任何具有统计学意义的趋势、模式或相关性。提供可视化（例如，图表）来说明研究结果，并在研究问题的背景下解释其含义。</p></blockquote><h3 id="11-实验结果解读指令"><a href="#11-实验结果解读指令" class="headerlink" title="11. 实验结果解读指令"></a>11. 实验结果解读指令</h3><blockquote><p><strong>Interpret the results of the following experiment: [描述你的实验和结果]. Discuss the implications of the findings, considering both supporting and contradictory evidence from the existing literature. Address potential limitations and suggest future research directions.</strong></p><p><strong>中文翻译</strong>：解释以下实验的结果：**[描述你的实验和结果]**。讨论研究结果的含义，同时考虑现有文献中的支持和矛盾证据。解决潜在的局限性并建议未来的研究方向。</p></blockquote><h3 id="12-讨论研究意义指令"><a href="#12-讨论研究意义指令" class="headerlink" title="12. 讨论研究意义指令"></a>12. 讨论研究意义指令</h3><blockquote><p><strong>Discuss the broader implications of these findings for [你的研究领域]. Explore potential applications, theoretical contributions, and practical implications of the research. Consider the impact on policy, practice, and future research endeavors.</strong></p><p><strong>中文翻译</strong>：讨论这些发现对 <strong>[你的研究领域]</strong> 的更广泛的含义。探讨研究的潜在应用、理论贡献和实际意义。考虑对政策、实践和未来研究工作的影响。</p></blockquote><hr><h2 id="三、论文撰写与修改"><a href="#三、论文撰写与修改" class="headerlink" title="三、论文撰写与修改"></a>三、论文撰写与修改</h2><h3 id="13-撰写摘要指令"><a href="#13-撰写摘要指令" class="headerlink" title="13. 撰写摘要指令"></a>13. 撰写摘要指令</h3><blockquote><p><strong>Write a concise and informative abstract for a research paper on [你的研究主题], summarizing the research question, methodology, key findings, and implications. Adhere to the word limit and formatting guidelines of the target journal.</strong></p><p><strong>中文翻译</strong>：为一篇关于 <strong>[你的研究主题]</strong> 的研究论文撰写一个简洁而翔实的摘要，总结研究问题、方法、主要发现和含义。遵守目标期刊的字数限制和格式指南。</p></blockquote><h3 id="14-撰写引言指令"><a href="#14-撰写引言指令" class="headerlink" title="14. 撰写引言指令"></a>14. 撰写引言指令</h3><blockquote><p><strong>Generate a compelling and engaging introduction for a research paper on [你的研究主题], clearly stating the research gap, research question, and the significance of the study. Provide relevant background information and establish the context for the research.</strong></p><p><strong>中文翻译</strong>：为一篇关于 <strong>[你的研究主题]</strong> 的研究论文撰写一个引人入胜且引人入胜的引言，清晰地陈述研究差距、研究问题和研究的意义。提供相关的背景信息，并为研究建立背景。</p></blockquote><h3 id="15-改进段落指令"><a href="#15-改进段落指令" class="headerlink" title="15. 改进段落指令"></a>15. 改进段落指令</h3><blockquote><p><strong>Improve the clarity, conciseness, and overall quality of the following paragraph: [粘贴你的段落]. Ensure the language is precise, the sentences are well-structured, and the flow of ideas is logical.</strong></p><p><strong>中文翻译</strong>：提高以下段落的清晰度、简洁性和整体质量：**[粘贴你的段落]**。确保语言准确，句子结构良好，思想流程合乎逻辑。</p></blockquote><h3 id="16-改写句子指令"><a href="#16-改写句子指令" class="headerlink" title="16. 改写句子指令"></a>16. 改写句子指令</h3><blockquote><p><strong>Paraphrase the following sentence to avoid plagiarism while retaining the original meaning: [粘贴你的句子]. Ensure the paraphrased sentence is grammatically correct and uses appropriate academic vocabulary.</strong></p><p><strong>中文翻译</strong>：改写以下句子以避免剽窃，同时保留其原始含义：**[粘贴你的句子]**。确保改写后的句子语法正确，并使用适当的学术词汇。</p></blockquote><h3 id="17-建议论文标题指令"><a href="#17-建议论文标题指令" class="headerlink" title="17. 建议论文标题指令"></a>17. 建议论文标题指令</h3><blockquote><p><strong>Suggest a concise and informative title for a research paper based on the following findings: [描述你的研究发现]. The title should accurately reflect the content of the paper and capture the reader’s attention.</strong></p><p><strong>中文翻译</strong>：根据以下研究结果，建议一个简洁明了的研究论文标题：**[描述你的研究发现]**。标题应准确反映论文的内容并吸引读者的注意力。</p></blockquote><h3 id="18-生成关键词指令"><a href="#18-生成关键词指令" class="headerlink" title="18. 生成关键词指令"></a>18. 生成关键词指令</h3><blockquote><p><strong>Generate a list of relevant keywords for a research paper on [你的研究主题]. These keywords should facilitate discoverability and indexing of the paper in academic databases.</strong></p><p><strong>中文翻译</strong>：生成与 <strong>[你的研究主题]</strong> 相关的关键词列表。这些关键词应有助于在学术数据库中发现和索引论文。</p></blockquote><h3 id="19-撰写结论指令"><a href="#19-撰写结论指令" class="headerlink" title="19. 撰写结论指令"></a>19. 撰写结论指令</h3><blockquote><p><strong>Write a comprehensive conclusion for a research paper on [你的研究主题], summarizing the key findings, limitations, and future research directions. Restate the research question and highlight the contributions of the study.</strong></p><p><strong>中文翻译</strong>：为一篇关于 <strong>[你的研究主题]</strong> 的研究论文撰写一个全面的结论，总结主要发现、局限性和未来的研究方向。重申研究问题并强调研究的贡献。</p></blockquote><h3 id="20-创建讨论部分大纲指令"><a href="#20-创建讨论部分大纲指令" class="headerlink" title="20. 创建讨论部分大纲指令"></a>20. 创建讨论部分大纲指令</h3><blockquote><p><strong>Create a well-structured outline for the discussion section of a research paper on [你的研究主题], including key points, supporting evidence, and connections to the existing literature.</strong></p><p><strong>中文翻译</strong>：为一篇关于 <strong>[你的研究主题]</strong> 的研究论文的讨论部分创建一个结构良好的大纲，包括要点、支持证据以及与现有文献的联系。</p></blockquote><h3 id="21-论证研究意义指令"><a href="#21-论证研究意义指令" class="headerlink" title="21. 论证研究意义指令"></a>21. 论证研究意义指令</h3><blockquote><p><strong>Develop a compelling argument for the significance of your research on [你的研究主题], highlighting its potential impact on the field and its contribution to knowledge.</strong></p><p><strong>中文翻译</strong>：对你在 <strong>[你的研究主题]</strong> 上的研究的重要性进行有力的论证，强调其对该领域的潜在影响及其对知识的贡献。</p></blockquote><h3 id="22-改进论文章节指令"><a href="#22-改进论文章节指令" class="headerlink" title="22. 改进论文章节指令"></a>22. 改进论文章节指令</h3><blockquote><p><strong>Refine the following section of your research paper to enhance its logical flow and coherence: [粘贴你的部分].</strong></p><p><strong>中文翻译</strong>：修改你研究论文的以下部分，以增强其逻辑流程和连贯性：**[粘贴你的部分]**。</p></blockquote><hr><h2 id="四、研究规划与伦理"><a href="#四、研究规划与伦理" class="headerlink" title="四、研究规划与伦理"></a>四、研究规划与伦理</h2><h3 id="23-识别方法论缺陷指令"><a href="#23-识别方法论缺陷指令" class="headerlink" title="23. 识别方法论缺陷指令"></a>23. 识别方法论缺陷指令</h3><blockquote><p><strong>Identify potential weaknesses in your research methodology and suggest ways to address them in future studies.</strong></p><p><strong>中文翻译</strong>：找出你研究方法中潜在的弱点，并建议在未来的研究中解决这些弱点的方法。</p></blockquote><h3 id="24-制定研究假设指令"><a href="#24-制定研究假设指令" class="headerlink" title="24. 制定研究假设指令"></a>24. 制定研究假设指令</h3><blockquote><p><strong>Formulate a research hypothesis based on the following observations: [描述你的观察].</strong></p><p><strong>中文翻译</strong>：根据以下观察结果制定研究假设：**[描述你的观察]**。</p></blockquote><h3 id="25-撰写研究计划指令"><a href="#25-撰写研究计划指令" class="headerlink" title="25. 撰写研究计划指令"></a>25. 撰写研究计划指令</h3><blockquote><p><strong>Develop a research proposal for a study on [你的研究主题], including a detailed budget and timeline.</strong></p><p><strong>中文翻译</strong>：制定一项关于 <strong>[你的研究主题]</strong> 的研究计划，包括详细的预算和时间表。</p></blockquote><h3 id="26-识别伦理问题指令"><a href="#26-识别伦理问题指令" class="headerlink" title="26. 识别伦理问题指令"></a>26. 识别伦理问题指令</h3><blockquote><p><strong>Identify potential ethical considerations related to your research on [你的研究主题] and propose strategies for mitigating them.</strong></p><p><strong>中文翻译</strong>：识别与你关于 <strong>[你的研究主题]</strong> 的研究相关的潜在伦理考虑，并提出缓解这些问题的策略。</p></blockquote><hr><h2 id="五、其他辅助指令"><a href="#五、其他辅助指令" class="headerlink" title="五、其他辅助指令"></a>五、其他辅助指令</h2><h3 id="27-定义关键术语指令"><a href="#27-定义关键术语指令" class="headerlink" title="27. 定义关键术语指令"></a>27. 定义关键术语指令</h3><blockquote><p><strong>Write a clear and concise definition of [一个与你的研究相关的关键术语].</strong></p><p><strong>中文翻译</strong>：对 <strong>[一个与你的研究相关的关键术语]</strong> 写一个清晰简洁的定义。</p></blockquote><h3 id="28-翻译摘要指令"><a href="#28-翻译摘要指令" class="headerlink" title="28. 翻译摘要指令"></a>28. 翻译摘要指令</h3><blockquote><p><strong>Translate the following abstract into [目标语言]: [粘贴你的摘要].</strong></p><p><strong>中文翻译</strong>：将以下摘要翻译成 **[目标语言]<strong>：</strong>[粘贴你的摘要]**。</p></blockquote><h3 id="29-推荐投稿期刊指令"><a href="#29-推荐投稿期刊指令" class="headerlink" title="29. 推荐投稿期刊指令"></a>29. 推荐投稿期刊指令</h3><blockquote><p><strong>Generate a list of potential journals to submit your research paper on [你的研究主题], considering their scope, impact factor, and audience.</strong></p><p><strong>中文翻译</strong>：生成一份可以提交你关于 <strong>[你的研究主题]</strong> 的研究论文的潜在期刊列表，同时考虑其范围、影响因子和读者群。</p></blockquote><h3 id="30-撰写投稿信指令"><a href="#30-撰写投稿信指令" class="headerlink" title="30. 撰写投稿信指令"></a>30. 撰写投稿信指令</h3><blockquote><p><strong>Write a cover letter to accompany your research paper submission, highlighting the key contributions and novelty of your work.</strong></p><p><strong>中文翻译</strong>：写一封附在你研究论文提交材料中的投稿信，重点介绍你工作的关键贡献和新颖性。</p></blockquote><p>    </p>]]></content>
+    
+    
+    <categories>
+      
+      <category>专题</category>
+      
+      <category>AI+科研</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>教程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>一文带你掌握文献搜集的全部</title>
+    <link href="/2025/09/02/%E5%B7%A7%E5%A6%99%E5%9C%B0%E6%90%9C%E9%9B%86%E6%96%87%E7%8C%AE/"/>
+    <url>/2025/09/02/%E5%B7%A7%E5%A6%99%E5%9C%B0%E6%90%9C%E9%9B%86%E6%96%87%E7%8C%AE/</url>
+    
+    <content type="html"><![CDATA[<p>    </p><h4 id="在搜集文献的时候我们面临几个问题："><a href="#在搜集文献的时候我们面临几个问题：" class="headerlink" title="在搜集文献的时候我们面临几个问题："></a>在搜集文献的时候我们面临几个问题：</h4><ol><li><p>在文章中<strong>看到一篇文献，如何快速找到原文</strong>。</p></li><li><p>准备撰写<strong>文献综述，需要找到相关关键词下的权威文献</strong>。</p></li><li><p>为自己的观点<strong>寻找文献支撑</strong>。</p></li></ol><p>    </p><h4 id="一、看到一篇文献，如何快速找到原文"><a href="#一、看到一篇文献，如何快速找到原文" class="headerlink" title="一、看到一篇文献，如何快速找到原文"></a>一、看到一篇文献，如何快速找到原文</h4><p>        如果要搜索的是中文文献，则可以通过知网，不再赘述，以下情境只讨论英文相关文献：</p><ol><li><p><strong>谷歌学术镜像：</strong></p><ul><li><p>较为推荐一个稳定的谷歌学术镜像网站<a href="https://sc.panda985.com/index.html">谷歌镜像</a></p></li><li><p>找到相应文章，通过右侧<strong>一键下载</strong>目录下的链接获得原文</p></li></ul></li></ol><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAALzoGi2W7BUXYTSW9ER5aylZeS-pF-dAAKYIgACamOwVfBzNu4RD8j7NgQ.png" alt="c2aa2039-98b8-46cf-b386-8d9f1ba84013.png"></p><p>            ps:谷歌学术搜索中可以直接使用姓名（年份）进行搜索，非常方便</p><p>    </p><ol start="2"><li><p><strong>直接搜索：</strong></p><ul><li><p>谷歌镜像网站有的时候并不稳定，且部分文献是非开源的，因此无法直接下载</p></li><li><p>部分学者会在自己的主页或者arxiv上公布一些历史版本的working paper</p></li><li><p>找到带有[pdf]标识的链接，点开即可</p></li></ul></li></ol><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAALzt2i2X94W-rb2yjueSa7wdUlgFcoYAALDIgACamOwVaCpd351nRVGNgQ.png" alt="63ee9cde-74c8-4065-86bf-4f3bcde918a2.png"></p><p>    </p><h4 id="二、找到自己研究最相关的文献脉络"><a href="#二、找到自己研究最相关的文献脉络" class="headerlink" title="二、找到自己研究最相关的文献脉络"></a>二、找到自己研究最相关的文献脉络</h4><p>        很多同学在搜索文献，通过各种文献搜索平台搜集的文献都比较散而杂，有些可能并不是很和我们的研究有直接关系，无法找到自己研究所处的文献脉络。这会导致：</p><ul><li><p>无法掌握现有研究的边界，即自己的研究可能已经被做过了；</p></li><li><p>无法掌握主流学者的观点，对自己的研究结论产生误判。</p></li></ul><p><strong>寻找文献脉络的步骤如下</strong></p><ul><li><p>找到“核心”文献</p></li><li><p>文献脉络的可视化分析</p></li><li><p>找到局部高引文献，并梳理脉络</p></li></ul><p>    </p><h5 id="1-找到“核心”文献"><a href="#1-找到“核心”文献" class="headerlink" title="1. 找到“核心”文献"></a>1. <strong>找到“核心”文献</strong></h5><ul><li><p><strong>“核心”论文</strong>指的是在领域内起到重要枢纽作用的文献，通常表现形式为<strong>顶刊</strong>、<strong>发表年份偏早</strong>、且<strong>超多引用</strong>。</p><ul><li>中文文献，可以通过知网搜索关键词，按照引用排序。例如我们寻找“数字经济”主题下的“核心”论文：</li></ul><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAL0fWi2lNxbeWCiqiXaazdAH4vWnkDoAALCFAACamO4Va2gaV_NdGxINgQ.png" alt="知网.png"></p></li><li><p>英文文献，可以通过<a href="https://www.webofscience.com/wos/">Web of Science</a>搜索关键词（WOS通常需要权限账号，可以通过学校的机构通道免费使用），同样按照以上标准。例如我们寻找“digital economy”主题下的“核心”论文：</p><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAL0g2i2lZ68pGozBOPWRVNg5sPPKiiMAALIFAACamO4Ve7X-y29rcQ1NgQ.png" alt="WOS.png"></p></li></ul><ol start="2"><li><strong>可视化分析文献脉络</strong></li></ol><ul><li><p>中文文献：</p><ul><li>知网文献的脉络分析较为简单，此处我们依然以数字经济为例：</li></ul><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAL0iGi2laMt0aGv0pDJTfT0RQ0r2AedAALNFAACamO4VTblIGqPDMjoNgQ.png" alt="知网可视化.png"></p><ul><li><p>生成可视化分析：圆圈面积越大，则代表在文献网络中被引用次数越多，筛选关系强度和被引频次可以让引用关系更严格更干净。</p><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAL0hWi2lZ5OgO0_g2SJr1MbuaY9N2VTAALKFAACamO4VVX42Xrs2goTNgQ.png" alt="知网可视化分析步骤.png"></p><ul><li><p>对网络结构进行分析：越靠近中心代表这部分的文献越密集、越丰富。同时不同的集群则代表了不同的文献脉络。</p><ul><li>以下图为例，则是数字经济越企业业绩相关的一支文献脉络。</li></ul><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAL0h2i2laMD3L3Hvx32VtxAe4DMsVamAALMFAACamO4Vc5SfEqWfmoONgQ.png" alt="知网样例1.png"></p><ul><li>以下图为例，则是数字经济与区域高质量发展相关的一支文献脉络。</li></ul><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAL0hmi2lZ5pl_ecTW-p5B1f4YzpTKgLAALLFAACamO4VYRkCKtrG2CTNgQ.png" alt="知网样例2.png"></p></li></ul></li></ul><pre><code class="hljs">    </code></pre></li><li><p><strong>英文文献：</strong> </p><ul><li><p>英文文献的脉络梳理有很多开源工具，比中文要更加清晰、科学、高效，在此推荐一个常用的可视化分析工具<a href="https://www.connectedpapers.com/">Connected Papers</a>。我们同样使用“Digital economy”为例：</p><ul><li>不同于知网要挑选文献，connected paper内嵌了WOS数据库，因此我们可以通过关键词、或“核心”文献进行快速扩展，在此我们以第一步在WOS数据库中检索到的第一个结果 <a href="https://webofscience.clarivate.cn/wos/alldb/full-record/WOS:000474323000001">The digital transformation of innovation and entrepreneurship: Progress, challenges and key themes</a>为例，输入connected paper中：</li></ul><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAL0gmi2lZ34GOV_6uYUubKtmsooOGkmAALHFAACamO4VULFViYK-7qBNgQ.png" alt="CP1.png"></p><ul><li>和知网的关系图类似，图标大小代表了该文献的引用量，解读方法同上：</li></ul><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAL0iWi2laNr1c5E2JbWRw5tnodlSnN2AALOFAACamO4VdBjK1ejo2XzNgQ.png" alt="CP2.png"></p><ul><li>该网站还设置了一个有序统计，可以看到该文章的引用和被引用列表，可以进行直接统一下载。</li></ul></li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>文献</category>
+      
+      <category>文献搜集与管理</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>一文带你掌握文献搜集的全部</title>
+    <link href="/2025/09/02/%E4%B8%93%E9%A2%98/%E6%96%87%E7%8C%AE%E6%90%9C%E9%9B%86%E4%B8%8E%E7%AE%A1%E7%90%86/%E4%B8%80%E6%96%87%E5%B8%A6%E4%BD%A0%E6%8E%8C%E6%8F%A1%E6%96%87%E7%8C%AE%E6%90%9C%E9%9B%86%E7%9A%84%E5%85%A8%E9%83%A8/"/>
+    <url>/2025/09/02/%E4%B8%93%E9%A2%98/%E6%96%87%E7%8C%AE%E6%90%9C%E9%9B%86%E4%B8%8E%E7%AE%A1%E7%90%86/%E4%B8%80%E6%96%87%E5%B8%A6%E4%BD%A0%E6%8E%8C%E6%8F%A1%E6%96%87%E7%8C%AE%E6%90%9C%E9%9B%86%E7%9A%84%E5%85%A8%E9%83%A8/</url>
+    
+    <content type="html"><![CDATA[<p>    </p><h4 id="在搜集文献的时候我们面临几个问题："><a href="#在搜集文献的时候我们面临几个问题：" class="headerlink" title="在搜集文献的时候我们面临几个问题："></a>在搜集文献的时候我们面临几个问题：</h4><ol><li><p>在文章中<strong>看到一篇文献，如何快速找到原文</strong>。</p></li><li><p>准备撰写<strong>文献综述，需要找到相关关键词下的权威文献</strong>。</p></li><li><p>为自己的观点<strong>寻找文献支撑</strong>。</p></li></ol><p>    </p><h4 id="一、看到一篇文献，如何快速找到原文"><a href="#一、看到一篇文献，如何快速找到原文" class="headerlink" title="一、看到一篇文献，如何快速找到原文"></a>一、看到一篇文献，如何快速找到原文</h4><p>        如果要搜索的是中文文献，则可以通过知网，不再赘述，以下情境只讨论英文相关文献：</p><ol><li><p><strong>谷歌学术镜像：</strong></p><ul><li><p>较为推荐一个稳定的谷歌学术镜像网站<a href="https://sc.panda985.com/index.html">谷歌镜像</a></p></li><li><p>找到相应文章，通过右侧<strong>一键下载</strong>目录下的链接获得原文</p></li></ul></li></ol><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAALzoGi2W7BUXYTSW9ER5aylZeS-pF-dAAKYIgACamOwVfBzNu4RD8j7NgQ.png" alt="c2aa2039-98b8-46cf-b386-8d9f1ba84013.png"></p><p>            ps:谷歌学术搜索中可以直接使用姓名（年份）进行搜索，非常方便</p><p>    </p><ol start="2"><li><p><strong>直接搜索：</strong></p><ul><li><p>谷歌镜像网站有的时候并不稳定，且部分文献是非开源的，因此无法直接下载</p></li><li><p>部分学者会在自己的主页或者arxiv上公布一些历史版本的working paper</p></li><li><p>找到带有[pdf]标识的链接，点开即可</p></li></ul></li></ol><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAALzt2i2X94W-rb2yjueSa7wdUlgFcoYAALDIgACamOwVaCpd351nRVGNgQ.png" alt="63ee9cde-74c8-4065-86bf-4f3bcde918a2.png"></p><p>    </p><h4 id="二、找到自己研究最相关的文献脉络"><a href="#二、找到自己研究最相关的文献脉络" class="headerlink" title="二、找到自己研究最相关的文献脉络"></a>二、找到自己研究最相关的文献脉络</h4><p>        很多同学在搜索文献，通过各种文献搜索平台搜集的文献都比较散而杂，有些可能并不是很和我们的研究有直接关系，无法找到自己研究所处的文献脉络。这会导致：</p><ul><li><p>无法掌握现有研究的边界，即自己的研究可能已经被做过了；</p></li><li><p>无法掌握主流学者的观点，对自己的研究结论产生误判。</p></li></ul><p><strong>寻找文献脉络的步骤如下</strong></p><ul><li><p>找到“核心”文献</p></li><li><p>文献脉络的可视化分析</p></li><li><p>找到局部高引文献，并梳理脉络</p></li></ul><p>    </p><h5 id="1-找到“核心”文献"><a href="#1-找到“核心”文献" class="headerlink" title="1. 找到“核心”文献"></a>1. <strong>找到“核心”文献</strong></h5><ul><li><p><strong>“核心”论文</strong>指的是在领域内起到重要枢纽作用的文献，通常表现形式为<strong>顶刊</strong>、<strong>发表年份偏早</strong>、且<strong>超多引用</strong>。</p><ul><li>中文文献，可以通过知网搜索关键词，按照引用排序。例如我们寻找“数字经济”主题下的“核心”论文：</li></ul><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAL0fWi2lNxbeWCiqiXaazdAH4vWnkDoAALCFAACamO4Va2gaV_NdGxINgQ.png" alt="知网.png"></p></li><li><p>英文文献，可以通过<a href="https://www.webofscience.com/wos/">Web of Science</a>搜索关键词（WOS通常需要权限账号，可以通过学校的机构通道免费使用），同样按照以上标准。例如我们寻找“digital economy”主题下的“核心”论文：</p><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAL0g2i2lZ68pGozBOPWRVNg5sPPKiiMAALIFAACamO4Ve7X-y29rcQ1NgQ.png" alt="WOS.png"></p></li></ul><ol start="2"><li><strong>可视化分析文献脉络</strong></li></ol><ul><li><p>中文文献：</p><ul><li>知网文献的脉络分析较为简单，此处我们依然以数字经济为例：</li></ul><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAL0iGi2laMt0aGv0pDJTfT0RQ0r2AedAALNFAACamO4VTblIGqPDMjoNgQ.png" alt="知网可视化.png"></p><ul><li><p>生成可视化分析：圆圈面积越大，则代表在文献网络中被引用次数越多，筛选关系强度和被引频次可以让引用关系更严格更干净。</p><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAL0hWi2lZ5OgO0_g2SJr1MbuaY9N2VTAALKFAACamO4VVX42Xrs2goTNgQ.png" alt="知网可视化分析步骤.png"></p><ul><li><p>对网络结构进行分析：越靠近中心代表这部分的文献越密集、越丰富。同时不同的集群则代表了不同的文献脉络。</p><ul><li>以下图为例，则是数字经济越企业业绩相关的一支文献脉络。</li></ul><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAL0h2i2laMD3L3Hvx32VtxAe4DMsVamAALMFAACamO4Vc5SfEqWfmoONgQ.png" alt="知网样例1.png"></p><ul><li>以下图为例，则是数字经济与区域高质量发展相关的一支文献脉络。</li></ul><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAL0hmi2lZ5pl_ecTW-p5B1f4YzpTKgLAALLFAACamO4VYRkCKtrG2CTNgQ.png" alt="知网样例2.png"></p></li></ul></li></ul><pre><code class="hljs">    </code></pre></li><li><p><strong>英文文献：</strong> </p><ul><li><p>英文文献的脉络梳理有很多开源工具，比中文要更加清晰、科学、高效，在此推荐一个常用的可视化分析工具<a href="https://www.connectedpapers.com/">Connected Papers</a>。我们同样使用“Digital economy”为例：</p><ul><li>不同于知网要挑选文献，connected paper内嵌了WOS数据库，因此我们可以通过关键词、或“核心”文献进行快速扩展，在此我们以第一步在WOS数据库中检索到的第一个结果 <a href="https://webofscience.clarivate.cn/wos/alldb/full-record/WOS:000474323000001">The digital transformation of innovation and entrepreneurship: Progress, challenges and key themes</a>为例，输入connected paper中：</li></ul><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAL0gmi2lZ34GOV_6uYUubKtmsooOGkmAALHFAACamO4VULFViYK-7qBNgQ.png" alt="CP1.png"></p><ul><li>和知网的关系图类似，图标大小代表了该文献的引用量，解读方法同上：</li></ul><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAL0iWi2laNr1c5E2JbWRw5tnodlSnN2AALOFAACamO4VdBjK1ejo2XzNgQ.png" alt="CP2.png"></p><ul><li>该网站还设置了一个有序统计，可以看到该文章的引用和被引用列表，可以进行直接统一下载。</li></ul></li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>文献</category>
+      
+      <category>文献搜集与管理</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>PNAS：使用AI会遭到社会歧视？</title>
+    <link href="/2025/09/01/%E6%96%87%E7%8C%AE/%E7%83%AD%E7%82%B9/LR20250901/"/>
+    <url>/2025/09/01/%E6%96%87%E7%8C%AE/%E7%83%AD%E7%82%B9/LR20250901/</url>
+    
+    <content type="html"><![CDATA[<p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAALwqmi1et4ffRSRKHvqSoJAf0sRTlALAAJoHgACPa2oVU_HXyfbrTvuNgQ.png" alt="内容页.png"></p><p><strong>论文题目：《Evidence of a social evaluation penalty for using AI》</strong></p><p><strong>发表期刊：</strong> PNAS, 2025, Vol. 122</p><p><strong>作者背景：</strong> Jessica A. Reif, Richard P. Larrick, and Jack B. Soll (均来自杜克大学福库商学院)</p><p>        随着AI工具在工作场所的普及，一个有趣的困境出现了：一方面，AI能够显著提升个人生产力；另一方面，许多职场人却在悄悄使用甚至隐藏自己使用AI的事实，担心被同事和领导看作是“懒惰”或“能力不足”。这种现象背后是经典的归因理论（attribution theory）：当人们借助外力完成任务时，观察者倾向于将其归因于个人内在特质（如能力、动机不足），而非情境因素。</p><p>        本文通过四个环环相扣的实验，系统地检验了这种“AI使用惩罚”是否真实存在，以及其背后的作用机制和边界条件。</p><h4 id="研究问题"><a href="#研究问题" class="headerlink" title="研究问题"></a>研究问题</h4><ol><li><p><strong>主观预期：</strong> 员工是否预期自己会因使用AI而受到负面评价？</p></li><li><p><strong>客观现实：</strong> 观察者是否真的会对使用AI的员工给予更低的评价？</p></li><li><p>这种负面评价<strong>是否会影响</strong>现实的商业决策，例如<strong>员工招聘</strong>？</p></li><li><p>这种“AI使用惩罚”背后的<strong>心理机制</strong>是什么？如何缓解？</p></li></ol><h4 id="研究内容"><a href="#研究内容" class="headerlink" title="研究内容"></a>研究内容</h4><p>        文章通过四个预注册的在线实验，对总计4,439名参与者进行了研究，层层递进地验证了核心假设。</p><p><strong>1. 实验1：主观预期</strong></p><ul><li><p><strong>设计：</strong> 将被试随机分为两组，想象自己在工作中使用生成式AI工具或非AI工具。</p></li><li><p><strong>测量：</strong> 评估他们预期的他人对自己能力、勤奋、懒惰程度的看法，以及向同事和上级报告使用该工具的意愿。</p></li></ul><p><strong>2. 实验2：真实的惩罚</strong></p><ul><li><p><strong>设计：</strong> 让被试作为评估者，阅读一段关于某员工的描述。该员工被描述为接受了“AI辅助”、“非AI辅助”（如同事帮助）或“无辅助”（控制组）。</p></li><li><p><strong>测量：</strong> 评估者对该员工的懒惰、能力、勤奋等维度进行打分。</p></li></ul><p><strong>3. 实验3：招聘的惩罚</strong></p><ul><li><strong>设计：</strong> 采用激励相容的两阶段招聘任务。首先招募一批“求职者”完成任务并报告其日常AI使用频率。然后招募另一批“管理者”，让他们审阅真实求职者的简历（AI使用频率为“每天使用”或“从不使用”），并决定是否雇佣。管理者的奖金与所雇佣员工的真实任务表现挂钩。</li></ul><p><strong>4. 实验4：机制与边界</strong></p><ul><li><p><strong>设计：</strong> 让评估者对一位求职者进行打分。该求职者申请的工作任务被随机设定为“手动任务”或“数字任务”。</p></li><li><p><strong>测量：</strong> 评估者对该员工的懒惰、能力、勤奋等维度进行打分。</p></li></ul><h4 id="研究结论"><a href="#研究结论" class="headerlink" title="研究结论"></a>研究结论</h4><p><strong>1.“AI使用惩罚”真实存在</strong></p><ul><li>员工普遍担心因使用AI被负面看待，并且这种担心是有根据的。与使用非AI工具或不使用辅助工具的员工相比，使用AI的员工确实被评价为更懒惰、能力更弱、更不勤奋。</li></ul><p><strong>2. 惩罚影响实际决策</strong></p><ul><li>在招聘场景中，本身不使用AI的管理者更倾向于拒绝使用AI的求职者。反之，频繁使用AI的管理者则更偏爱同样使用AI的求职者，表现出“圈内偏好”。</li></ul><p><strong>3. 核心机制是“懒惰”归因</strong></p><ul><li>对AI使用者能力等方面的负面评价，主要是通过“认为他们懒惰”这一认知中介的。</li></ul><p><strong>4. 惩罚可以被消除</strong></p><ul><li><p><strong>任务情境：</strong> 当工作任务明确适合使用AI时（如撰写邮件），AI使用者不仅不会被惩罚，甚至被认为更适合该岗位。</p></li><li><p><strong>评估者自身经验：</strong> 对于那些自己也频繁使用AI的评估者来说，他们并不会认为使用AI的求职者更懒惰。</p></li></ul><h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>       <strong>这篇文章揭示了一个关于AI应用的深刻悖论：一个旨在提高效率的工具，却可能损害使用者的职业声誉，从而构成一种隐性的“社会成本”。</strong></p><p>       随着AI变得日益普及，越来越多的人成为使用者，以及组织对AI使用的规范和文化逐渐形成，这种因“认知陌生”而产生的污名化或许会自然消退。对于管理者而言，明确AI在特定任务中的价值和合理性，是消除员工“使用恐惧”的关键。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>文献</category>
+      
+      <category>热点</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>文献带读</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>NBER:AI与劳动力市场</title>
+    <link href="/2025/09/01/%E6%96%87%E7%8C%AE/%E7%83%AD%E7%82%B9/LR20250902/"/>
+    <url>/2025/09/01/%E6%96%87%E7%8C%AE/%E7%83%AD%E7%82%B9/LR20250902/</url>
+    
+    <content type="html"><![CDATA[<img title="" src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAALx_Wi1_OkUav4uv9FLNQaF-FRq4d8vAAKfIAACamOwVa5KlA3OsWdSNgQ.png" alt="48d179e4-6a96-4354-8ab5-5161ba6ce64c.png" width="613" data-align="center"><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAALx_mi1_Opx_9AFa_jxBl_Q1JMs6bQNAAKgIAACamOwVT0Chkq9aFnUNgQ.png" title="" alt="e363a06c-9df1-4936-88a5-bd5cc2f8003f.png" width="667"><p><strong>论文题目：</strong>《Artificial Intelligence and the Labor Market》</p><p><strong>发表期刊：</strong> NBER,No. 33509,.2025.February.</p><p><strong>作者背景：</strong> Menaka Hampole(耶鲁大学管理学院)；Dimitris Papanikolaou(西北大学凯洛格管理学院，NBER)；Lawrence D.W.(麻省理工学院斯隆管理学院)；Bryan Seegmiller (西北大学凯洛格管理学院)</p><p>     </p><p>        今天介绍的这篇论文来自于美国NBER，在2025年2月公布，构建了一个较为完整的AI劳动经济学观点。</p><p>        具体而言：</p><p>        人工智能（AI）的快速发展引发了对劳动力市场被自动化取代的担忧。与以往技术变革主要影响中低技能职业不同，AI 暴露集中于高薪白领工作（如金融、工程）。然而，AI 对劳动力需求的实际影响尚未明确，因 AI 既可能替代劳动（通过任务自动化），也可能通过提升企业生产率间接增加劳动力需求。本文通过构建理论框架和新型测量方法，解析 AI 影响劳动力需求的双重渠道：任务替代效应与生产率溢出效应。</p><p>    </p><h4 id="研究问题："><a href="#研究问题：" class="headerlink" title="研究问题："></a>研究问题：</h4><blockquote><p><strong>1.AI暴露对劳动力市场的净效应是替代还是互补？</strong></p><p><strong>2.AI 如何通过任务替代和生产率效应影响企业劳动力需求？</strong></p></blockquote><p>    </p><h4 id="主要内容："><a href="#主要内容：" class="headerlink" title="主要内容："></a><strong>主要内容：</strong></h4><p><strong>1. 理论模型</strong></p><ul><li><p>文章在前人的基础上，创新性地描述了职业内部技术变革暴露程度差异对生产率的影响。</p></li><li><p>主要推导结论为：若某项技术能均衡提升该职业大多数任务专用资本的生产效率，则相关职业的劳动力需求将下降，因为资本会替代对应的劳动任务。反之，若技术进步对资本的影响呈现离散态势——某些任务受到显著影响而其他任务几乎不变——则该职业的劳动力需求反而可能上升。其内在逻辑在于：各项任务具有互补性，劳动者能够内生性地调整不同任务的时间分配。因此，当某项技术在执行特定任务时显著优于人力时，其他任务的生产效率将随之提升，劳动者会将更多时间重新分配给这些任务。</p></li></ul><p><strong>2. reduced model</strong></p><ul><li><p>被解释变量：</p><ul><li>劳动力需求：职业 - 企业层面的就业增长率</li></ul></li><li><p>解释变量：</p><ul><li><p>平均暴露度：职业任务受 AI 影响的平均概率</p></li><li><p>暴露离散度：职业内任务暴露度的方差</p></li></ul></li></ul><p>    </p><h4 id="研究结论："><a href="#研究结论：" class="headerlink" title="研究结论："></a><strong>研究结论：</strong></h4><p><strong>1. AI对工作存在任务替代效应</strong></p><ul><li><p>职业任务平均 AI 暴露度增加，企业内就业份额下降</p></li><li><p>高薪职业（90 分位）暴露度最高，但通过任务重组部分抵消替代效应</p></li></ul><p><strong>2. 生产率提升带动就业</strong></p><ul><li><p>AI应用集中于规模更大、生产率更高的企业。· 企业 AI 应用强度每增加 1 个标准差，销售额增长 9.5%，全要素生产率提升 7.6%</p></li><li><p>生产率提升带动整体就业增长 6%，部分抵消任务替代的负面影响</p></li></ul><p><strong>3. 净效应</strong></p><ul><li><p>较高的平均暴露度会减少企业内部就业，而更大的暴露度分散性则通过将劳动力重新配置到互补性任务中来缓解这种下降</p></li><li><p>企业整体AI应用会产生积极的就业效应，这与AI驱动的生产率提升会增加总体劳动力需求的理论预期一致</p></li></ul><p>    </p><h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h4><p><strong>本文对AI影响劳动力市场的理论提供了重要补充。同时文章通过分离 AI 暴露度的平均程度与离散度，为劳动力需求分析提供新视角，这为我们后续的研究提供了宝贵思路。</strong></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>文献</category>
+      
+      <category>热点</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>文献带读</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>顶刊订阅RSS链接（中文TOP、英文TOP5、FT50）</title>
+    <link href="/2025/08/30/%E8%AE%A2%E9%98%85RSS-1/"/>
+    <url>/2025/08/30/%E8%AE%A2%E9%98%85RSS-1/</url>
+    
+    <content type="html"><![CDATA[<h2 id="中文主流期刊："><a href="#中文主流期刊：" class="headerlink" title="中文主流期刊："></a>中文主流期刊：</h2><p><strong>经济研究</strong></p><ul><li><a href="https://rss.cnki.net/knavi/rss/JJYJ?pcode=CJFD,CCJD">https://rss.cnki.net/knavi/rss/JJYJ?pcode=CJFD,CCJD</a></li></ul><p><strong>经济学季刊</strong></p><ul><li><a href="https://rss.cnki.net/knavi/rss/JJXU?pcode=CJFD,CCJD">https://rss.cnki.net/knavi/rss/JJXU?pcode=CJFD,CCJD</a></li></ul><p><strong>中国工业经济</strong></p><ul><li><a href="https://rss.cnki.net/knavi/rss/GGYY?pcode=CJFD,CCJD">https://rss.cnki.net/knavi/rss/GGYY?pcode=CJFD,CCJD</a></li></ul><p><strong>数量技术经济研究</strong></p><ul><li><a href="https://rss.cnki.net/knavi/rss/SLJY?pcode=CJFD,CCJD">https://rss.cnki.net/knavi/rss/SLJY?pcode=CJFD,CCJD</a></li></ul><p><strong>世界经济</strong></p><ul><li><a href="https://rss.cnki.net/knavi/rss/SJJJ?pcode=CJFD,CCJD">https://rss.cnki.net/knavi/rss/SJJJ?pcode=CJFD,CCJD</a></li></ul><p><strong>管理世界</strong></p><ul><li><a href="https://rss.cnki.net/knavi/rss/GLSJ?pcode=CJFD,CCJD">https://rss.cnki.net/knavi/rss/GLSJ?pcode=CJFD,CCJD</a></li></ul><p><strong>CER最新一期</strong></p><ul><li><a href="https://rss.sciencedirect.com/publication/science/1043951X">https://rss.sciencedirect.com/publication/science/1043951X</a></li></ul><h2 id="英文TOP5-Field-TOP"><a href="#英文TOP5-Field-TOP" class="headerlink" title="英文TOP5+Field TOP"></a>英文TOP5+Field TOP</h2><p><strong>AEA精彩集锦</strong></p><ul><li><a href="https://www.aeaweb.org/research/rss-feed">https://www.aeaweb.org/research/rss-feed</a></li></ul><p><strong>Econometrica最新一期</strong></p><ul><li><a href="https://onlinelibrary.wiley.com/feed/14680262/most-recent">https://onlinelibrary.wiley.com/feed/14680262/most-recent</a></li></ul><p><strong>Econometrica最多引用</strong></p><ul><li><a href="https://onlinelibrary.wiley.com/feed/14680262/most-cited">https://onlinelibrary.wiley.com/feed/14680262/most-cited</a></li></ul><p><strong>NBER最近工作论文推送</strong></p><ul><li><a href="https://back.nber.org/rss/new.xml">https://back.nber.org/rss/new.xml</a></li></ul><p><strong>JPE最新一期</strong></p><ul><li><a href="https://www.journals.uchicago.edu/action/showFeed?type=etoc&feed=rss&jc=jpe">https://www.journals.uchicago.edu/action/showFeed?type=etoc&amp;feed=rss&amp;jc=jpe</a></li></ul><p><strong>QJE最新一期</strong></p><ul><li><a href="https://academic.oup.com/rss/site_5504/3365.xml">https://academic.oup.com/rss/site_5504/3365.xml</a></li></ul><p><strong>QJE预备录取</strong></p><ul><li><a href="https://academic.oup.com/rss/site_5504/advanceAccess_3365.xml">https://academic.oup.com/rss/site_5504/advanceAccess_3365.xml</a></li></ul><p><strong>QJE开放获取</strong></p><ul><li><a href="https://academic.oup.com/rss/site_5504/OpenAccess.xml">https://academic.oup.com/rss/site_5504/OpenAccess.xml</a></li></ul><p><strong>QJE编辑推荐</strong></p><ul><li><a href="https://academic.oup.com/rss/site_5504/3365_56068.xml">https://academic.oup.com/rss/site_5504/3365_56068.xml</a></li></ul><p><strong>RES最新一期</strong></p><ul><li><a href="https://academic.oup.com/rss/site_5508/3369.xml">https://academic.oup.com/rss/site_5508/3369.xml</a></li></ul><p><strong>RES预备录取</strong></p><ul><li><a href="https://academic.oup.com/rss/site_5508/advanceAccess_3369.xml">https://academic.oup.com/rss/site_5508/advanceAccess_3369.xml</a></li></ul><p><strong>RES开放获取</strong></p><ul><li><a href="https://academic.oup.com/rss/site_5508/OpenAccess.xml">https://academic.oup.com/rss/site_5508/OpenAccess.xml</a></li></ul><p><strong>BIS研究论文</strong></p><ul><li><a href="https://www.bis.org/doclist/bis_fsi_publs.rss">https://www.bis.org/doclist/bis_fsi_publs.rss</a></li></ul><p><strong>BIS数据集</strong></p><ul><li><a href="https://www.bis.org/doclist/all_statistics.rss">https://www.bis.org/doclist/all_statistics.rss</a></li></ul><p><strong>JAE最新一期</strong></p><ul><li><a href="https://onlinelibrary.wiley.com/feed/10991255/most-recent">https://onlinelibrary.wiley.com/feed/10991255/most-recent</a></li></ul><p><strong>JAE最多引用</strong></p><ul><li><a href="https://onlinelibrary.wiley.com/feed/10991255/most-cited">https://onlinelibrary.wiley.com/feed/10991255/most-cited</a></li></ul><p><strong>JLE最新一期</strong></p><ul><li><a href="https://www.journals.uchicago.edu/action/showFeed?type=etoc&feed=rss&jc=jole">https://www.journals.uchicago.edu/action/showFeed?type=etoc&amp;feed=rss&amp;jc=jole</a></li></ul><h2 id="FT-50"><a href="#FT-50" class="headerlink" title="FT-50"></a>FT-50</h2><p><strong>Academy of Management Journal</strong></p><ul><li><a href="https://journals.aom.org/action/showFeed?type=etoc&feed=rss&jc=amj">https://journals.aom.org/action/showFeed?type=etoc&amp;feed=rss&amp;jc=amj</a></li></ul><p><strong>Academy of Management Review</strong></p><ul><li><a href="https://journals.aom.org/action/showFeed?type=etoc&feed=rss&jc=amr">https://journals.aom.org/action/showFeed?type=etoc&amp;feed=rss&amp;jc=amr</a></li></ul><p><strong>Accounting, Organizations and Society</strong></p><ul><li><a href="https://rss.sciencedirect.com/publication/science/03613682">https://rss.sciencedirect.com/publication/science/03613682</a></li></ul><p><strong>Administrative Science Quarterly</strong></p><ul><li><a href="https://journals.sagepub.com/action/showFeed?ui=0&mi=ehikzz&ai=2b4&jc=asqa&type=etoc&feed=rss">https://journals.sagepub.com/action/showFeed?ui=0&amp;mi=ehikzz&amp;ai=2b4&amp;jc=asqa&amp;type=etoc&amp;feed=rss</a></li></ul><p><strong>Contemporary Accounting Research</strong></p><ul><li><a href="https://onlinelibrary.wiley.com/feed/19113846/most-recent">https://onlinelibrary.wiley.com/feed/19113846/most-recent</a></li></ul><p><strong>Econometrica</strong></p><ul><li><a href="https://onlinelibrary.wiley.com/feed/14680262/most-recent">https://onlinelibrary.wiley.com/feed/14680262/most-recent</a></li></ul><p><strong>Entrepreneurship Theory and Practice</strong></p><ul><li><a href="https://journals.sagepub.com/action/showFeed?ui=0&mi=ehikzz&ai=2b4&jc=etpb&type=etoc&feed=rss">https://journals.sagepub.com/action/showFeed?ui=0&amp;mi=ehikzz&amp;ai=2b4&amp;jc=etpb&amp;type=etoc&amp;feed=rss</a></li></ul><p><strong>Harvard Business Review</strong></p><ul><li><a href="http://feeds.hbr.org/harvardbusiness">http://feeds.hbr.org/harvardbusiness</a></li></ul><p><strong>Human Relations</strong></p><ul><li><a href="https://journals.sagepub.com/action/showFeed?ui=0&mi=ehikzz&ai=2b4&jc=huma&type=etoc&feed=rss">https://journals.sagepub.com/action/showFeed?ui=0&amp;mi=ehikzz&amp;ai=2b4&amp;jc=huma&amp;type=etoc&amp;feed=rss</a></li></ul><p><strong>Human Resource Management</strong></p><ul><li><a href="https://onlinelibrary.wiley.com/feed/17488583/most-recent">https://onlinelibrary.wiley.com/feed/17488583/most-recent</a></li></ul><p><strong>Information Systems Research</strong></p><ul><li><a href="https://pubsonline.informs.org/action/showFeed?type=etoc&feed=rss&jc=isre">https://pubsonline.informs.org/action/showFeed?type=etoc&amp;feed=rss&amp;jc=isre</a></li></ul><p><strong>Journal of Accounting and Economics</strong></p><ul><li><a href="https://rss.sciencedirect.com/publication/science/01654101">https://rss.sciencedirect.com/publication/science/01654101</a></li></ul><p><strong>Journal of Accounting Research</strong></p><ul><li><a href="https://onlinelibrary.wiley.com/feed/1475679x/most-recent">https://onlinelibrary.wiley.com/feed/1475679x/most-recent</a></li></ul><p><strong>Journal of Applied Psychology</strong></p><ul><li><a href="https://psycnet.apa.org/journals/apl.rss">https://psycnet.apa.org/journals/apl.rss</a></li></ul><p><strong>Journal of Business Venturing</strong></p><ul><li><a href="https://rss.sciencedirect.com/publication/science/08839026">https://rss.sciencedirect.com/publication/science/08839026</a></li></ul><p><strong>Journal of Consumer Psychology</strong></p><ul><li><a href="https://myscp.onlinelibrary.wiley.com/action/showFeed?type=etoc&feed=rss&jc=15327663">https://myscp.onlinelibrary.wiley.com/action/showFeed?type=etoc&amp;feed=rss&amp;jc=15327663</a></li></ul><p><strong>Journal of Consumer Research</strong></p><ul><li><a href="https://consumerresearcher.com/feed">https://consumerresearcher.com/feed</a></li></ul><p><strong>Journal of Finance</strong></p><ul><li><a href="https://onlinelibrary.wiley.com/feed/15406261/most-recent">https://onlinelibrary.wiley.com/feed/15406261/most-recent</a></li></ul><p><strong>Journal of Financial Economics</strong></p><ul><li><a href="https://rss.sciencedirect.com/publication/science/0304405X">https://rss.sciencedirect.com/publication/science/0304405X</a></li></ul><p><strong>Journal of Management</strong></p><ul><li><a href="https://journals.sagepub.com/action/showFeed?ui=0&mi=ehikzz&ai=2b4&jc=joma&type=etoc&feed=rss">https://journals.sagepub.com/action/showFeed?ui=0&amp;mi=ehikzz&amp;ai=2b4&amp;jc=joma&amp;type=etoc&amp;feed=rss</a></li></ul><p><strong>Journal of Management Information Systems</strong></p><ul><li><a href="https://www.jmis-web.org/jmis.xml">https://www.jmis-web.org/jmis.xml</a></li></ul><p><strong>Journal of Management Studies</strong></p><ul><li><a href="https://onlinelibrary.wiley.com/feed/14676486/most-recent">https://onlinelibrary.wiley.com/feed/14676486/most-recent</a></li></ul><p><strong>Journal of Marketing</strong></p><ul><li><a href="https://journals.sagepub.com/action/showFeed?ui=0&mi=ehikzz&ai=2b4&jc=jmxa&type=etoc&feed=rss">https://journals.sagepub.com/action/showFeed?ui=0&amp;mi=ehikzz&amp;ai=2b4&amp;jc=jmxa&amp;type=etoc&amp;feed=rss</a></li></ul><p><strong>Journal of Marketing Research</strong></p><ul><li><a href="https://journals.sagepub.com/action/showFeed?ui=0&mi=ehikzz&ai=2b4&jc=mrja&type=axatoc&feed=rss">https://journals.sagepub.com/action/showFeed?ui=0&amp;mi=ehikzz&amp;ai=2b4&amp;jc=mrja&amp;type=axatoc&amp;feed=rss</a></li></ul><p><strong>Journal of Operations Management</strong></p><ul><li><a href="https://onlinelibrary.wiley.com/feed/18731317/most-recent">https://onlinelibrary.wiley.com/feed/18731317/most-recent</a></li></ul><p><strong>Journal of Political Economy</strong></p><ul><li><a href="https://www.journals.uchicago.edu/action/showFeed?type=etoc&feed=rss&jc=jpe">https://www.journals.uchicago.edu/action/showFeed?type=etoc&amp;feed=rss&amp;jc=jpe</a></li></ul><p><strong>Management Science</strong></p><ul><li><a href="https://pubsonline.informs.org/action/showFeed?type=etoc&feed=rss&jc=mnsc">https://pubsonline.informs.org/action/showFeed?type=etoc&amp;feed=rss&amp;jc=mnsc</a></li></ul><p><strong>Manufacturing and Service Operations Management</strong></p><ul><li><a href="https://pubsonline.informs.org/action/showFeed?type=etoc&feed=rss&jc=msom">https://pubsonline.informs.org/action/showFeed?type=etoc&amp;feed=rss&amp;jc=msom</a></li></ul><p><strong>Marketing Science</strong></p><ul><li><a href="https://pubsonline.informs.org/action/showFeed?type=etoc&feed=rss&jc=mksc">https://pubsonline.informs.org/action/showFeed?type=etoc&amp;feed=rss&amp;jc=mksc</a></li></ul><p><strong>Operations Research</strong></p><ul><li><a href="https://pubsonline.informs.org/action/showFeed?type=etoc&feed=rss&jc=opre">https://pubsonline.informs.org/action/showFeed?type=etoc&amp;feed=rss&amp;jc=opre</a></li></ul><p><strong>Organization Science</strong></p><ul><li><a href="https://pubsonline.informs.org/action/showFeed?type=etoc&feed=rss&jc=orsc">https://pubsonline.informs.org/action/showFeed?type=etoc&amp;feed=rss&amp;jc=orsc</a></li></ul><p><strong>Organization Studies</strong></p><ul><li><a href="https://journals.sagepub.com/action/showFeed?ui=0&mi=ehikzz&ai=2b4&jc=ossa&type=etoc&feed=rss">https://journals.sagepub.com/action/showFeed?ui=0&amp;mi=ehikzz&amp;ai=2b4&amp;jc=ossa&amp;type=etoc&amp;feed=rss</a></li></ul><p><strong>Organizational Behavior and Human Decision Processes</strong></p><ul><li><a href="https://rss.sciencedirect.com/publication/science/07495978">https://rss.sciencedirect.com/publication/science/07495978</a></li></ul><p><strong>Production and Operations Management</strong></p><ul><li><a href="https://onlinelibrary.wiley.com/feed/19375956/most-recent">https://onlinelibrary.wiley.com/feed/19375956/most-recent</a></li></ul><p><strong>Research Policy</strong></p><ul><li><a href="https://rss.sciencedirect.com/publication/science/00487333">https://rss.sciencedirect.com/publication/science/00487333</a></li></ul><p><strong>Sloan Management Review</strong></p><ul><li><a href="http://feeds.feedburner.com/mitsmr">http://feeds.feedburner.com/mitsmr</a></li></ul><p><strong>Strategic Entrepreneurship Journal</strong></p><ul><li><a href="https://onlinelibrary.wiley.com/feed/1932443x/most-recent">https://onlinelibrary.wiley.com/feed/1932443x/most-recent</a></li></ul><p><strong>Strategic Management Journal</strong></p><ul><li><a href="https://onlinelibrary.wiley.com/feed/10970266/most-recent">https://onlinelibrary.wiley.com/feed/10970266/most-recent</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>文献</category>
+      
+      <category>文献搜集与管理</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>教程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>关于如何追踪顶刊文献</title>
+    <link href="/2025/08/30/%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E8%BF%BD%E8%B8%AA%E9%A1%B6%E5%88%8A%E6%96%87%E7%8C%AE/"/>
+    <url>/2025/08/30/%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E8%BF%BD%E8%B8%AA%E9%A1%B6%E5%88%8A%E6%96%87%E7%8C%AE/</url>
+    
+    <content type="html"><![CDATA[<p>最近有一些同学询问如何追踪顶刊文献，在此提供一个基于Zotero的可参考方案。</p><p>追踪文献需要几个要素：</p><ul><li><p><strong>期刊的RSS编码：</strong> 用于订阅该期刊最新一期文章题目、摘要等信息</p></li><li><p>**可持续跟踪的文献平台：Zotero（一个可塑性较强的文献管理工具）</p></li></ul><h3 id="1-如何获取期刊的RSS编码"><a href="#1-如何获取期刊的RSS编码" class="headerlink" title="1. 如何获取期刊的RSS编码"></a>1. 如何获取期刊的RSS编码</h3><ul><li><p><strong>国内期刊</strong></p><p>以《经济研究》为例，知网期刊导航搜索：“经济研究”，找到期刊主页，点击RSS订阅：</p><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAALo6miyBzovnRKehHUQJ5GfbOdnNq92AAKeGwACnJuQVR-ON4qevXqoNgQ.png" alt="2025-08-30-03-18-36-image.png"></p><p>弹出界面的最上方即为该期刊的RSS订阅码：</p><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAALo8GiyB0AMOSvuAqHMP4bjA40K_KaHAAKkGwACnJuQVWduakDuhqtCNgQ.png" alt="2025-08-30-03-19-25-image.png"></p></li><li><p><strong>国际期刊</strong></p><p>以CER为例，浏览器检索到达CER主页，找到RSS订阅：</p><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAALo5miyBzVUop_7h17-E7bVMhG0HWZUAAKaGwACnJuQVYNP_bQB-ORHNgQ.png" alt="2025-08-30-03-21-21-image.png"></p><p>得到该刊的RSS订阅链接：</p><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAALo6WiyBzY0drznxFneO6cHVuRlc0RcAAKdGwACnJuQVXm_XfOWAnbrNgQ.png" alt="2025-08-30-03-21-57-image.png"></p></li></ul><p>        </p><h3 id="2-可持续跟踪的文献平台：Zotero"><a href="#2-可持续跟踪的文献平台：Zotero" class="headerlink" title="2. 可持续跟踪的文献平台：Zotero"></a>2. 可持续跟踪的文献平台：Zotero</h3><p><a href="https://www.zotero.org/">Zotero</a>是最为常见的文献管理平台，且完全开源免费。在Zotero 7.0版本开始更新了订阅窗口，为我们的文献追踪提供了方便的渠道。接下来我们第一步将搜集的期刊RSS订阅链接载入Zotero。</p><ul><li>载入RSS订阅链接：</li></ul><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAALo72iyBz9YDBMP2Ix7MznSffaPEE__AAKjGwACnJuQVTAhvjaRqtIrNgQ.png" alt="2025-08-30-03-29-29-image.png"></p><p>以经济研究为例，Zotero会自动解析链接并输出期刊名：</p><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAALo7WiyBzpNw3BZ8TFY59PeVLdN518IAAKhGwACnJuQVUvnE-trBwdZNgQ.png" alt="2025-08-30-03-31-55-image.png"></p><p>设置追踪周期：</p><blockquote><p>更新订阅：拉取最新通知的周期。</p><p>删除已读提要：当通知提要被阅读，则会在3天后删除（因此有用信息要及时添加至我的文库）。</p><p>删除未读提要：当通知提要被阅读，则会在30天后删除。</p></blockquote><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAALo7miyBzpdhV9GVyNK2jkwdtOgi5qMAAKiGwACnJuQVfFlCY-jJQP6NgQ.png" alt="2025-08-30-03-32-40-image.png"></p><h3 id="3-效果展示"><a href="#3-效果展示" class="headerlink" title="3. 效果展示"></a>3. 效果展示</h3><p><img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAALo7GiyBzqYnV2y-AwH4-TDoqylqyJKAAKgGwACnJuQVSo1T7UTBFydNgQ.png" alt="2025-08-30-03-36-52-image.png"></p><p><strong>注意：</strong> 部分国际期刊并没有独立RSS链接，是由出版机构提供的转接口，因此只有题目，而没有作者和摘要信息。</p><h3 id="以下为整理好的一些权威期刊RSS链接，可供参考："><a href="#以下为整理好的一些权威期刊RSS链接，可供参考：" class="headerlink" title="以下为整理好的一些权威期刊RSS链接，可供参考："></a>以下为整理好的一些权威期刊RSS链接，可供参考：</h3><p>具体包括：中文TOP、英文TOP5+Field TOP、FT-50节选，</p><ul><li><a href="/2025/08/30/%E8%AE%A2%E9%98%85RSS-1/" title="顶刊订阅RSS链接（中文TOP、英文TOP5、FT50）">顶刊订阅RSS链接（中文TOP、英文TOP5、FT50）</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>文献</category>
+      
+      <category>文献搜集与管理</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>教程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>全网最保姆的经管实证论文教程</title>
+    <link href="/2025/08/29/%E4%B8%93%E9%A2%98/%E5%AE%9E%E8%AF%81%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C/%E5%85%A8%E7%BD%91%E6%9C%80%E4%BF%9D%E5%A7%86%E7%9A%84%E7%BB%8F%E7%AE%A1%E5%AE%9E%E8%AF%81%E8%AE%BA%E6%96%87%E6%95%99%E7%A8%8B/"/>
+    <url>/2025/08/29/%E4%B8%93%E9%A2%98/%E5%AE%9E%E8%AF%81%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C/%E5%85%A8%E7%BD%91%E6%9C%80%E4%BF%9D%E5%A7%86%E7%9A%84%E7%BB%8F%E7%AE%A1%E5%AE%9E%E8%AF%81%E8%AE%BA%E6%96%87%E6%95%99%E7%A8%8B/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>项目</category>
+      
+      <category>论文写作教程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>教程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>写在开篇</title>
+    <link href="/2025/08/28/%E5%86%99%E5%9C%A8%E5%BC%80%E7%AF%87/"/>
+    <url>/2025/08/28/%E5%86%99%E5%9C%A8%E5%BC%80%E7%AF%87/</url>
+    
+    <content type="html"><![CDATA[<p>        本站建立的目的在于系统性地整理经管实证研究的相关知识与工具，给初学者提供一套较为清晰的学习脉络，帮助小白同学快速入门，掌握基本的科研方法。</p><p>很多同学在科研工作的初学阶段困难重重，并不是没有动力，也不是没有学习资源，而是因为现在的资料太多，教学流派太错杂，初学者很难从繁杂的信息中干净地识别出自己所需要的，更不用说找到一条清晰的学习路径，希望本站的信息可以给各位有益参考。</p><p>        本站的内容未来大致分为以下几个栏目：</p><h4 id="文献"><a href="#文献" class="headerlink" title="文献"></a>文献</h4><ul><li><p>范围包括：国外TOP期刊和部分国内顶刊</p></li><li><p>主题包括：最新热点和一些经典话题</p></li></ul><h4 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h4><ul><li><p>如何快速入门实证论文写作</p></li><li><p>AI工具在科研中的运用</p></li><li><p>主流研究软件的使用</p></li><li><p>一些技术方法的实现</p></li><li><p>常用数据库的清洗实录</p></li></ul><h4 id="知识"><a href="#知识" class="headerlink" title="知识"></a>知识</h4><ul><li><p>常用计量方法</p></li><li><p>经济学学习</p></li><li><p>投稿实录</p></li><li><p>Working project</p></li></ul><h4 id="呓语"><a href="#呓语" class="headerlink" title="呓语"></a>呓语</h4>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  
+</search>

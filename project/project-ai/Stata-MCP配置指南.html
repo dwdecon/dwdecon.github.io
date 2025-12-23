@@ -1,0 +1,914 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/%E5%A4%B4%E5%83%8F.png">
+  <link rel="icon" href="/img/%E5%A4%B4%E5%83%8F.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="David lee">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Stata MCP 配置指南 - 在 Cursor 中使用 Stata目录 简介 什么是MCP 前置要求 安装步骤 在Cursor中配置MCP 验证配置 使用方法 实际应用示例 常见问题解决 高级配置   简介本指南将帮助您在Cursor编辑器中配置和使用Stata MCP（Model Context Protocol），实现在Cursor中直接运行Stata代码、执行数据分析，无需手动切换到St">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stata MCP 配置指南 - 在 Cursor 中使用 Stata">
+<meta property="og:url" content="http://example.com/project/project-ai/Stata-MCP%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97.html">
+<meta property="og:site_name" content="David&#39;s Academic Space">
+<meta property="og:description" content="Stata MCP 配置指南 - 在 Cursor 中使用 Stata目录 简介 什么是MCP 前置要求 安装步骤 在Cursor中配置MCP 验证配置 使用方法 实际应用示例 常见问题解决 高级配置   简介本指南将帮助您在Cursor编辑器中配置和使用Stata MCP（Model Context Protocol），实现在Cursor中直接运行Stata代码、执行数据分析，无需手动切换到St">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-12-22T13:04:51.240Z">
+<meta property="article:author" content="David lee">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Stata MCP 配置指南 - 在 Cursor 中使用 Stata - David&#39;s Academic Space</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":180,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":false,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>David&#39;s Academic Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>文献</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/%E6%96%87%E7%8C%AE/%E7%83%AD%E7%82%B9/" target="_self">
+                    
+                    <span>热点追踪</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/%E6%96%87%E7%8C%AE/%E7%BB%8F%E5%85%B8/" target="_self">
+                    
+                    <span>经典文献</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-bug"></i>
+                <span>专题</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/project/project-lr/" target="_self">
+                    
+                    <span>文献搜集与管理</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/project/project-article/" target="_self">
+                    
+                    <span>实证论文写作</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/project/project-ai/" target="_self">
+                    
+                    <span>AI+科研</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/project/project-stata/" target="_self">
+                    
+                    <span>Stata软件使用</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/project/project-cool/" target="_self">
+                    
+                    <span>很酷的研究技术</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/project/project-database/" target="_self">
+                    
+                    <span>大型数据库清洗</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/know/" target="_self">
+                <i class="iconfont icon-docker"></i>
+                <span>知识</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/talk/" target="_self">
+                <i class="iconfont icon-comment"></i>
+                <span>呓语</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="icon-codepen-fil"></i>
+                <span>自建工具</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tool/ACLIST/ACLIST.html" target="_self">
+                    
+                    <span>ACLIST</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E5%AD%90%E6%A0%8F%E7%9B%AE%E5%BA%8A%E5%9B%BE.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Stata MCP 配置指南 - 在 Cursor 中使用 Stata"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <h1 id="Stata-MCP-配置指南-在-Cursor-中使用-Stata"><a href="#Stata-MCP-配置指南-在-Cursor-中使用-Stata" class="headerlink" title="Stata MCP 配置指南 - 在 Cursor 中使用 Stata"></a>Stata MCP 配置指南 - 在 Cursor 中使用 Stata</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li><a href="#%E7%AE%80%E4%BB%8B">简介</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AFmcp">什么是MCP</a></li>
+<li><a href="#%E5%89%8D%E7%BD%AE%E8%A6%81%E6%B1%82">前置要求</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4">安装步骤</a></li>
+<li><a href="#%E5%9C%A8cursor%E4%B8%AD%E9%85%8D%E7%BD%AEmcp">在Cursor中配置MCP</a></li>
+<li><a href="#%E9%AA%8C%E8%AF%81%E9%85%8D%E7%BD%AE">验证配置</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95">使用方法</a></li>
+<li><a href="#%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E7%A4%BA%E4%BE%8B">实际应用示例</a></li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3">常见问题解决</a></li>
+<li><a href="#%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE">高级配置</a></li>
+</ul>
+<hr>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>本指南将帮助您在Cursor编辑器中配置和使用Stata MCP（Model Context Protocol），实现在Cursor中直接运行Stata代码、执行数据分析，无需手动切换到Stata界面。</p>
+<h3 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h3><ul>
+<li>✅ 在Cursor中直接运行Stata代码</li>
+<li>✅ 执行完整的.do文件</li>
+<li>✅ 实时获取Stata输出结果</li>
+<li>✅ 无缝集成到AI辅助编程工作流</li>
+<li>✅ 支持数据分析和统计建模的快速迭代</li>
+</ul>
+<hr>
+<h2 id="什么是MCP"><a href="#什么是MCP" class="headerlink" title="什么是MCP"></a>什么是MCP</h2><p><strong>MCP（Model Context Protocol）</strong> 是一个开放协议，允许AI助手（如Claude）与外部工具和服务进行通信。通过MCP，Cursor可以：</p>
+<ul>
+<li>🔌 连接到本地或远程服务</li>
+<li>🔧 调用各种工具和API</li>
+<li>📊 访问专业软件（如Stata）</li>
+<li>🚀 扩展AI的能力边界</li>
+</ul>
+<p><strong>Stata MCP</strong> 是一个MCP服务器实现，它将Stata的功能暴露给Cursor，使AI助手能够：</p>
+<ul>
+<li>运行Stata命令</li>
+<li>执行Stata脚本</li>
+<li>获取分析结果</li>
+<li>无门槛的AI+实证分析</li>
+<li>可创建全自动的stata+分析文字撰写+latex的论文实证分析工作流</li>
+</ul>
+<hr>
+<h2 id="前置准备"><a href="#前置准备" class="headerlink" title="前置准备"></a>前置准备</h2><h3 id="1-必需软件"><a href="#1-必需软件" class="headerlink" title="1. 必需软件"></a>1. 必需软件</h3><h4 id="Stata安装"><a href="#Stata安装" class="headerlink" title="Stata安装"></a>Stata安装</h4><ul>
+<li><strong>Stata 版本</strong>：Stata 14或更高版本（推荐Stata 17&#x2F;18）</li>
+<li><strong>Stata 类型</strong>：Stata-MP、Stata-SE或Stata-IC均可</li>
+<li><strong>许可证</strong>：确保Stata已正确授权激活</li>
+</ul>
+<h4 id="Cursor编辑器"><a href="#Cursor编辑器" class="headerlink" title="Cursor编辑器"></a>Cursor编辑器</h4><ul>
+<li><strong>版本</strong>：Cursor 0.30或更高版本</li>
+<li><strong>下载地址</strong>：<a target="_blank" rel="noopener" href="https://cursor.sh/">https://cursor.sh</a></li>
+</ul>
+<h4 id="Python环境"><a href="#Python环境" class="headerlink" title="Python环境"></a>Python环境</h4><ul>
+<li><strong>Python版本</strong>：Python 3.8或更高版本</li>
+<li><strong>包管理器</strong>：pip或conda</li>
+</ul>
+<hr>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="步骤1：确认Stata安装"><a href="#步骤1：确认Stata安装" class="headerlink" title="步骤1：确认Stata安装"></a>步骤1：确认Stata安装</h3><h4 id="Windows系统"><a href="#Windows系统" class="headerlink" title="Windows系统"></a>Windows系统</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs 以管理员身份运行powershell"># 检查Stata是否在系统路径中<br>where stata<br><br># 或者检查常见安装路径<br>Test-Path &quot;C:\Program Files\Stata18\StataSE-64.exe&quot;<br>Test-Path &quot;C:\Program Files\Stata18\StataMP-64.exe&quot;<br></code></pre></td></tr></table></figure>
+
+<h4 id="macOS-Linux系统"><a href="#macOS-Linux系统" class="headerlink" title="macOS&#x2F;Linux系统"></a>macOS&#x2F;Linux系统</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 检查Stata是否可用</span><br><span class="hljs-built_in">which</span> stata<br>stata --version<br></code></pre></td></tr></table></figure>
+
+<h3 id="步骤2：安装stata-mcp"><a href="#步骤2：安装stata-mcp" class="headerlink" title="步骤2：安装stata-mcp"></a>步骤2：安装stata-mcp</h3><h4 id="方式一：使用pip安装（推荐）"><a href="#方式一：使用pip安装（推荐）" class="headerlink" title="方式一：使用pip安装（推荐）"></a>方式一：使用pip安装（推荐）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 安装stata-mcp包</span><br>pip install stata-mcp<br></code></pre></td></tr></table></figure>
+
+<h4 id="方式二：使用conda安装"><a href="#方式二：使用conda安装" class="headerlink" title="方式二：使用conda安装"></a>方式二：使用conda安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 创建虚拟环境（可选但推荐）</span><br>conda create -n stata-mcp python=3.11<br>conda activate stata-mcp<br><br><span class="hljs-comment"># 安装stata-mcp</span><br>pip install stata-mcp<br></code></pre></td></tr></table></figure>
+
+<h4 id="方式三：从源码安装"><a href="#方式三：从源码安装" class="headerlink" title="方式三：从源码安装"></a>方式三：从源码安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 克隆仓库</span><br>git <span class="hljs-built_in">clone</span> https://github.com/yourusername/stata-mcp.git<br><span class="hljs-built_in">cd</span> stata-mcp<br><br><span class="hljs-comment"># 安装依赖</span><br>pip install -r requirements.txt<br><br><span class="hljs-comment"># 安装包</span><br>pip install -e .<br></code></pre></td></tr></table></figure>
+
+<h3 id="步骤3：验证安装"><a href="#步骤3：验证安装" class="headerlink" title="步骤3：验证安装"></a>步骤3：验证安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 检查stata-mcp是否安装成功</span><br>pip show stata-mcp<br><br><span class="hljs-comment"># 查看stata-mcp命令</span><br>stata-mcp --<span class="hljs-built_in">help</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>## 在Cursor中配置MCP（自动版）</strong></p>
+<h3 id="自动安装方法"><a href="#自动安装方法" class="headerlink" title="自动安装方法"></a>自动安装方法</h3><p>在登陆并配置好cursor后，在对话框中输入：</p>
+<blockquote>
+<p>请根据<a target="_blank" rel="noopener" href="https://github.com/hanlulong/stata-mcp%E5%B8%AE%E6%88%91%E5%9C%A8cursor%E4%B8%AD%E8%BF%9B%E8%A1%8C%E4%B8%8B%E8%BD%BD%E5%92%8C%E9%85%8D%E7%BD%AE">https://github.com/hanlulong/stata-mcp帮我在cursor中进行下载和配置</a><br>等待cursor安装即可~</p>
+</blockquote>
+<h2 id="手动配置stata-MCP"><a href="#手动配置stata-MCP" class="headerlink" title="手动配置stata-MCP"></a>手动配置stata-MCP</h2><h3 id="步骤1：打开MCP配置文件"><a href="#步骤1：打开MCP配置文件" class="headerlink" title="步骤1：打开MCP配置文件"></a>步骤1：打开MCP配置文件</h3><h4 id="Windows系统-1"><a href="#Windows系统-1" class="headerlink" title="Windows系统"></a>Windows系统</h4><p>配置文件位置：</p>
+<figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs moonscript">%APPDATA%\Cursor\User\globalStorage\saoudrizwan.claude-dev\settings\cline_mcp_settings.json<br></code></pre></td></tr></table></figure>
+
+<p>或者在Cursor中：</p>
+<ol>
+<li>按 <code>Ctrl + Shift + P</code> 打开命令面板</li>
+<li>输入 “MCP Settings”</li>
+<li>选择 “Open MCP Settings”</li>
+</ol>
+<h4 id="macOS系统"><a href="#macOS系统" class="headerlink" title="macOS系统"></a>macOS系统</h4><p>配置文件位置：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">~<span class="hljs-regexp">/Library/</span>Application Support<span class="hljs-regexp">/Cursor/</span>User<span class="hljs-regexp">/globalStorage/</span>saoudrizwan.claude-dev<span class="hljs-regexp">/settings/</span>cline_mcp_settings.json<br></code></pre></td></tr></table></figure>
+
+<h4 id="Linux系统"><a href="#Linux系统" class="headerlink" title="Linux系统"></a>Linux系统</h4><p>配置文件位置：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">~<span class="hljs-regexp">/.config/</span>Cursor<span class="hljs-regexp">/User/g</span>lobalStorage<span class="hljs-regexp">/saoudrizwan.claude-dev/</span>settings/cline_mcp_settings.json<br></code></pre></td></tr></table></figure>
+
+<h3 id="步骤2：编辑配置文件"><a href="#步骤2：编辑配置文件" class="headerlink" title="步骤2：编辑配置文件"></a>步骤2：编辑配置文件</h3><p>在配置文件中添加stata-mcp服务器配置：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;mcpServers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;stata-mcp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;python&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>        <span class="hljs-string">&quot;-m&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-string">&quot;stata_mcp&quot;</span><br>      <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;env&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;STATA_PATH&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;C:\\Program Files\\Stata18\\StataMP-64.exe&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;disabled&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="步骤3：配置说明"><a href="#步骤3：配置说明" class="headerlink" title="步骤3：配置说明"></a>步骤3：配置说明</h3><h4 id="关键参数解释"><a href="#关键参数解释" class="headerlink" title="关键参数解释"></a>关键参数解释</h4><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>command</code></td>
+<td>Python解释器路径</td>
+<td><code>&quot;python&quot;</code> 或 <code>&quot;C:\\Python311\\python.exe&quot;</code></td>
+</tr>
+<tr>
+<td><code>args</code></td>
+<td>启动参数</td>
+<td><code>[&quot;-m&quot;, &quot;stata_mcp&quot;]</code></td>
+</tr>
+<tr>
+<td><code>STATA_PATH</code></td>
+<td>Stata可执行文件路径</td>
+<td>Windows: <code>&quot;C:\\Program Files\\Stata18\\StataMP-64.exe&quot;</code><br>macOS: <code>&quot;/Applications/Stata/Stata.app/Contents/MacOS/stata&quot;</code><br>Linux: <code>&quot;/usr/local/stata18/stata&quot;</code></td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td>是否禁用此MCP服务器</td>
+<td><code>false</code> (启用) 或 <code>true</code> (禁用)</td>
+</tr>
+</tbody></table>
+<h4 id="不同系统的配置示例"><a href="#不同系统的配置示例" class="headerlink" title="不同系统的配置示例"></a>不同系统的配置示例</h4><p><strong>Windows系统（Stata-MP）：</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;mcpServers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;stata-mcp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;python&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;-m&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;stata_mcp&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;env&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;STATA_PATH&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;C:\\Program Files\\Stata18\\StataMP-64.exe&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;disabled&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>Windows系统（Stata-SE）：</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;mcpServers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;stata-mcp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;python&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;-m&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;stata_mcp&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;env&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;STATA_PATH&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;C:\\Program Files\\Stata18\\StataSE-64.exe&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;disabled&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>macOS系统：</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;mcpServers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;stata-mcp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;python3&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;-m&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;stata_mcp&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;env&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;STATA_PATH&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;/Applications/Stata/Stata.app/Contents/MacOS/stata&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;disabled&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>Linux系统：</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;mcpServers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;stata-mcp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;python3&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;-m&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;stata_mcp&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;env&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;STATA_PATH&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;/usr/local/stata18/stata&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;disabled&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="步骤4：重启Cursor"><a href="#步骤4：重启Cursor" class="headerlink" title="步骤4：重启Cursor"></a>步骤4：重启Cursor</h3><p>保存配置文件后，重启Cursor以使配置生效：</p>
+<ol>
+<li>关闭所有Cursor窗口</li>
+<li>重新启动Cursor</li>
+<li>或者使用快捷键：<code>Ctrl + Shift + P</code> → 输入 “Reload Window”</li>
+</ol>
+<hr>
+<h2 id="验证配置"><a href="#验证配置" class="headerlink" title="验证配置"></a>验证配置</h2><h3 id="方法1：在Cursor中测试"><a href="#方法1：在Cursor中测试" class="headerlink" title="方法1：在Cursor中测试"></a>方法1：在Cursor中测试</h3><ol>
+<li>打开Cursor</li>
+<li>开启AI对话（按 <code>Ctrl + L</code> 或点击AI按钮）</li>
+<li>输入测试请求：</li>
+</ol>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stata">请帮我运行以下Stata代码：<br><span class="hljs-keyword">sysuse</span> auto<br><span class="hljs-keyword">summarize</span> price mpg<br></code></pre></td></tr></table></figure>
+
+<p>如果配置成功，AI将能够执行代码并返回结果。</p>
+<h3 id="方法2：检查MCP状态"><a href="#方法2：检查MCP状态" class="headerlink" title="方法2：检查MCP状态"></a>方法2：检查MCP状态</h3><p>在Cursor的AI对话中输入：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">请检查stata-mcp是否可用<br></code></pre></td></tr></table></figure>
+
+<h3 id="方法3：查看日志"><a href="#方法3：查看日志" class="headerlink" title="方法3：查看日志"></a>方法3：查看日志</h3><p>检查Cursor的开发者工具：</p>
+<ol>
+<li>按 <code>Ctrl + Shift + I</code> 打开开发者工具</li>
+<li>切换到 “Console” 标签</li>
+<li>查找与MCP相关的日志信息</li>
+</ol>
+<hr>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><h4 id="1-运行单行或多行Stata代码"><a href="#1-运行单行或多行Stata代码" class="headerlink" title="1. 运行单行或多行Stata代码"></a>1. 运行单行或多行Stata代码</h4><p>在Cursor的AI对话中：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stata">请运行以下Stata代码：<br><br><span class="hljs-keyword">sysuse</span> auto<br><span class="hljs-keyword">describe</span><br><span class="hljs-keyword">summarize</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="2-执行-do文件"><a href="#2-执行-do文件" class="headerlink" title="2. 执行.do文件"></a>2. 执行.do文件</h4><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">请执行我的Stata脚本文件：analysis.<span class="hljs-keyword">do</span><br></code></pre></td></tr></table></figure>
+
+<p>或者指定完整路径：</p>
+<figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs moonscript">请运行这个<span class="hljs-keyword">do</span>文件：<span class="hljs-name">E</span>:\BaiduSyncdisk\<span class="hljs-number">00</span>工作助手\<span class="hljs-number">00</span>工作目录\<span class="hljs-number">1</span>自媒体资料\分享资料\Cursor+Stata\analysis.<span class="hljs-keyword">do</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="3-获取帮助和建议"><a href="#3-获取帮助和建议" class="headerlink" title="3. 获取帮助和建议"></a>3. 获取帮助和建议</h4><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs excel">我想对<span class="hljs-built_in">price</span>和mpg做回归分析，请帮我写Stata代码并运行<br></code></pre></td></tr></table></figure>
+
+<h3 id="AI辅助工作流示例"><a href="#AI辅助工作流示例" class="headerlink" title="AI辅助工作流示例"></a>AI辅助工作流示例</h3><h4 id="场景1：探索性数据分析"><a href="#场景1：探索性数据分析" class="headerlink" title="场景1：探索性数据分析"></a>场景1：探索性数据分析</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs markdown">用户：我有一个数据集data.dta，请帮我进行探索性数据分析<br><br>AI将：<br><span class="hljs-bullet">1.</span> 加载数据<br><span class="hljs-bullet">2.</span> 运行describe查看变量<br><span class="hljs-bullet">3.</span> 运行summarize查看统计摘要<br><span class="hljs-bullet">4.</span> 检查缺失值<br><span class="hljs-bullet">5.</span> 提供分析建议<br></code></pre></td></tr></table></figure>
+
+<h4 id="场景2：回归建模"><a href="#场景2：回归建模" class="headerlink" title="场景2：回归建模"></a>场景2：回归建模</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs markdown">用户：请对price建立回归模型，解释变量包括mpg、weight、foreign<br><br>AI将：<br><span class="hljs-bullet">1.</span> 运行回归命令<br><span class="hljs-bullet">2.</span> 显示结果<br><span class="hljs-bullet">3.</span> 解释系数含义<br><span class="hljs-bullet">4.</span> 提供诊断建议<br></code></pre></td></tr></table></figure>
+
+<h4 id="场景3：数据清洗"><a href="#场景3：数据清洗" class="headerlink" title="场景3：数据清洗"></a>场景3：数据清洗</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs markdown">用户：请帮我清洗数据，删除price的异常值（&gt;20000）<br><br>AI将：<br><span class="hljs-bullet">1.</span> 识别异常值<br><span class="hljs-bullet">2.</span> 生成并运行清洗代码<br><span class="hljs-bullet">3.</span> 报告清洗结果<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="实际应用示例"><a href="#实际应用示例" class="headerlink" title="实际应用示例"></a>实际应用示例</h2><h3 id="示例1：快速统计分析"><a href="#示例1：快速统计分析" class="headerlink" title="示例1：快速统计分析"></a>示例1：快速统计分析</h3><p><strong>用户请求：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">加载<span class="hljs-built_in">auto</span>数据集，对比国产车和进口车的价格差异<br></code></pre></td></tr></table></figure>
+
+<p><strong>AI会执行：</strong></p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">sysuse</span> auto, <span class="hljs-keyword">clear</span><br><span class="hljs-keyword">ttest</span> price, <span class="hljs-keyword">by</span>(foreign)<br><span class="hljs-keyword">tabstat</span> price, <span class="hljs-keyword">by</span>(foreign) stat(<span class="hljs-keyword">mean</span> sd min max <span class="hljs-keyword">n</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="示例2：回归分析"><a href="#示例2：回归分析" class="headerlink" title="示例2：回归分析"></a>示例2：回归分析</h3><p><strong>用户请求：</strong></p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haskell">建立价格的多元回归模型，控制mpg、weight和<span class="hljs-keyword">foreign</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>AI会执行：</strong></p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">sysuse</span> auto, <span class="hljs-keyword">clear</span><br><span class="hljs-keyword">regress</span> price mpg weight i.foreign<br><span class="hljs-keyword">estimates</span> store model1<br><span class="hljs-keyword">estat</span> <span class="hljs-keyword">vif</span><br><span class="hljs-keyword">predict</span> resid, residuals<br><span class="hljs-keyword">histogram</span> resid, normal<br></code></pre></td></tr></table></figure>
+
+<h3 id="示例3：数据可视化"><a href="#示例3：数据可视化" class="headerlink" title="示例3：数据可视化"></a>示例3：数据可视化</h3><p><strong>用户请求：</strong></p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haskell">绘制price和mpg的散点图，按<span class="hljs-keyword">foreign</span>分组<br></code></pre></td></tr></table></figure>
+
+<p><strong>AI会执行：</strong></p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">sysuse</span> auto, <span class="hljs-keyword">clear</span><br><span class="hljs-keyword">scatter</span> price mpg, <span class="hljs-keyword">by</span>(foreign) <span class="hljs-comment">///</span><br>    title(<span class="hljs-string">&quot;Price vs MPG by Origin&quot;</span>) <span class="hljs-comment">///</span><br>    ytitle(<span class="hljs-string">&quot;Price&quot;</span>) xtitle(<span class="hljs-string">&quot;MPG&quot;</span>)<br><span class="hljs-keyword">graph</span> export <span class="hljs-string">&quot;scatter.png&quot;</span>, <span class="hljs-keyword">replace</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="示例4：面板数据分析"><a href="#示例4：面板数据分析" class="headerlink" title="示例4：面板数据分析"></a>示例4：面板数据分析</h3><p><strong>用户请求：</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">对面板数据进行固定效应回归<br></code></pre></td></tr></table></figure>
+
+<p><strong>AI会执行：</strong></p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">use</span> panel_data.dta, <span class="hljs-keyword">clear</span><br><span class="hljs-keyword">xtset</span> id year<br><span class="hljs-keyword">xtreg</span> y x1 x2 x3, fe<br><span class="hljs-keyword">estimates</span> store fe<br><span class="hljs-keyword">xtreg</span> y x1 x2 x3, re<br><span class="hljs-keyword">estimates</span> store re<br><span class="hljs-keyword">hausman</span> fe re<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="常见问题解决"><a href="#常见问题解决" class="headerlink" title="常见问题解决"></a>常见问题解决</h2><h3 id="问题1：MCP服务器无法启动"><a href="#问题1：MCP服务器无法启动" class="headerlink" title="问题1：MCP服务器无法启动"></a>问题1：MCP服务器无法启动</h3><p><strong>症状：</strong></p>
+<ul>
+<li>Cursor中看不到stata-mcp</li>
+<li>AI无法执行Stata命令</li>
+</ul>
+<p><strong>诊断步骤：</strong></p>
+<ol>
+<li><p>检查配置文件是否正确</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-comment">// 确保JSON格式正确，没有语法错误</span><br><span class="hljs-comment">// 使用JSON验证器验证</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>检查Python环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 确认Python可用</span><br>python --version<br><br><span class="hljs-comment"># 确认stata-mcp已安装</span><br>pip show stata-mcp<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>检查Stata路径</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># Windows</span><br><span class="hljs-built_in">Test-Path</span> <span class="hljs-string">&quot;C:\Program Files\Stata18\StataMP-64.exe&quot;</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>解决方案：</strong></p>
+<ul>
+<li>修正STATA_PATH为正确路径</li>
+<li>确保路径使用双反斜杠（Windows）或正斜杠</li>
+<li>重启Cursor</li>
+</ul>
+<h3 id="问题2：Stata路径找不到"><a href="#问题2：Stata路径找不到" class="headerlink" title="问题2：Stata路径找不到"></a>问题2：Stata路径找不到</h3><p><strong>症状：</strong></p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs subunit"><span class="hljs-keyword">Error: </span>Stata executable not found<br></code></pre></td></tr></table></figure>
+
+<p><strong>解决方案：</strong></p>
+<p>找到Stata安装路径：</p>
+<p><strong>Windows：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 常见路径</span><br>C:\Program Files\Stata18\StataMP<span class="hljs-literal">-64</span>.exe<br>C:\Program Files\Stata17\StataSE<span class="hljs-literal">-64</span>.exe<br>C:\Program Files (x86)\Stata15\Stata<span class="hljs-literal">-64</span>.exe<br></code></pre></td></tr></table></figure>
+
+<p><strong>macOS：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 使用spotlight搜索</span><br>mdfind -name Stata.app<br><br><span class="hljs-comment"># 常见路径</span><br>/Applications/Stata/Stata.app/Contents/MacOS/stata<br></code></pre></td></tr></table></figure>
+
+<p><strong>Linux：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 常见路径</span><br>/usr/local/stata18/stata<br>/opt/stata18/stata<br></code></pre></td></tr></table></figure>
+
+<h3 id="问题3：权限错误"><a href="#问题3：权限错误" class="headerlink" title="问题3：权限错误"></a>问题3：权限错误</h3><p><strong>症状：</strong></p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">Permission denied</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>解决方案：</strong></p>
+<p><strong>Windows：</strong></p>
+<ul>
+<li>以管理员身份运行Cursor</li>
+<li>检查Stata安装目录的读取权限</li>
+</ul>
+<p><strong>macOS&#x2F;Linux：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 给Stata执行权限</span><br><span class="hljs-built_in">chmod</span> +x /Applications/Stata/Stata.app/Contents/MacOS/stata<br></code></pre></td></tr></table></figure>
+
+<h3 id="问题4：输出结果截断"><a href="#问题4：输出结果截断" class="headerlink" title="问题4：输出结果截断"></a>问题4：输出结果截断</h3><p><strong>症状：</strong></p>
+<ul>
+<li>Stata输出不完整</li>
+<li>大量数据时只显示部分结果</li>
+</ul>
+<p><strong>解决方案：</strong></p>
+<p>在Stata代码中添加：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">set</span> <span class="hljs-keyword">more</span> off<br><span class="hljs-keyword">set</span> linesize 120<br></code></pre></td></tr></table></figure>
+
+<p>或在配置中设置超时时间：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;mcpServers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;stata-mcp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;python&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;-m&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;stata_mcp&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;env&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;STATA_PATH&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;C:\\Program Files\\Stata18\\StataMP-64.exe&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;STATA_TIMEOUT&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;300&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;disabled&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="问题5：中文路径或文件名问题"><a href="#问题5：中文路径或文件名问题" class="headerlink" title="问题5：中文路径或文件名问题"></a>问题5：中文路径或文件名问题</h3><p><strong>症状：</strong></p>
+<ul>
+<li>包含中文的路径无法识别</li>
+<li>编码错误</li>
+</ul>
+<p><strong>解决方案：</strong></p>
+<ol>
+<li><p>在.do文件中设置编码：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">set</span> charset utf8<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>使用英文路径：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">cd</span> <span class="hljs-string">&quot;E:/work/stata_projects&quot;</span>  <span class="hljs-comment">// 推荐</span><br><span class="hljs-comment">// 而不是</span><br><span class="hljs-keyword">cd</span> <span class="hljs-string">&quot;E:/工作目录/stata项目&quot;</span>    <span class="hljs-comment">// 可能有问题</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>在配置中设置编码：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;mcpServers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;stata-mcp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;python&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;-m&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;stata_mcp&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;env&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;STATA_PATH&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;C:\\Program Files\\Stata18\\StataMP-64.exe&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;PYTHONIOENCODING&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;utf-8&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;disabled&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="高级配置"><a href="#高级配置" class="headerlink" title="高级配置"></a>高级配置</h2><h3 id="1-多版本Stata配置"><a href="#1-多版本Stata配置" class="headerlink" title="1. 多版本Stata配置"></a>1. 多版本Stata配置</h3><p>如果您安装了多个版本的Stata，可以配置多个MCP服务器：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;mcpServers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;stata18-mp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;python&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;-m&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;stata_mcp&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;env&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;STATA_PATH&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;C:\\Program Files\\Stata18\\StataMP-64.exe&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;disabled&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;stata17-se&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;python&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;-m&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;stata_mcp&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;env&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;STATA_PATH&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;C:\\Program Files\\Stata17\\StataSE-64.exe&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;disabled&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>使用时告诉AI使用哪个版本：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">请用Stata 18运行这段代码<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-自定义工作目录"><a href="#2-自定义工作目录" class="headerlink" title="2. 自定义工作目录"></a>2. 自定义工作目录</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;mcpServers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;stata-mcp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;python&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;-m&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;stata_mcp&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;env&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;STATA_PATH&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;C:\\Program Files\\Stata18\\StataMP-64.exe&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;STATA_WORKDIR&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;E:\\BaiduSyncdisk\\00工作助手\\00工作目录\\1自媒体资料\\分享资料\\Cursor+Stata&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;disabled&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="3-日志记录配置"><a href="#3-日志记录配置" class="headerlink" title="3. 日志记录配置"></a>3. 日志记录配置</h3><p>启用详细日志以便调试：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;mcpServers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;stata-mcp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;python&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;-m&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;stata_mcp&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;--verbose&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;env&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;STATA_PATH&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;C:\\Program Files\\Stata18\\StataMP-64.exe&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;STATA_LOG_DIR&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;E:\\stata_logs&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;disabled&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="4-性能优化"><a href="#4-性能优化" class="headerlink" title="4. 性能优化"></a>4. 性能优化</h3><p>对于Stata-MP，可以配置并行处理：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;mcpServers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;stata-mcp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;python&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;-m&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;stata_mcp&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;env&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;STATA_PATH&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;C:\\Program Files\\Stata18\\StataMP-64.exe&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;STATA_PROCESSORS&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;8&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;STATA_MEMORY&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;8192&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;disabled&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="5-虚拟环境配置"><a href="#5-虚拟环境配置" class="headerlink" title="5. 虚拟环境配置"></a>5. 虚拟环境配置</h3><p>使用特定的Python虚拟环境：</p>
+<p><strong>Windows：</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;mcpServers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;stata-mcp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;C:\\Users\\YourName\\envs\\stata\\Scripts\\python.exe&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;-m&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;stata_mcp&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;env&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;STATA_PATH&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;C:\\Program Files\\Stata18\\StataMP-64.exe&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;disabled&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>macOS&#x2F;Linux：</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;mcpServers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;stata-mcp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;/Users/yourname/envs/stata/bin/python&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;-m&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;stata_mcp&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;env&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;STATA_PATH&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;/Applications/Stata/Stata.app/Contents/MacOS/stata&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;disabled&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="安全和最佳实践"><a href="#安全和最佳实践" class="headerlink" title="安全和最佳实践"></a>安全和最佳实践</h2><h3 id="1-数据安全"><a href="#1-数据安全" class="headerlink" title="1. 数据安全"></a>1. 数据安全</h3><p>⚠️ <strong>重要提示：</strong></p>
+<ul>
+<li>stata-mcp在本地运行，数据不会上传到云端</li>
+<li>确保在运行不熟悉的代码前先审查</li>
+<li>备份重要数据后再进行操作</li>
+</ul>
+<h3 id="2-代码审查"><a href="#2-代码审查" class="headerlink" title="2. 代码审查"></a>2. 代码审查</h3><p>在执行AI生成的Stata代码前：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">请先向我展示代码，我审查后再执行<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-版本控制"><a href="#3-版本控制" class="headerlink" title="3. 版本控制"></a>3. 版本控制</h3><p>使用Git管理您的.do文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">git init<br>git add *.<span class="hljs-keyword">do</span><br>git commit -m <span class="hljs-string">&quot;Initial commit&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="4-项目组织"><a href="#4-项目组织" class="headerlink" title="4. 项目组织"></a>4. 项目组织</h3><p>推荐的项目结构：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs nix">project<span class="hljs-symbol">/</span><br>├── data<span class="hljs-symbol">/</span><br>│   ├── raw<span class="hljs-symbol">/</span>          <span class="hljs-comment"># 原始数据</span><br>│   └── processed<span class="hljs-symbol">/</span>    <span class="hljs-comment"># 处理后数据</span><br>├── scripts<span class="hljs-symbol">/</span><br>│   ├── <span class="hljs-number">01</span>_clean.do   <span class="hljs-comment"># 数据清洗</span><br>│   ├── <span class="hljs-number">02</span>_analyze.do <span class="hljs-comment"># 数据分析</span><br>│   └── <span class="hljs-number">03</span>_graph.do   <span class="hljs-comment"># 图形绘制</span><br>├── output<span class="hljs-symbol">/</span><br>│   ├── tables<span class="hljs-symbol">/</span>       <span class="hljs-comment"># 表格输出</span><br>│   └── figures<span class="hljs-symbol">/</span>      <span class="hljs-comment"># 图形输出</span><br>└── logs<span class="hljs-symbol">/</span>             <span class="hljs-comment"># 日志文件</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="工作流示例"><a href="#工作流示例" class="headerlink" title="工作流示例"></a>工作流示例</h2><h3 id="完整的数据分析工作流"><a href="#完整的数据分析工作流" class="headerlink" title="完整的数据分析工作流"></a>完整的数据分析工作流</h3><p><strong>第1步：项目设置</strong></p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">用户：请帮我设置一个新的Stata项目，包括数据清洗和回归分析<br>AI：创建项目结构和初始<span class="hljs-keyword">do</span>文件<br></code></pre></td></tr></table></figure>
+
+<p><strong>第2步：数据导入和清洗</strong></p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs haskell">用户：导入<span class="hljs-class"><span class="hljs-keyword">data</span>.csv并进行初步清洗</span><br><span class="hljs-type">AI</span>：运行数据导入和清洗代码<br></code></pre></td></tr></table></figure>
+
+<p><strong>第3步：探索性分析</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs">用户：对主要变量进行描述性统计<br>AI：生成汇总统计表<br></code></pre></td></tr></table></figure>
+
+<p><strong>第4步：建模</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs">用户：建立回归模型并进行诊断<br>AI：运行回归并输出诊断结果<br></code></pre></td></tr></table></figure>
+
+<p><strong>第5步：结果导出</strong></p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mathematica">用户：将回归结果导出为<span class="hljs-built_in">Word</span>表格<br><span class="hljs-variable">AI</span>：使用<span class="hljs-variable">outreg2</span>或<span class="hljs-variable">estout</span>命令导出<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="更新和维护"><a href="#更新和维护" class="headerlink" title="更新和维护"></a>更新和维护</h2><h3 id="更新stata-mcp"><a href="#更新stata-mcp" class="headerlink" title="更新stata-mcp"></a>更新stata-mcp</h3><p>定期更新以获取最新功能：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 检查当前版本</span><br>pip show stata-mcp<br><br><span class="hljs-comment"># 更新到最新版本</span><br>pip install --upgrade stata-mcp<br><br><span class="hljs-comment"># 更新后重启Cursor</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h3><p>如需卸载：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 卸载stata-mcp</span><br>pip uninstall stata-mcp<br><br><span class="hljs-comment"># 删除配置（可选）</span><br><span class="hljs-comment"># Windows: 删除 %APPDATA%\Cursor\User\globalStorage\saoudrizwan.claude-dev\settings\cline_mcp_settings.json 中的stata-mcp部分</span><br><span class="hljs-comment"># macOS: 删除 ~/Library/Application Support/Cursor/... 中的配置</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="社区和支持"><a href="#社区和支持" class="headerlink" title="社区和支持"></a>社区和支持</h2><h3 id="获取帮助"><a href="#获取帮助" class="headerlink" title="获取帮助"></a>获取帮助</h3><ul>
+<li><strong>GitHub Issues</strong>：报告bug和功能请求</li>
+<li><strong>Stata论坛</strong>：<a target="_blank" rel="noopener" href="https://www.statalist.org/">https://www.statalist.org</a></li>
+<li><strong>Cursor社区</strong>：<a target="_blank" rel="noopener" href="https://forum.cursor.sh/">https://forum.cursor.sh</a></li>
+</ul>
+<h3 id="贡献"><a href="#贡献" class="headerlink" title="贡献"></a>贡献</h3><p>欢迎贡献代码和文档：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># Fork项目</span><br><span class="hljs-comment"># 创建分支</span><br>git checkout -b feature/new-feature<br><br><span class="hljs-comment"># 提交更改</span><br>git commit -m <span class="hljs-string">&quot;Add new feature&quot;</span><br><br><span class="hljs-comment"># 推送并创建Pull Request</span><br>git push origin feature/new-feature<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><h3 id="A-完整配置文件模板"><a href="#A-完整配置文件模板" class="headerlink" title="A. 完整配置文件模板"></a>A. 完整配置文件模板</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;mcpServers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;stata-mcp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;python&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>        <span class="hljs-string">&quot;-m&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-string">&quot;stata_mcp&quot;</span><br>      <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;env&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;STATA_PATH&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;C:\\Program Files\\Stata18\\StataMP-64.exe&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;STATA_WORKDIR&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;E:\\BaiduSyncdisk\\00工作助手\\00工作目录\\1自媒体资料\\分享资料\\Cursor+Stata&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;STATA_TIMEOUT&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;600&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;STATA_PROCESSORS&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;8&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;STATA_MEMORY&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;8192&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;PYTHONIOENCODING&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;utf-8&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;disabled&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="B-常用Stata命令快速参考"><a href="#B-常用Stata命令快速参考" class="headerlink" title="B. 常用Stata命令快速参考"></a>B. 常用Stata命令快速参考</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>sysuse</code></td>
+<td>加载系统数据集</td>
+<td><code>sysuse auto</code></td>
+</tr>
+<tr>
+<td><code>use</code></td>
+<td>加载数据文件</td>
+<td><code>use &quot;data.dta&quot;</code></td>
+</tr>
+<tr>
+<td><code>describe</code></td>
+<td>查看数据结构</td>
+<td><code>describe</code></td>
+</tr>
+<tr>
+<td><code>summarize</code></td>
+<td>描述性统计</td>
+<td><code>summarize price mpg</code></td>
+</tr>
+<tr>
+<td><code>regress</code></td>
+<td>线性回归</td>
+<td><code>regress y x1 x2</code></td>
+</tr>
+<tr>
+<td><code>logit</code></td>
+<td>Logit回归</td>
+<td><code>logit y x1 x2</code></td>
+</tr>
+<tr>
+<td><code>xtset</code></td>
+<td>设置面板数据</td>
+<td><code>xtset id year</code></td>
+</tr>
+<tr>
+<td><code>graph</code></td>
+<td>绘图</td>
+<td><code>graph bar price</code></td>
+</tr>
+</tbody></table>
+<h3 id="C-环境变量说明"><a href="#C-环境变量说明" class="headerlink" title="C. 环境变量说明"></a>C. 环境变量说明</h3><table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>说明</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>STATA_PATH</code></td>
+<td>Stata可执行文件路径</td>
+<td>必需</td>
+</tr>
+<tr>
+<td><code>STATA_WORKDIR</code></td>
+<td>工作目录</td>
+<td>当前目录</td>
+</tr>
+<tr>
+<td><code>STATA_TIMEOUT</code></td>
+<td>命令超时时间（秒）</td>
+<td>600</td>
+</tr>
+<tr>
+<td><code>STATA_PROCESSORS</code></td>
+<td>使用的处理器核心数</td>
+<td>自动</td>
+</tr>
+<tr>
+<td><code>STATA_MEMORY</code></td>
+<td>内存大小（MB）</td>
+<td>自动</td>
+</tr>
+<tr>
+<td><code>STATA_LOG_DIR</code></td>
+<td>日志目录</td>
+<td>临时目录</td>
+</tr>
+<tr>
+<td><code>PYTHONIOENCODING</code></td>
+<td>Python编码</td>
+<td>utf-8</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>通过本指南，您应该能够成功在Cursor中配置和使用Stata MCP。这种集成将大大提升您的数据分析效率，让AI助手成为您的Stata编程伙伴。</p>
+<h3 id="快速上手三步走"><a href="#快速上手三步走" class="headerlink" title="快速上手三步走"></a>快速上手三步走</h3><ol>
+<li>✅ 安装stata-mcp：<code>pip install stata-mcp</code></li>
+<li>✅ 配置MCP设置：编辑<code>cline_mcp_settings.json</code></li>
+<li>✅ 开始使用：在Cursor中让AI帮你运行Stata代码</li>
+</ol>
+<p>祝您使用愉快！如有问题，欢迎查阅本指南的常见问题部分。</p>
+<hr>
+<p><em>本文档适用于stata-mcp v1.0及以上版本</em><br><em>最后更新：2025年10月27日</em><br><em>作者：戴伟德-DwdECON</em></p>
+
+
+  
+
+</article>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       ©2025 By David 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

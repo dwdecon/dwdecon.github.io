@@ -1,0 +1,5431 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>项目清单概览</title>
+  <style>
+@keyframes softPulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.25); }
+  50% { box-shadow: 0 0 0 8px rgba(79, 70, 229, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
+}
+@keyframes buttonPress {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(1px) scale(0.98); }
+  100% { transform: translateY(0) scale(1); }
+}
+.view-toggle {
+    display: flex;
+    gap: 12px;
+    margin: 0 0 18px;
+}
+
+.view-toggle__btn {
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(79, 70, 229, 0.14);
+    background: rgba(255, 255, 255, 0.88);
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transform: translateY(0);
+    transition:
+        background var(--transition),
+        box-shadow var(--transition),
+        color var(--transition),
+        transform var(--transition),
+        border-color var(--transition);
+}
+
+.view-toggle__btn.is-active {
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.88), rgba(99, 102, 241, 0.88));
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 16px 32px -28px rgba(79, 70, 229, 0.55);
+    animation: softPulseGlow 3.6s ease-in-out infinite;
+}
+
+.view-toggle__btn:not(.is-active):not(.view-toggle__btn--primary):hover {
+    background: rgba(79, 70, 229, 0.12);
+    border-color: rgba(79, 70, 229, 0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 14px 26px -26px rgba(79, 70, 229, 0.45);
+}
+
+.view-toggle__btn:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+.view-toggle__btn:focus-visible {
+    outline: 3px solid rgba(79, 70, 229, 0.35);
+    outline-offset: 3px;
+}
+
+.view-toggle__btn--action {
+    margin-left: auto;
+}
+
+.view-toggle__btn--primary {
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.88), rgba(99, 102, 241, 0.88));
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 16px 32px -28px rgba(79, 70, 229, 0.55);
+}
+
+.view-toggle__btn--primary:hover {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.92), rgba(79, 70, 229, 0.92));
+    transform: translateY(-1px);
+    box-shadow: 0 18px 36px -26px rgba(79, 70, 229, 0.6);
+}
+
+.view-toggle__btn--danger {
+    background: transparent;
+    color: #ef4444;
+    border-color: rgba(239, 68, 68, 0.35);
+    box-shadow: none;
+    animation: none;
+}
+
+.view-toggle__btn--danger:hover {
+    background: transparent;
+    color: #dc2626;
+    transform: translateY(-1px);
+    box-shadow: none;
+    border-color: rgba(220, 38, 38, 0.5);
+}
+
+.view-toggle__btn--clear {
+    margin-left: 0;
+    font-size: 14px;
+    padding: 10px 18px;
+}
+
+body[data-view="edit"] .calendar-section,
+body[data-view="edit"] .calendar-sidebar__expand {
+    display: none;
+}
+
+body[data-view="edit"] .workspace {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+body[data-view="calendar"] .board-section {
+    display: none;
+}
+
+body[data-view="calendar"] .view-toggle__btn--action {
+    display: none;
+}
+
+body[data-view="calendar"] .view-toggle__btn--clear {
+    display: none;
+}
+
+body[data-view="calendar"] .workspace {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+}
+
+:root {
+    color-scheme: light;
+    --bg: #f5f6fb;
+    --card: #ffffff;
+    --accent: #4f46e5;
+    --accent-soft: rgba(79, 70, 229, 0.12);
+    --danger: rgba(234, 88, 12, 0.15);
+    --text: #1f2933;
+    --text-muted: #546170;
+    --border: #e4e9f4;
+    --radius-lg: 20px;
+    --radius-md: 12px;
+    --transition: 180ms ease;
+    --shadow: 0 20px 45px -32px rgba(15, 23, 42, 0.4);
+        }
+
+        *, *::before, *::after {
+    box-sizing: border-box;
+        }
+
+        body {
+    margin: 0;
+    font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: linear-gradient(150deg, #e8ecff 0%, var(--bg) 55%, #ffffff 100%);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 48px 18px 60px;
+        }
+
+        main {
+    width: min(1080px, 100%);
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(249, 249, 255, 0.75));
+    border-radius: 32px;
+    padding: clamp(26px, 4vw, 42px);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(18px);
+    overflow: hidden;
+        }
+
+        main::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(79, 70, 229, 0.08), transparent 60%);
+    pointer-events: none;
+        }
+
+        header {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 28px;
+        }
+
+        .header__intro {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(16px, 3vw, 24px);
+    flex-wrap: wrap;
+        }
+
+        .header__text {
+    flex: 1 1 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+        }
+
+        .header__text h1 {
+    margin: 0;
+    font-size: clamp(32px, 4vw, 44px);
+        }
+
+        .header__text p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.6;
+        }
+
+        .editable-text {
+    cursor: text;
+    padding: 2px 6px;
+    border-radius: 10px;
+    transition: background var(--transition), box-shadow var(--transition);
+        }
+
+        .editable-text:hover {
+    background: rgba(79, 70, 229, 0.08);
+        }
+
+        .editable-text:focus {
+    outline: none;
+    background: rgba(79, 70, 229, 0.12);
+    box-shadow: 0 14px 26px -24px rgba(79, 70, 229, 0.4);
+        }
+
+        .header__add-category {
+    border: none;
+    background: linear-gradient(135deg, var(--accent) 0%, #3a35c4 100%);
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform var(--transition), box-shadow var(--transition);
+    box-shadow: 0 16px 34px -24px rgba(79, 70, 229, 0.55);
+        }
+
+        .header__add-category:hover {
+    transform: translateY(-2px);
+        }
+
+        .header__filters {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 12px 16px;
+    border-radius: 16px;
+    background: rgba(79, 70, 229, 0.08);
+    border: 1px solid rgba(79, 70, 229, 0.14);
+    box-shadow: 0 12px 30px -26px rgba(79, 70, 229, 0.6);
+    backdrop-filter: blur(10px);
+        }
+
+        .filters__label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+        }
+
+        .filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+        }
+
+        .filters button {
+    border: 1px solid rgba(79, 70, 229, 0.2);
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--text);
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform var(--transition), background var(--transition), box-shadow var(--transition), color var(--transition), border-color var(--transition);
+    box-shadow: 0 10px 20px -20px rgba(79, 70, 229, 0.4);
+        }
+
+        .filters button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px -22px rgba(79, 70, 229, 0.45);
+        }
+
+        .filters button.is-active {
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.9), rgba(99, 102, 241, 0.8));
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 14px 28px -20px rgba(79, 70, 229, 0.6);
+        }
+
+        .board {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px;
+    align-items: start;
+    align-content: start;
+    padding: 6px 0 32px;
+        }
+
+
+        .category-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 26px 28px 32px;
+    min-height: 100%;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.98), rgba(233, 232, 255, 0.65));
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(79, 70, 229, 0.12);
+    box-shadow: 0 18px 42px -28px rgba(15, 23, 42, 0.32);
+    overflow: hidden;
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+        }
+
+        .category-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(79, 70, 229, 0.22), transparent 55%);
+    opacity: 0;
+    transition: opacity var(--transition);
+    pointer-events: none;
+        }
+
+        .category-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(79, 70, 229, 0.2);
+    box-shadow: 0 24px 50px -26px rgba(79, 70, 229, 0.35);
+        }
+
+        .category-card:hover::before {
+    opacity: 1;
+        }
+
+        .category-card__header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 6px;
+        }
+
+        .category-card__headline {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+        }
+
+        .category-card__title {
+    margin: 0;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.01em;
+        }
+
+        .category-card__title[contenteditable="true"] {
+    cursor: text;
+    border-radius: 10px;
+    padding: 2px 8px;
+    transition:
+        background var(--transition),
+        box-shadow var(--transition);
+        }
+
+        .category-card__title[contenteditable="true"]:hover {
+    background: rgba(79, 70, 229, 0.08);
+        }
+
+        .category-card__title[contenteditable="true"]:focus {
+    outline: none;
+    background: rgba(79, 70, 229, 0.14);
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+        }
+
+        .category-card__count {
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: rgba(79, 70, 229, 0.14);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 8px 16px -14px rgba(79, 70, 229, 0.6);
+        }
+
+        .category-card__title-bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+        }
+
+@keyframes task-urgency-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(var(--urgency-color-rgb, 79, 70, 229), 0.35);
+        opacity: 0.75;
+    }
+    100% {
+        box-shadow: 0 0 0 24px rgba(var(--urgency-color-rgb, 79, 70, 229), 0);
+        opacity: 0;
+    }
+}
+
+@keyframes task-hover-breathe {
+    0% {
+        box-shadow: 0 22px 38px -26px rgba(48, 41, 137, 0.48);
+    }
+
+    50% {
+        box-shadow: 0 26px 42px -24px rgba(48, 41, 137, 0.58);
+    }
+
+    100% {
+        box-shadow: 0 22px 38px -26px rgba(48, 41, 137, 0.48);
+    }
+}
+
+        .category-card__actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+        }
+
+        .category-card__add {
+    border: none;
+    padding: 9px 20px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition);
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.85), rgba(99, 102, 241, 0.65));
+    color: #fff;
+    box-shadow: 0 12px 24px -20px rgba(79, 70, 229, 0.7);
+        }
+
+        .category-card__add:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 16px 30px -18px rgba(79, 70, 229, 0.75);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.9), rgba(79, 70, 229, 0.85));
+        }
+
+        .category-card__add:focus-visible {
+    outline: 2px solid rgba(79, 70, 229, 0.4);
+    outline-offset: 2px;
+        }
+
+        .category-card__delete-link {
+    border: none;
+    background: rgba(79, 70, 229, 0.08);
+    color: var(--accent);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 999px;
+    transition: background var(--transition), box-shadow var(--transition), transform var(--transition), color var(--transition);
+        }
+
+        .category-card__delete-link:hover {
+    background: rgba(79, 70, 229, 0.16);
+    color: var(--accent);
+    transform: translateY(-1px);
+    box-shadow: 0 12px 26px -20px rgba(79, 70, 229, 0.6);
+        }
+
+        .category-card__delete-link:focus-visible {
+    outline: 2px solid rgba(79, 70, 229, 0.35);
+    outline-offset: 2px;
+        }
+
+        .category-card__empty {
+    margin: 6px 0 0;
+    padding: 16px;
+    border-radius: var(--radius-md);
+    border: 1px dashed rgba(79, 70, 229, 0.2);
+    background: rgba(79, 70, 229, 0.1);
+    color: var(--text-muted);
+    font-size: 14px;
+    text-align: center;
+        }
+
+.task-list {
+    --task-list-gap: 18px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--task-list-gap);
+        }
+
+.task-item {
+    position: relative;
+        }
+
+body[data-view="edit"] .task-list .task-item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 22px;
+    right: 22px;
+    bottom: calc(var(--task-list-gap) * -0.5 + 1px);
+    height: 3px;
+    border-radius: 999px;
+    background: linear-gradient(
+        90deg,
+        rgba(79, 70, 229, 0),
+        rgba(79, 70, 229, 0.78) 14%,
+        rgba(79, 70, 229, 0.78) 86%,
+        rgba(79, 70, 229, 0)
+    );
+    box-shadow: 0 4px 14px -6px rgba(79, 70, 229, 0.62);
+    opacity: 1;
+    pointer-events: none;
+        }
+
+        .task {
+    --task-card-radius: 20px;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 22px;
+    border-radius: var(--task-card-radius);
+    background: linear-gradient(145deg, rgba(79, 70, 229, 0.08), rgba(79, 70, 229, 0));
+    border: 1px solid rgba(79, 70, 229, 0.12);
+    box-shadow: 0 16px 32px -30px rgba(48, 41, 137, 0.45);
+    overflow: hidden;
+    transition:
+        box-shadow var(--transition),
+        border-color var(--transition),
+        background var(--transition),
+        transform var(--transition);
+    will-change: transform, box-shadow;
+        }
+
+        .task[data-urgency]::before {
+    content: "";
+    position: absolute;
+    top: 16px;
+    bottom: 16px;
+    left: 12px;
+    width: 4px;
+    background: linear-gradient(180deg, rgba(var(--urgency-color-rgb, 79, 70, 229), 0.9), rgba(var(--urgency-color-rgb, 79, 70, 229), 0.55));
+    border-radius: 999px;
+    opacity: 0.72;
+    transition: opacity 280ms ease, transform 280ms ease;
+        }
+
+        .task:hover[data-urgency]::before {
+    opacity: 1;
+    transform: translateX(1px);
+        }
+
+        .task--urgency-pulse::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    animation: task-urgency-pulse 0.7s ease-out;
+        }
+
+        .task:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(155deg, rgba(79, 70, 229, 0.12), rgba(79, 70, 229, 0.02));
+    border-color: rgba(79, 70, 229, 0.28);
+    box-shadow: 0 22px 38px -26px rgba(48, 41, 137, 0.55);
+    animation: task-hover-breathe 2.2s ease-in-out infinite;
+        }
+
+        .task-item.is-expanded .task {
+    background: linear-gradient(150deg, rgba(79, 70, 229, 0.18), rgba(79, 70, 229, 0.04));
+    border-color: rgba(79, 70, 229, 0.32);
+    box-shadow: 0 20px 36px -26px rgba(48, 41, 137, 0.5);
+        }
+
+        .task.is-complete {
+    background: rgba(79, 70, 229, 0.1);
+    border-color: rgba(79, 70, 229, 0.24);
+    opacity: 0.92;
+        }
+
+        .task.is-complete .task__title {
+    text-decoration: line-through;
+    color: rgba(84, 97, 112, 0.68);
+        }
+
+        .task.is-complete .task__meta {
+    color: rgba(84, 97, 112, 0.5);
+        }
+
+        .task__body {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+        }
+
+        .task__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+        }
+
+        .progress-meter {
+    --progress-color: #34d399;
+    --progress-color-strong: #059669;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+    width: 100%;
+        }
+
+        .progress-meter__bar {
+    position: relative;
+    flex: 1;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(52, 211, 153, 0.16);
+    overflow: hidden;
+        }
+
+        .progress-meter__bar::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(52, 211, 153, 0.22), rgba(5, 150, 105, 0.08));
+    opacity: 0;
+    transition: opacity var(--transition);
+        }
+
+        .progress-meter__fill {
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(135deg, var(--progress-color), var(--progress-color-strong));
+    transition: width 0.35s ease, background var(--transition);
+        }
+
+        .progress-meter__value {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(84, 97, 112, 0.88);
+    white-space: nowrap;
+        }
+
+        .progress-meter.is-complete .progress-meter__value {
+    color: rgba(84, 97, 112, 0.68);
+        }
+
+        .progress-meter.is-empty {
+    opacity: 0.8;
+        }
+
+        .progress-meter.is-empty .progress-meter__value {
+    color: rgba(84, 97, 112, 0.56);
+        }
+
+        .progress-meter[data-variant="subtle"] {
+    margin-top: 4px;
+    gap: 8px;
+        }
+
+        .progress-meter[data-variant="subtle"] .progress-meter__bar {
+    height: 5px;
+    background: rgba(52, 211, 153, 0.12);
+        }
+
+        .progress-meter[data-variant="compact"] {
+    margin-top: 2px;
+    gap: 6px;
+        }
+
+        .progress-meter[data-variant="compact"] .progress-meter__bar {
+    height: 4px;
+    background: rgba(52, 211, 153, 0.12);
+        }
+
+        .task:hover .progress-meter__bar::after,
+        .calendar-detail__item:hover .progress-meter__bar::after,
+        .calendar-recurring__item:hover .progress-meter__bar::after {
+    opacity: 1;
+        }
+
+        .task__progress .progress-meter__value {
+    font-size: 12px;
+        }
+
+        .calendar-detail__progress,
+        .calendar-recurring__progress {
+    width: 100%;
+        }
+
+        .calendar-detail__progress .progress-meter__value,
+        .calendar-recurring__progress .progress-meter__value {
+    font-size: 11px;
+        }
+
+        .task__summary {
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    flex: 1;
+        }
+
+        .task__summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 8px;
+        }
+
+        .task__summary:hover {
+    color: var(--accent);
+        }
+
+        .task__actions {
+    display: flex;
+    gap: 6px;
+    opacity: 0;
+    transform: translateY(0);
+    transition: opacity var(--transition), transform var(--transition);
+        }
+
+        .task:hover .task__actions,
+        .task:focus-within .task__actions {
+    opacity: 1;
+    transform: translateY(-1px);
+        }
+
+        .task__action {
+    border: none;
+    background: rgba(79, 70, 229, 0.08);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 4px 10px;
+    border-radius: 999px;
+    transition: background var(--transition), color var(--transition);
+        }
+
+        .task__action:hover {
+    background: rgba(79, 70, 229, 0.18);
+    color: #fff;
+        }
+
+        .task input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(79, 70, 229, 0.55);
+    border-radius: 6px;
+    margin-top: 2px;
+    cursor: pointer;
+    transition: border-color var(--transition), background var(--transition);
+    appearance: none;
+    display: grid;
+    place-items: center;
+    background: #fff;
+        }
+
+        .task input[type="checkbox"]::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    transform: scale(0);
+    transition: transform var(--transition);
+    background: var(--accent);
+        }
+
+        .task input[type="checkbox"]:checked {
+    border-color: var(--accent);
+    background: rgba(79, 70, 229, 0.16);
+        }
+
+        .task input[type="checkbox"]:checked::after {
+    transform: scale(1);
+        }
+
+        .task__title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+        }
+
+.task__meta {
+    font-size: 13px;
+    color: rgba(84, 97, 112, 0.82);
+    line-height: 1.5;
+        }
+
+.task__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 2px;
+}
+
+.task__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    color: var(--chip-color, var(--accent));
+    background: rgba(var(--chip-color-rgb, 79, 70, 229), 0.16);
+    box-shadow: 0 14px 28px -20px rgba(var(--chip-color-rgb, 79, 70, 229), 0.65);
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.task__chip:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 18px 36px -20px rgba(var(--chip-color-rgb, 79, 70, 229), 0.75);
+}
+
+.task__chip-icon {
+    font-size: 12px;
+    line-height: 1;
+}
+
+.task__chip-text {
+    line-height: 1.3;
+}
+
+.task__chip--importance {
+    background: rgba(var(--chip-color-rgb, 79, 70, 229), 0.12);
+}
+
+.task__chip--urgency {
+    color: #fff;
+    background: linear-gradient(135deg, rgba(var(--chip-color-rgb, 79, 70, 229), 0.88), rgba(var(--chip-color-rgb, 79, 70, 229), 0.68));
+    box-shadow: 0 18px 34px -18px rgba(var(--chip-color-rgb, 79, 70, 229), 0.75);
+}
+
+        .task__detail {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed rgba(79, 70, 229, 0.18);
+    display: none;
+    gap: 14px;
+        }
+
+        .task-item.is-expanded .task__detail {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+
+.task__detail-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.task__detail-block--urgency {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.task__detail-block--importance {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.task__detail-block h4 {
+    margin: 0;
+    font-size: 13px;
+    color: var(--accent);
+}
+
+.task__urgency-select-wrapper {
+    position: relative;
+    display: inline-flex;
+    width: 100%;
+}
+
+.task__importance-select-wrapper {
+    position: relative;
+    display: inline-flex;
+    width: 100%;
+}
+
+.task__importance-chip {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: var(--importance-color, var(--accent));
+    box-shadow: 0 0 0 4px rgba(var(--importance-color-rgb, 79, 70, 229), 0.12);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #fff;
+    transition: transform var(--transition), box-shadow var(--transition);
+    pointer-events: none;
+}
+
+.task__importance-select-wrapper:hover .task__importance-chip,
+.task__importance-select-wrapper:focus-within .task__importance-chip {
+    transform: translateY(-50%) scale(1.08);
+    box-shadow: 0 0 0 5px rgba(var(--importance-color-rgb, 79, 70, 229), 0.18);
+}
+
+.task__importance-select {
+    appearance: none;
+    border: 1px solid rgba(var(--importance-color-rgb, 79, 70, 229), 0.24);
+    border-radius: 12px;
+    padding: 11px 44px 11px 60px;
+    font: inherit;
+    font-size: 14px;
+    color: var(--text);
+    width: 100%;
+    background:
+        linear-gradient(135deg, rgba(var(--importance-color-rgb, 79, 70, 229), 0.12), rgba(var(--importance-color-rgb, 79, 70, 229), 0.02)),
+        rgba(255, 255, 255, 0.96);
+    transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+    cursor: pointer;
+}
+
+.task__importance-select:hover {
+    border-color: rgba(var(--importance-color-rgb, 79, 70, 229), 0.35);
+    box-shadow: 0 12px 26px -22px rgba(var(--importance-color-rgb, 79, 70, 229), 0.45);
+}
+
+.task__importance-select:focus-visible {
+    outline: 2px solid rgba(var(--importance-color-rgb, 79, 70, 229), 0.45);
+    border-color: rgba(var(--importance-color-rgb, 79, 70, 229), 0.45);
+    box-shadow: 0 16px 32px -24px rgba(var(--importance-color-rgb, 79, 70, 229), 0.45);
+}
+
+.task__importance-select-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    width: 12px;
+    height: 7px;
+    transform: translateY(-50%);
+    background: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%234F46E5' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+    pointer-events: none;
+    opacity: 0.7;
+    transition: transform var(--transition), opacity var(--transition);
+}
+
+.task__importance-select-wrapper:focus-within::after {
+    transform: translateY(-50%) rotate(180deg);
+    opacity: 1;
+}
+
+.task__importance-select option {
+    padding: 10px 12px;
+    font-size: 14px;
+}
+
+.task__importance-select option[data-importance="high"] {
+    color: #4338ca;
+    background-color: rgba(99, 102, 241, 0.12);
+}
+
+.task__importance-select option[data-importance="medium"] {
+    color: #4338ca;
+    background-color: rgba(99, 102, 241, 0.12);
+}
+
+.task__importance-select option[data-importance="low"] {
+    color: #6366f1;
+    background-color: rgba(165, 180, 252, 0.14);
+}
+
+.task__importance-select[data-importance="high"] {
+    border-color: rgba(99, 102, 241, 0.38);
+    box-shadow: inset 0 0 0 1px rgba(99, 102, 241, 0.16);
+}
+
+.task__importance-select[data-importance="medium"] {
+    border-color: rgba(99, 102, 241, 0.38);
+    box-shadow: inset 0 0 0 1px rgba(99, 102, 241, 0.16);
+}
+
+.task__importance-select[data-importance="low"] {
+    border-color: rgba(165, 180, 252, 0.3);
+    box-shadow: inset 0 0 0 1px rgba(165, 180, 252, 0.12);
+}
+
+.task__importance-select:hover[data-importance] {
+    box-shadow:
+        0 12px 26px -22px rgba(var(--importance-color-rgb, 79, 70, 229), 0.45),
+        inset 0 0 0 1px rgba(var(--importance-color-rgb, 79, 70, 229), 0.16);
+}
+
+.task__urgency-select {
+    appearance: none;
+    border: 1px solid rgba(79, 70, 229, 0.24);
+    border-radius: 12px;
+    padding: 11px 44px 11px 60px;
+    font: inherit;
+    font-size: 14px;
+    color: var(--text);
+    width: 100%;
+    background:
+        linear-gradient(135deg, rgba(79, 70, 229, 0.12), rgba(79, 70, 229, 0.02)),
+        rgba(255, 255, 255, 0.96);
+    transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+    cursor: pointer;
+}
+
+.task__urgency-select:hover {
+    border-color: rgba(79, 70, 229, 0.35);
+    box-shadow: 0 12px 26px -22px rgba(79, 70, 229, 0.45);
+}
+
+.task__urgency-select:focus-visible {
+    outline: 2px solid rgba(79, 70, 229, 0.45);
+    border-color: rgba(79, 70, 229, 0.45);
+    box-shadow: 0 16px 32px -24px rgba(79, 70, 229, 0.45);
+}
+
+.task__urgency-chip {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: var(--urgency-color, var(--accent));
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #fff;
+    transition: transform var(--transition), box-shadow var(--transition);
+    pointer-events: none;
+}
+
+.task__urgency-select-wrapper:hover .task__urgency-chip,
+.task__urgency-select-wrapper:focus-within .task__urgency-chip {
+    transform: translateY(-50%) scale(1.08);
+    box-shadow: 0 0 0 5px rgba(79, 70, 229, 0.18);
+}
+
+.task__urgency-select-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    width: 12px;
+    height: 7px;
+    transform: translateY(-50%);
+    background: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%234F46E5' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+    pointer-events: none;
+    opacity: 0.7;
+    transition: transform var(--transition), opacity var(--transition);
+}
+
+.task__urgency-select-wrapper:focus-within::after {
+    transform: translateY(-50%) rotate(180deg);
+    opacity: 1;
+}
+
+.task__urgency-select option {
+    padding: 10px 12px;
+    font-size: 14px;
+}
+
+.task__urgency-select option[data-urgency="critical"] {
+    color: #ef4444;
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+.task__urgency-select option[data-urgency="high"] {
+    color: #f97316;
+    background-color: rgba(249, 115, 22, 0.1);
+}
+
+.task__urgency-select option[data-urgency="medium"] {
+    color: #2563eb;
+    background-color: rgba(147, 197, 253, 0.16);
+}
+
+.task__urgency-select option[data-urgency="low"] {
+    color: #16a34a;
+    background-color: rgba(34, 197, 94, 0.12);
+}
+
+.task__importance {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(84, 97, 112, 0.85);
+}
+
+.task__urgency-select[data-urgency="critical"] {
+    border-color: rgba(239, 68, 68, 0.45);
+    box-shadow: inset 0 0 0 1px rgba(239, 68, 68, 0.16);
+}
+
+.task__urgency-select[data-urgency="high"] {
+    border-color: rgba(249, 115, 22, 0.4);
+    box-shadow: inset 0 0 0 1px rgba(249, 115, 22, 0.14);
+}
+
+.task__urgency-select[data-urgency="medium"] {
+    border-color: rgba(147, 197, 253, 0.45);
+    box-shadow: inset 0 0 0 1px rgba(147, 197, 253, 0.2);
+}
+
+.task__urgency-select[data-urgency="low"] {
+    border-color: rgba(34, 197, 94, 0.35);
+    box-shadow: inset 0 0 0 1px rgba(34, 197, 94, 0.12);
+}
+
+.task__urgency-select:hover[data-urgency] {
+    box-shadow:
+        0 12px 26px -22px rgba(var(--urgency-color-rgb, 79, 70, 229), 0.45),
+        inset 0 0 0 1px rgba(var(--urgency-color-rgb, 79, 70, 229), 0.16);
+}
+
+        .task__editable {
+    background: rgba(79, 70, 229, 0.08);
+    border: 1px solid transparent;
+    border-radius: 12px;
+    padding: 10px 12px;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 44px;
+    cursor: text;
+    white-space: pre-wrap;
+    word-break: break-word;
+    transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
+        }
+
+        .task__editable--textarea {
+    min-height: 120px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    padding: 12px 14px;
+    resize: vertical;
+    font: inherit;
+    background: rgba(255, 255, 255, 0.92);
+    line-height: 1.6;
+    color: var(--text);
+        }
+
+        .task__editable--textarea:focus {
+    outline: none;
+    border-color: rgba(79, 70, 229, 0.32);
+    box-shadow: 0 14px 32px -26px rgba(79, 70, 229, 0.45);
+    background: rgba(79, 70, 229, 0.12);
+        }
+
+        .task__editable:hover {
+    border-color: rgba(79, 70, 229, 0.18);
+        }
+
+        .task__editable:focus {
+    outline: none;
+    background: rgba(79, 70, 229, 0.14);
+    border-color: rgba(79, 70, 229, 0.26);
+    box-shadow: 0 14px 28px -24px rgba(79, 70, 229, 0.4);
+        }
+
+        .task__editable[contenteditable="true"]:empty::before {
+    content: attr(data-placeholder);
+    color: rgba(79, 70, 229, 0.45);
+        }
+
+        .task__workflow-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+        }
+
+        .task__detail-block--workflow {
+    grid-column: 1 / -1;
+        }
+
+        .task__workflow-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+        }
+
+        .task__workflow-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: rgba(79, 70, 229, 0.08);
+    border: 1px solid transparent;
+    transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
+        }
+
+        .task__workflow-delete {
+    margin-left: auto;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(4px);
+    transition: opacity var(--transition), transform var(--transition);
+        }
+
+        .task__workflow-item:hover .task__workflow-delete,
+        .task__workflow-delete:focus-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+        }
+
+        .task__workflow-item:hover {
+    border-color: rgba(79, 70, 229, 0.18);
+    box-shadow: 0 16px 32px -26px rgba(79, 70, 229, 0.45);
+        }
+
+        .task__workflow-item.is-complete {
+    background: rgba(79, 70, 229, 0.04);
+    border-color: rgba(79, 70, 229, 0.18);
+        }
+
+        .task__workflow-toggle {
+    margin-top: 4px;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    accent-color: var(--accent);
+        }
+
+        .task__workflow-text {
+    flex: 1 1 auto;
+    min-height: 24px;
+    padding: 2px 4px;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    line-height: 1.6;
+    cursor: text;
+    background: transparent;
+    color: var(--text);
+    transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+        }
+
+        .task__workflow-text:focus {
+    background: rgba(79, 70, 229, 0.12);
+    box-shadow: 0 12px 24px -22px rgba(79, 70, 229, 0.4);
+        }
+
+        .task__workflow-text:empty::before {
+    content: attr(data-placeholder);
+    color: rgba(79, 70, 229, 0.45);
+    pointer-events: none;
+        }
+
+        .task__workflow-item.is-complete .task__workflow-text {
+    text-decoration: line-through;
+    color: rgba(84, 97, 112, 0.75);
+        }
+
+        .task__workflow-add {
+    border: none;
+    background: rgba(79, 70, 229, 0.12);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+        }
+
+        .task__workflow-add:hover {
+    background: rgba(79, 70, 229, 0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px -18px rgba(79, 70, 229, 0.45);
+        }
+
+        .task__workflow-add:focus-visible {
+    outline: 2px solid rgba(79, 70, 229, 0.35);
+    outline-offset: 2px;
+        }
+
+        .task__workflow-empty {
+    font-size: 13px;
+    color: rgba(84, 97, 112, 0.82);
+    padding: 12px;
+    border: 1px dashed rgba(79, 70, 229, 0.26);
+    border-radius: 12px;
+    background: rgba(79, 70, 229, 0.08);
+    text-align: center;
+        }
+
+        .task__editable--single {
+    min-height: 0;
+    padding: 8px 10px;
+    font-size: 15px;
+    font-weight: 600;
+        }
+
+        .empty-hint {
+    margin: 0;
+    padding: 38px 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 14px;
+    display: none;
+        }
+
+        @media (max-width: 720px) {
+    body {
+        padding: 34px 14px 50px;
+    }
+
+    main {
+        border-radius: 26px;
+        padding: 24px;
+    }
+
+    .header__filters {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+        }
+
+
+.workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 440px);
+    gap: 32px;
+    align-items: flex-start;
+    position: relative;
+}
+
+.workspace--calendar-collapsed {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.calendar-sidebar {
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.96), rgba(233, 232, 255, 0.78));
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(79, 70, 229, 0.18);
+    box-shadow: 0 18px 42px -28px rgba(15, 23, 42, 0.28);
+    padding: 28px 26px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-height: 100%;
+    min-width: 360px;
+    transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
+}
+
+.calendar-sidebar.is-collapsed {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(18px);
+    pointer-events: none;
+}
+
+.calendar-sidebar__header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.calendar-sidebar__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.calendar-sidebar__title span {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.calendar-sidebar__collapse {
+    border: none;
+    background: rgba(79, 70, 229, 0.12);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px 6px 12px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    box-shadow: 0 16px 30px -24px rgba(79, 70, 229, 0.55);
+    transition: background var(--transition), box-shadow var(--transition), transform var(--transition), color var(--transition);
+}
+
+.calendar-sidebar__collapse::before {
+    content: "?";
+    font-size: 16px;
+    line-height: 1;
+    transform: translateY(-0.5px);
+}
+
+.calendar-sidebar__collapse:hover {
+    background: rgba(79, 70, 229, 0.22);
+    transform: translateX(2px);
+    box-shadow: 0 18px 40px -26px rgba(79, 70, 229, 0.6);
+}
+
+.calendar-sidebar__collapse:focus-visible {
+    outline: 2px solid rgba(79, 70, 229, 0.35);
+    outline-offset: 2px;
+}
+
+.calendar-sidebar__nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: space-between;
+}
+
+.calendar-sidebar__current {
+    flex: 1 1 auto;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.calendar-nav__btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(79, 70, 229, 0.12);
+    color: var(--accent);
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: background var(--transition), transform var(--transition);
+}
+
+.calendar-nav__btn:hover {
+    background: rgba(79, 70, 229, 0.22);
+    transform: translateY(-1px);
+}
+
+.calendar-sidebar__body {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.calendar-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.calendar-grid__header {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(84, 97, 112, 0.75);
+    text-transform: uppercase;
+}
+
+.calendar-grid__header-cell {
+    text-align: center;
+    letter-spacing: 0.04em;
+}
+
+.calendar-week {
+    display: grid;
+    gap: 8px;
+}
+
+.calendar-week__days {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.calendar-day {
+    min-height: 78px;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(79, 70, 229, 0.08);
+    border-radius: 16px;
+    padding: 10px 12px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    text-align: center;
+    appearance: none;
+    color: inherit;
+    position: relative;
+    z-index: 0;
+    overflow: visible;
+    transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition), background var(--transition);
+}
+
+.calendar-day.is-outside {
+    opacity: 0.35;
+}
+
+.calendar-day.is-drop-target {
+    border-color: rgba(79, 70, 229, 0.55);
+    box-shadow: inset 0 0 0 2px rgba(79, 70, 229, 0.18);
+}
+
+.calendar-day:hover {
+    border-color: rgba(79, 70, 229, 0.28);
+    background: rgba(248, 250, 255, 0.94);
+    box-shadow: 0 18px 40px -32px rgba(79, 70, 229, 0.55);
+    transform: translateY(-2px);
+    z-index: 20;
+}
+
+.calendar-day.is-today {
+    border-color: rgba(79, 70, 229, 0.4);
+    background: rgba(79, 70, 229, 0.08);
+}
+
+.calendar-day.is-selected {
+    border-color: rgba(79, 70, 229, 0.55);
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+    background: rgba(79, 70, 229, 0.16);
+    z-index: 10;
+}
+
+.calendar-day:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    z-index: 20;
+}
+
+.calendar-day__number {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.02em;
+}
+
+.calendar-day__summary {
+    margin-top: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    min-height: 32px;
+    width: 100%;
+    flex: 1 1 auto;
+}
+
+.calendar-day__summary--empty {
+    opacity: 0.45;
+}
+
+.calendar-day__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 10px;
+    background: rgba(84, 97, 112, 0.14);
+    color: rgba(30, 41, 59, 0.92);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.calendar-day__badge--total {
+    background: rgba(79, 70, 229, 0.18);
+    color: #312e81;
+}
+
+.calendar-day__badge-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.calendar-day__badge-count {
+    min-width: 1.25em;
+    text-align: center;
+}
+
+.calendar-day__badge-empty {
+    font-size: 12px;
+    color: rgba(84, 97, 112, 0.75);
+}
+
+.calendar-day__tooltip {
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 12px);
+    transform: translate(-50%, 12px);
+    background: rgba(255, 255, 255, 0.97);
+    color: var(--text);
+    border-radius: 14px;
+    border: 1px solid rgba(79, 70, 229, 0.12);
+    min-width: 220px;
+    max-width: 260px;
+    max-height: 260px;
+    padding: 10px 0;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0 26px 48px -28px rgba(15, 23, 42, 0.32);
+    transition: opacity var(--transition), transform var(--transition);
+    z-index: 999;
+}
+
+.calendar-day:hover .calendar-day__tooltip,
+.calendar-day:focus-within .calendar-day__tooltip,
+.calendar-day.is-hovered .calendar-day__tooltip {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    pointer-events: auto;
+}
+
+.calendar-day__tooltip::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.97);
+    border-left: 1px solid rgba(79, 70, 229, 0.1);
+    border-top: 1px solid rgba(79, 70, 229, 0.1);
+    transform: translate(-50%, -100%) rotate(45deg);
+    box-shadow: 0 -6px 16px -14px rgba(15, 23, 42, 0.2);
+}
+
+.calendar-day__tooltip-list {
+    list-style: none;
+    margin: 0;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+.calendar-day__tooltip-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.calendar-day__tooltip-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.calendar-day__tooltip-item.is-complete .calendar-day__tooltip-title {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.calendar-day__tooltip-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.calendar-day__tooltip-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.calendar-day__tooltip-category {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(79, 70, 229, 0.12);
+    color: rgba(79, 70, 229, 0.9);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.calendar-day__tooltip-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 6px;
+    border-radius: 999px;
+    background: rgba(84, 97, 112, 0.12);
+    color: rgba(84, 97, 112, 0.9);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.calendar-day__tooltip-badge--done {
+    background: rgba(34, 197, 94, 0.18);
+    color: #166534;
+}
+
+.calendar-day__tooltip-title {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    word-break: break-word;
+}
+
+.calendar-day__tooltip-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.calendar-day__tooltip-tags .task__chip {
+    font-size: 11px;
+    padding: 3px 10px;
+    box-shadow: none;
+}
+
+.calendar-day__tooltip-tags .task__chip--urgency {
+    color: rgba(var(--chip-color-rgb, 79, 70, 229), 1);
+    background: rgba(var(--chip-color-rgb, 79, 70, 229), 0.16);
+}
+
+.calendar-day__tooltip-tags .task__chip:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.calendar-day__tooltip-summary {
+    margin: 0;
+    font-size: 12px;
+    color: rgba(84, 97, 112, 0.88);
+    line-height: 1.5;
+}
+}
+
+.calendar-detail {
+    margin-top: 18px;
+    padding: 16px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(79, 70, 229, 0.12);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.calendar-detail__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.calendar-detail__header h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.calendar-detail__header span {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.calendar-detail__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.calendar-detail__item {
+    position: relative;
+    padding: 14px 16px 14px 24px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(84, 97, 112, 0.12);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition:
+        border-color var(--transition),
+        box-shadow var(--transition),
+        transform var(--transition);
+}
+
+.calendar-detail__item::before {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 14px;
+    bottom: 14px;
+    width: 4px;
+    border-radius: 999px;
+    background: var(--urgency-color, var(--accent));
+    opacity: 0.68;
+    transition: opacity var(--transition), background var(--transition);
+}
+
+.calendar-detail__item:hover {
+    border-color: rgba(var(--urgency-color-rgb, 79, 70, 229), 0.26);
+    box-shadow: 0 16px 30px -28px rgba(var(--urgency-color-rgb, 79, 70, 229), 0.45);
+    transform: translateY(-1px);
+}
+
+.calendar-detail__item.is-open {
+    border-color: rgba(var(--urgency-color-rgb, 79, 70, 229), 0.36);
+    box-shadow: 0 18px 36px -28px rgba(var(--urgency-color-rgb, 79, 70, 229), 0.52);
+}
+
+.calendar-detail__item.is-open::before {
+    opacity: 1;
+}
+
+.calendar-detail__item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.calendar-detail__item.is-expandable .calendar-detail__item-header {
+    cursor: pointer;
+}
+
+.calendar-detail__toggle {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(79, 70, 229, 0.08);
+    color: var(--text-muted);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    cursor: pointer;
+    transition:
+        background var(--transition),
+        color var(--transition),
+        box-shadow var(--transition),
+        transform var(--transition);
+}
+
+.calendar-detail__toggle:hover,
+.calendar-detail__toggle:focus-visible {
+    background: rgba(79, 70, 229, 0.16);
+    color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.calendar-detail__toggle:focus-visible {
+    outline: none;
+}
+
+.calendar-detail__toggle-icon {
+    width: 12px;
+    height: 12px;
+    background: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+    transition: transform var(--transition);
+}
+
+.calendar-detail__toggle[aria-expanded="true"] .calendar-detail__toggle-icon {
+    transform: rotate(180deg);
+}
+
+.calendar-detail__title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    flex: 1 1 auto;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.calendar-detail__item.is-complete .calendar-detail__title {
+    text-decoration: line-through;
+    color: rgba(84, 97, 112, 0.7);
+}
+
+.calendar-detail__item.is-complete .calendar-detail__meta {
+    color: rgba(84, 97, 112, 0.56);
+}
+
+.calendar-detail__meta {
+    margin: 0;
+    font-size: 12px;
+    color: rgba(84, 97, 112, 0.85);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.calendar-detail__extra {
+    display: none;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(84, 97, 112, 0.12);
+    flex-direction: column;
+    gap: 12px;
+}
+
+.calendar-detail__item.is-open .calendar-detail__extra {
+    display: flex;
+}
+
+.calendar-detail__extra-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.calendar-detail__extra-label {
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.calendar-detail__extra-text {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text);
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.calendar-detail__workflow {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.calendar-detail__workflow-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.calendar-detail__workflow-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text);
+}
+
+.calendar-detail__workflow-item.is-complete .calendar-detail__workflow-text {
+    text-decoration: line-through;
+    color: rgba(84, 97, 112, 0.6);
+}
+
+.calendar-detail__workflow-toggle-input {
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    accent-color: var(--accent);
+}
+
+.calendar-detail__workflow-text {
+    flex: 1 1 auto;
+    word-break: break-word;
+}
+
+        .calendar-detail__empty {
+    margin: 0;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(79, 70, 229, 0.08);
+    color: var(--text-muted);
+    font-size: 12px;
+    text-align: center;
+}
+
+.calendar-event {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border-radius: 12px;
+    background: rgba(79, 70, 229, 0.16);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: grab;
+    transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.calendar-event:hover {
+    box-shadow: 0 14px 24px -22px rgba(79, 70, 229, 0.65);
+    transform: translateY(-1px);
+}
+
+.calendar-event--range {
+    border-radius: 14px;
+}
+
+.calendar-event--truncated-start::before,
+.calendar-event--truncated-end::after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+}
+
+.calendar-event--truncated-start::before {
+    margin-right: 6px;
+}
+
+.calendar-event--truncated-end::after {
+    margin-left: 6px;
+}
+
+.calendar-event.is-complete {
+    background: rgba(34, 197, 94, 0.18);
+    color: #047857;
+    text-decoration: line-through;
+}
+
+.calendar-sidebar__recurring h4 {
+    margin: 0 0 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+#calendarRecurring {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+ .calendar-recurring__item {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: rgba(var(--urgency-color-rgb, 79, 70, 229), 0.12);
+      border: 1px solid rgba(var(--urgency-color-rgb, 79, 70, 229), 0.2);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 500;
+      box-shadow: 0 16px 32px -28px rgba(var(--urgency-color-rgb, 79, 70, 229), 0.5);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  }
+
+.calendar-recurring__item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px -26px rgba(var(--urgency-color-rgb, 79, 70, 229), 0.55);
+    border-color: rgba(var(--urgency-color-rgb, 79, 70, 229), 0.32);
+}
+
+.calendar-recurring__item.is-expandable {
+    cursor: pointer;
+}
+
+.calendar-recurring__item.is-expandable:hover .calendar-recurring__title {
+    color: var(--accent);
+}
+
+ .calendar-recurring__item-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+  }
+
+ .calendar-recurring__dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: var(--urgency-color, #4f46e5);
+    box-shadow: 0 0 0 4px rgba(var(--urgency-color-rgb, 79, 70, 229), 0.16);
+}
+
+.calendar-recurring__text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.calendar-recurring__title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+.calendar-recurring__item.is-complete .calendar-recurring__title {
+    text-decoration: line-through;
+    color: rgba(84, 97, 112, 0.7);
+}
+
+.calendar-recurring__item.is-complete .calendar-recurring__meta,
+.calendar-recurring__item.is-complete .calendar-recurring__importance {
+    color: rgba(84, 97, 112, 0.56);
+}
+
+.calendar-recurring__meta {
+    font-size: 12px;
+    color: rgba(84, 97, 112, 0.75);
+}
+
+.calendar-recurring__importance {
+    font-size: 12px;
+    color: rgba(84, 97, 112, 0.75);
+}
+
+.calendar-recurring__toggle {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(79, 70, 229, 0.08);
+    color: var(--text-muted);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+}
+
+.calendar-recurring__toggle:hover,
+.calendar-recurring__toggle:focus-visible {
+    background: rgba(79, 70, 229, 0.16);
+    color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.calendar-recurring__toggle:focus-visible {
+    outline: none;
+}
+
+.calendar-recurring__toggle-icon {
+    width: 12px;
+    height: 12px;
+    background: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+    transition: transform var(--transition);
+}
+
+.calendar-recurring__toggle[aria-expanded="true"] .calendar-recurring__toggle-icon {
+    transform: rotate(180deg);
+}
+
+.calendar-recurring__extra {
+    display: none;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(79, 70, 229, 0.16);
+    flex-direction: column;
+    gap: 12px;
+}
+
+.calendar-recurring__item.is-open .calendar-recurring__extra {
+    display: flex;
+}
+
+.calendar-recurring__extra-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.calendar-recurring__extra-label {
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.calendar-recurring__extra-text {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text);
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.calendar-recurring__workflow {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.calendar-recurring__workflow-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.calendar-recurring__workflow-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text);
+}
+
+.calendar-recurring__workflow-item.is-complete .calendar-recurring__workflow-text {
+    text-decoration: line-through;
+    color: rgba(84, 97, 112, 0.6);
+}
+
+.calendar-recurring__workflow-toggle {
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    accent-color: var(--accent);
+}
+
+.calendar-recurring__workflow-text {
+    flex: 1 1 auto;
+    word-break: break-word;
+}
+
+.calendar-recurring__empty {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.calendar-sidebar__expand {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(calc(100% + 12px), 0);
+    border: none;
+    background: linear-gradient(135deg, var(--accent), #6366f1);
+    color: #fff;
+    border-radius: 999px;
+    padding: 9px 18px 9px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 24px 46px -28px rgba(79, 70, 229, 0.65);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.calendar-sidebar__expand.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(calc(100% + 12px), 0);
+}
+
+.calendar-sidebar__expand::before {
+    content: "?";
+    font-size: 16px;
+    line-height: 1;
+    transform: translateY(-0.5px);
+}
+
+.calendar-sidebar__expand:hover {
+    box-shadow: 0 26px 52px -26px rgba(79, 70, 229, 0.7);
+    transform: translate(calc(100% + 12px), -1px);
+}
+
+.calendar-sidebar__expand:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.6);
+    outline-offset: 2px;
+}
+
+.task__detail-block--schedule {
+    border-top: 1px dashed rgba(79, 70, 229, 0.16);
+    padding-top: 16px;
+}
+
+.task__schedule {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 16px;
+    align-items: flex-end;
+}
+
+.task__schedule-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.task__schedule-label {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 12px;
+}
+
+.task__schedule-input {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 8px 10px;
+    font: inherit;
+    font-size: 14px;
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.9);
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.task__schedule-input:focus {
+    outline: none;
+    border-color: rgba(79, 70, 229, 0.5);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.task__schedule-recurring {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text);
+    grid-column: 1 / -1;
+}
+
+.task__schedule-recurring input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent);
+}
+
+.task__badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 8px;
+    border-radius: 999px;
+    background: rgba(79, 70, 229, 0.16);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.task.is-recurring {
+    box-shadow: inset 0 0 0 1px rgba(79, 70, 229, 0.18);
+}
+
+@media (max-width: 1200px) {
+    .workspace {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+    }
+
+    .calendar-sidebar {
+        position: relative;
+        transform: none;
+        min-width: 0;
+        width: 100%;
+    }
+
+    .calendar-sidebar.is-collapsed {
+        display: none;
+    }
+
+    .calendar-sidebar__expand {
+        position: static;
+        transform: none;
+        margin-top: 16px;
+    }
+
+    .calendar-sidebar__expand.is-visible {
+        transform: none;
+    }
+}
+
+
+body[data-view="calendar"] .workspace {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+
+</style>
+</head>
+<body data-view="edit">
+  <main class="app">
+    <header class="app__header">
+      <div class="header__intro">
+        <div class="header__text">
+          <h1
+            id="boardTitle"
+            class="editable-text"
+            contenteditable="true"
+            spellcheck="false"
+            data-placeholder="输入主标题"
+          >项目清单概览</h1>
+          <p
+            id="boardSubtitle"
+            class="editable-text"
+            contenteditable="true"
+            spellcheck="false"
+            data-placeholder="输入副标题"
+          >管理事项，快速掌握进度。勾选完成项，点击筛选查看重点。</p>
+        </div>
+        <button type="button" class="header__add-category" id="addCategoryBtn">新增分类</button>
+      </div>
+      <div class="header__filters" role="group" aria-label="事项筛选">
+        <span class="filters__label">事项筛选</span>
+        <div class="filters" id="filters"></div>
+      </div>
+    </header>
+
+    <div class="view-toggle" role="group" aria-label="视图切换">
+      <button type="button" id="viewEditBtn" class="view-toggle__btn is-active">编辑任务</button>
+      <button type="button" id="viewCalendarBtn" class="view-toggle__btn">任务日历</button>
+      <button
+        type="button"
+        id="addTaskCardBtn"
+        class="view-toggle__btn view-toggle__btn--primary view-toggle__btn--action"
+      >新增事项</button>
+      <button
+        type="button"
+        id="clearAllTasksBtn"
+        class="view-toggle__btn view-toggle__btn--danger view-toggle__btn--clear"
+      >清空</button>
+    </div>
+
+    <div class="workspace">
+      <section class="board-section" aria-label="任务编辑">
+        <div class="board" id="board" aria-live="polite"></div>
+        <p class="empty-hint" id="emptyHint">当前筛选下暂无分类，可新增分类或切换筛选。</p>
+      </section>
+
+      <aside class="calendar-section" id="calendarSidebar" aria-label="任务日历侧栏">
+        <div class="calendar-sidebar__header">
+          <div class="calendar-sidebar__title">
+            <span>日历概览</span>
+          </div>
+          <div class="calendar-sidebar__nav" aria-label="月份切换">
+            <button type="button" class="calendar-nav__btn" id="calendarPrev" aria-label="上一月">‹</button>
+            <div class="calendar-sidebar__current" id="calendarCurrent" aria-live="polite"></div>
+            <button type="button" class="calendar-nav__btn" id="calendarNext" aria-label="下一月">›</button>
+          </div>
+        </div>
+        <div class="calendar-sidebar__body">
+          <div class="calendar-grid" id="calendarGrid" aria-label="当前月份日历"></div>
+          <div class="calendar-detail" id="calendarDetail" aria-live="polite">
+            <div class="calendar-detail__header">
+              <h4 id="calendarDetailDate">选择日期</h4>
+              <span id="calendarDetailCount">0 项任务</span>
+            </div>
+            <ul class="calendar-detail__list" id="calendarDetailList">
+              <li class="calendar-detail__empty">请选择日历中的某一天查看任务。</li>
+            </ul>
+          </div>
+          <div class="calendar-sidebar__recurring">
+            <h4>常态任务</h4>
+            <ul id="calendarRecurring" data-role="recurringList" aria-live="polite"></ul>
+          </div>
+        </div>
+      </aside>
+
+      <button
+        type="button"
+        class="calendar-sidebar__expand"
+        id="calendarExpand"
+        aria-label="展开日历侧栏"
+      >展开日历</button>
+    </div>
+  </main>
+  <script>
+const filtersContainer = document.getElementById("filters");
+const addCategoryBtn = document.getElementById("addCategoryBtn");
+const addTaskCardBtn = document.getElementById("addTaskCardBtn");
+const clearAllTasksBtn = document.getElementById("clearAllTasksBtn");
+const board = document.getElementById("board");
+const emptyHint = document.getElementById("emptyHint");
+const workspace = document.querySelector(".workspace");
+const headingTitleEl = document.getElementById("boardTitle");
+const headingSubtitleEl = document.getElementById("boardSubtitle");
+const calendarSidebar = document.getElementById("calendarSidebar");
+const calendarGrid = document.getElementById("calendarGrid");
+const calendarCurrentEl = document.getElementById("calendarCurrent");
+const calendarPrevBtn = document.getElementById("calendarPrev");
+const calendarNextBtn = document.getElementById("calendarNext");
+const calendarExpandBtn = document.getElementById("calendarExpand");
+const calendarRecurringList = document.querySelector("[data-role=\"recurringList\"]");
+const calendarDetail = document.getElementById("calendarDetail");
+const calendarDetailDate = document.getElementById("calendarDetailDate");
+const calendarDetailCount = document.getElementById("calendarDetailCount");
+const calendarDetailList = document.getElementById("calendarDetailList");
+const viewEditBtn = document.getElementById("viewEditBtn");
+const viewCalendarBtn = document.getElementById("viewCalendarBtn");
+
+let currentView = "edit";
+
+const STORAGE_KEY = "project-board-state";
+const UI_STORAGE_KEY = "project-board-ui";
+const STORAGE_VERSION = 4;
+const DAY_NAMES = ["日", "一", "二", "三", "四", "五", "六"];
+const URGENCY_LEVELS = [
+  { value: "low", label: "低优先", color: "#22c55e", icon: "🌱" },
+  { value: "medium", label: "常规", color: "#facc15", icon: "⏱" },
+  { value: "high", label: "紧急", color: "#f97316", icon: "⚡" },
+  { value: "critical", label: "非常紧急", color: "#ef4444", icon: "🔥" },
+];
+const DEFAULT_URGENCY = "medium";
+const IMPORTANCE_LEVELS = [
+  { value: "high", label: "重要", color: "#6366f1", icon: "★★" },
+  { value: "medium", label: "较重要", color: "#818cf8", icon: "★" },
+  { value: "low", label: "不重要", color: "#a5b4fc", icon: "" },
+];
+const MEDIUM_LEVEL_LIGHT_BLUE = "#93c5fd";
+const mediumUrgencyLevel = URGENCY_LEVELS.find((level) => level.value === "medium");
+if (mediumUrgencyLevel) {
+  mediumUrgencyLevel.color = MEDIUM_LEVEL_LIGHT_BLUE;
+}
+const mediumImportanceLevel = IMPORTANCE_LEVELS.find((level) => level.value === "medium");
+const highImportanceLevel = IMPORTANCE_LEVELS.find((level) => level.value === "high");
+if (mediumImportanceLevel && highImportanceLevel) {
+  mediumImportanceLevel.color = highImportanceLevel.color;
+}
+const DEFAULT_IMPORTANCE = "medium";
+const IMPORTANCE_PRIORITY = { high: 0, medium: 1, low: 2 };
+const URGENCY_PRIORITY = { critical: 0, high: 1, medium: 2, low: 3 };
+const TEXT_SEPARATOR = " \u00b7 ";
+const expandedDayDetailItems = new Set();
+const expandedRecurringItems = new Set();
+
+const defaultCategories = [
+  {
+    id: "plan",
+    name: "规划阶段",
+    tasks: [
+      {
+        title: "梳理项目目标与成功标准",
+        description: "明确项目范围、愿景与衡量标准。",
+        workflow: [
+          { text: "梳理背景与需求", done: false },
+          { text: "确认目标和验收方式", done: false },
+          { text: "输出项目章程", done: false },
+        ],
+        notes: "建议安排目标对齐会议，避免需求反复。",
+        urgency: "high",
+        importance: "high",
+        done: false,
+        startDate: "",
+        endDate: "",
+        isRecurring: false,
+      },
+      {
+        title: "识别风险并制定预案",
+        description: "提前识别交付风险并制定缓解方案。",
+        workflow: [
+          { text: "收集风险列表", done: false },
+          { text: "评估风险等级", done: false },
+          { text: "规划应对措施", done: false },
+        ],
+        notes: "建议每周同步风险状态，保持透明。",
+        urgency: "medium",
+        importance: "high",
+        done: false,
+        startDate: "",
+        endDate: "",
+        isRecurring: false,
+      },
+    ],
+  },
+  {
+    id: "design",
+    name: "设计阶段",
+    tasks: [
+      {
+        title: "梳理用户流程",
+        description: "输出端到端体验路径，覆盖关键场景。",
+        workflow: [
+          { text: "梳理角色与场景", done: false },
+          { text: "绘制流程图", done: false },
+          { text: "与业务评审验证", done: false },
+        ],
+        notes: "复杂流程可补充泳道图，确保多人协作理解一致。",
+        urgency: "medium",
+        importance: "medium",
+        done: false,
+        startDate: "",
+        endDate: "",
+        isRecurring: false,
+      },
+      {
+        title: "交互原型评审",
+        description: "制作原型并收集反馈，确保体验达标。",
+        workflow: [
+          { text: "搭建原型", done: false },
+          { text: "组织评审", done: false },
+          { text: "快速迭代", done: false },
+        ],
+        notes: "评审前准备演示脚本，聚焦重点场景和核心路径。",
+        urgency: "low",
+        importance: "medium",
+        done: false,
+        startDate: "",
+        endDate: "",
+        isRecurring: false,
+      },
+    ],
+  },
+  {
+    id: "dev",
+    name: "开发阶段",
+    tasks: [
+      {
+        title: "搭建基础框架",
+        description: "统一工程结构、开发规范与自动化流程。",
+        workflow: [
+          { text: "初始化工程", done: false },
+          { text: "配置 CI/CD", done: false },
+          { text: "编写开发指引", done: false },
+        ],
+        notes: "首个版本完成后务必检查流水线表现。",
+        urgency: "medium",
+        importance: "high",
+        done: false,
+        startDate: "",
+        endDate: "",
+        isRecurring: false,
+      },
+      {
+        title: "核心功能交付",
+        description: "实现 MVP 功能并完成提测。",
+        workflow: [
+          { text: "拆分任务", done: false },
+          { text: "编码与评审", done: false },
+          { text: "自测提测", done: false },
+        ],
+        notes: "可结合特性开关控制灰度发布。",
+        urgency: "high",
+        importance: "high",
+        done: false,
+        startDate: "",
+        endDate: "",
+        isRecurring: false,
+      },
+    ],
+  },
+  {
+    id: "qa",
+    name: "测试阶段",
+    tasks: [
+      {
+        title: "制定测试计划",
+        description: "明确覆盖范围与优先级，输出可执行计划。",
+        workflow: [
+          { text: "整理变更点", done: false },
+          { text: "编写测试用例", done: false },
+          { text: "准备测试数据", done: false },
+        ],
+        notes: "建议同步自动化测试策略，提升覆盖率。",
+        urgency: "medium",
+        importance: "medium",
+        done: false,
+        startDate: "",
+        endDate: "",
+        isRecurring: false,
+      },
+      {
+        title: "缺陷跟踪与回归",
+        description: "保证缺陷处理闭环，维护测试透明度。",
+        workflow: [
+          { text: "执行测试", done: false },
+          { text: "跟踪修复", done: false },
+          { text: "回归确认", done: false },
+        ],
+        notes: "记录复现步骤与日志，方便定位问题。",
+        urgency: "high",
+        importance: "high",
+        done: false,
+        startDate: "",
+        endDate: "",
+        isRecurring: false,
+      },
+    ],
+  },
+  {
+    id: "launch",
+    name: "上线与交付",
+    tasks: [
+      {
+        title: "确定上线窗口与回滚策略",
+        description: "选择合适上线窗口，并预先准备回滚方案。",
+        workflow: [
+          { text: "确认上线窗口", done: false },
+          { text: "列出回滚步骤", done: false },
+          { text: "准备监控与值守", done: false },
+        ],
+        notes: "上线前至少安排一次演练。",
+        urgency: "high",
+        importance: "high",
+        done: false,
+        startDate: "",
+        endDate: "",
+        isRecurring: false,
+      },
+      {
+        title: "上线后巡检与复盘",
+        description: "关注核心指标表现，及时沉淀经验与复盘。",
+        workflow: [
+          { text: "观测核心指标", done: false },
+          { text: "处理异常", done: false },
+          { text: "总结复盘", done: false },
+        ],
+        notes: "复盘建议在上线后一周内完成。",
+        urgency: "low",
+        importance: "medium",
+        done: false,
+        startDate: "",
+        endDate: "",
+        isRecurring: false,
+      },
+    ],
+  },
+];
+
+function cloneCategories(source) {
+  return source.map((category) => ({
+    id: category.id,
+    name: category.name,
+    tasks: category.tasks.map((task) => ({
+      title: task.title,
+      description: task.description,
+      workflow: Array.isArray(task.workflow)
+        ? task.workflow.map((step) => ({
+            text: toPlainString(step?.text),
+            done: Boolean(step?.done),
+          }))
+        : [],
+      notes: task.notes,
+      urgency: task.urgency || DEFAULT_URGENCY,
+      importance: task.importance || DEFAULT_IMPORTANCE,
+      done: task.done,
+      startDate: task.startDate,
+      endDate: task.endDate,
+      lastWorkflowResetDate: sanitizeText(task.lastWorkflowResetDate),
+      isRecurring: task.isRecurring,
+      recurringCompletion: toRecurringCompletionStore(task.recurringCompletion),
+    })),
+  }));
+}
+
+const defaultState = {
+  version: STORAGE_VERSION,
+  meta: {
+    title: "项目清单概览",
+    subtitle: "管理事项，快速掌握进度。勾选完成项，点击筛选查看重点。",
+  },
+  categories: cloneCategories(defaultCategories),
+};
+
+let boardMeta = { ...defaultState.meta };
+let categories = cloneCategories(defaultCategories);
+let currentFilter = "all";
+const expandedTasks = new Set();
+let selectedCalendarDate = "";
+let calendarCollapsed = false;
+let isRestoringUIState = true;
+const calendarState = {
+  current: (() => {
+    const today = new Date();
+    return new Date(today.getFullYear(), today.getMonth(), 1);
+  })(),
+};
+
+function toPlainString(value) {
+  if (typeof value === "string") return value;
+  if (value === null || value === undefined) return "";
+  return String(value);
+}
+
+function sanitizeText(value, fallback = "") {
+  const result = toPlainString(value).trim();
+  return result || fallback;
+}
+
+function getUrgencyConfig(value) {
+  return URGENCY_LEVELS.find((level) => level.value === value) ?? null;
+}
+
+function normalizeUrgency(value) {
+  const text = sanitizeText(value).toLowerCase();
+  const match = URGENCY_LEVELS.find((level) => level.value === text);
+  return match ? match.value : DEFAULT_URGENCY;
+}
+
+function hexToRgb(value) {
+  const raw = sanitizeText(value);
+  const normalized = raw.startsWith("#") ? raw.slice(1) : raw;
+  if (/^[0-9a-fA-F]{3}$/.test(normalized)) {
+    const r = parseInt(normalized[0] + normalized[0], 16);
+    const g = parseInt(normalized[1] + normalized[1], 16);
+    const b = parseInt(normalized[2] + normalized[2], 16);
+    return `${r}, ${g}, ${b}`;
+  }
+  if (/^[0-9a-fA-F]{6}$/.test(normalized)) {
+    const r = parseInt(normalized.slice(0, 2), 16);
+    const g = parseInt(normalized.slice(2, 4), 16);
+    const b = parseInt(normalized.slice(4, 6), 16);
+    return `${r}, ${g}, ${b}`;
+  }
+  return "79, 70, 229";
+}
+
+function normalizeImportance(value) {
+  const text = sanitizeText(value).toLowerCase();
+  const match = IMPORTANCE_LEVELS.find((level) => level.value === text);
+  return match ? match.value : DEFAULT_IMPORTANCE;
+}
+
+function getImportanceConfig(value) {
+  const normalized = normalizeImportance(value);
+  return IMPORTANCE_LEVELS.find((level) => level.value === normalized) ?? null;
+}
+
+function getImportanceLabel(value) {
+  const normalized = normalizeImportance(value);
+  const match = IMPORTANCE_LEVELS.find((level) => level.value === normalized);
+  return match ? match.label : "默认";
+}
+
+function getImportanceStars(value) {
+  const config = getImportanceConfig(value);
+  return config?.icon ?? "";
+}
+
+function getImportanceDisplay(value) {
+  const stars = getImportanceStars(value);
+  const label = getImportanceLabel(value);
+  return stars ? `${stars}（${label}）` : `（${label}）`;
+}
+
+function getImportanceRank(value) {
+  const normalized = normalizeImportance(value);
+  return IMPORTANCE_PRIORITY[normalized] ?? IMPORTANCE_LEVELS.length;
+}
+
+function getUrgencyRank(value) {
+  const normalized = normalizeUrgency(value);
+  return URGENCY_PRIORITY[normalized] ?? URGENCY_LEVELS.length;
+}
+
+function compareTaskPriority(a, b) {
+  const importanceDiff = getImportanceRank(a.task.importance) - getImportanceRank(b.task.importance);
+  if (importanceDiff !== 0) return importanceDiff;
+  const urgencyDiff = getUrgencyRank(a.task.urgency) - getUrgencyRank(b.task.urgency);
+  if (urgencyDiff !== 0) return urgencyDiff;
+  return sanitizeText(a.task.title).localeCompare(sanitizeText(b.task.title), "zh-Hans");
+}
+
+function toggleWorkflowStep(target) {
+  const category = findCategory(target.dataset.categoryId);
+  const taskIndex = Number(target.dataset.taskIndex);
+  const stepIndex = Number(target.dataset.stepIndex);
+  if (!category || Number.isNaN(taskIndex) || Number.isNaN(stepIndex)) return;
+  const task = category.tasks[taskIndex];
+  if (!task || !Array.isArray(task.workflow)) return;
+  const step = task.workflow[stepIndex];
+  if (!step) return;
+  if (task.isRecurring) {
+    const dateKey = target.dataset.date || getTodayKey();
+    setRecurringWorkflowStepForDate(task, dateKey, stepIndex, target.checked);
+    syncRecurringStateToTask(task, getTodayKey());
+  } else {
+    step.done = target.checked;
+  }
+  saveState();
+  renderBoard();
+  renderCalendar();
+}
+
+function refreshRecurringWorkflows() {
+  const todayKey = getTodayKey();
+  let changed = false;
+
+  categories.forEach((category) => {
+    category.tasks.forEach((task) => {
+      if (!task.isRecurring) return;
+
+      const previousDone = Boolean(task.done);
+      const previousWorkflow = Array.isArray(task.workflow)
+        ? task.workflow.map((step) => Boolean(step.done))
+        : [];
+
+      syncRecurringStateToTask(task, todayKey);
+
+      if (Boolean(task.done) !== previousDone) {
+        changed = true;
+      }
+
+      if (Array.isArray(task.workflow)) {
+        task.workflow.forEach((step, index) => {
+          if (Boolean(step.done) !== previousWorkflow[index]) {
+            changed = true;
+          }
+        });
+      }
+
+      const entry =
+        task.recurringCompletion &&
+        typeof task.recurringCompletion === "object" &&
+        task.recurringCompletion[todayKey];
+      const hasData =
+        Boolean(entry && entry.done) ||
+        (entry &&
+          entry.workflow &&
+          typeof entry.workflow === "object" &&
+          Object.keys(entry.workflow).length > 0);
+      task.lastWorkflowResetDate = hasData ? todayKey : "";
+    });
+  });
+
+  return changed;
+}
+
+function ensureRecurringWorkflowFreshness() {
+  if (refreshRecurringWorkflows()) {
+    saveState();
+  }
+}
+
+function setCalendarDetailItemExpanded(item, detailKey, expanded) {
+  if (!(item instanceof HTMLElement)) return;
+  item.classList.toggle("is-open", expanded);
+  const toggle = item.querySelector(".calendar-detail__toggle");
+  if (toggle instanceof HTMLButtonElement) {
+    const expandedLabel = toggle.dataset.expandedLabel ?? "收起任务详情";
+    const collapsedLabel = toggle.dataset.collapsedLabel ?? "展开任务详情";
+    toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+    toggle.setAttribute("aria-label", expanded ? expandedLabel : collapsedLabel);
+    toggle.setAttribute("title", expanded ? expandedLabel : collapsedLabel);
+  }
+  if (expanded) {
+    expandedDayDetailItems.add(detailKey);
+  } else {
+    expandedDayDetailItems.delete(detailKey);
+  }
+}
+
+function collapseOtherCalendarDetailItems(currentItem) {
+  document
+    .querySelectorAll(".calendar-detail__item.is-expandable.is-open")
+    .forEach((openItem) => {
+      if (openItem === currentItem) return;
+      const key = `${selectedCalendarDate}:${openItem.dataset.categoryId}:${openItem.dataset.taskIndex}`;
+      setCalendarDetailItemExpanded(openItem, key, false);
+    });
+}
+
+function setCalendarRecurringItemExpanded(item, detailKey, expanded) {
+  if (!(item instanceof HTMLElement)) return;
+  item.classList.toggle("is-open", expanded);
+  const toggle = item.querySelector(".calendar-recurring__toggle");
+  if (toggle instanceof HTMLButtonElement) {
+    const expandedLabel = toggle.dataset.expandedLabel ?? "收起任务详情";
+    const collapsedLabel = toggle.dataset.collapsedLabel ?? "展开任务详情";
+    toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+    toggle.setAttribute("aria-label", expanded ? expandedLabel : collapsedLabel);
+    toggle.setAttribute("title", expanded ? expandedLabel : collapsedLabel);
+  }
+  if (expanded) {
+    expandedRecurringItems.add(detailKey);
+  } else {
+    expandedRecurringItems.delete(detailKey);
+  }
+}
+
+function collapseOtherCalendarRecurringItems(currentItem) {
+  if (!(currentItem instanceof HTMLElement)) return;
+  document
+    .querySelectorAll(".calendar-recurring__item.is-expandable.is-open")
+    .forEach((openItem) => {
+      if (openItem === currentItem) return;
+      const key = `recurring:${openItem.dataset.categoryId}:${openItem.dataset.taskIndex}`;
+      setCalendarRecurringItemExpanded(openItem, key, false);
+    });
+}
+
+function updateWorkflowToggleButton(button, expanded) {
+  if (!(button instanceof HTMLElement)) return;
+  const collapsedText = button.dataset.collapsedText ?? "查看工作流程";
+  const expandedText = button.dataset.expandedText ?? "隐藏工作流程";
+  button.textContent = expanded ? expandedText : collapsedText;
+  button.setAttribute("aria-expanded", expanded ? "true" : "false");
+}
+
+function formatISODate(date) {
+  if (!(date instanceof Date)) return "";
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function parseISODate(value) {
+  const text = sanitizeText(value);
+  if (!text) return null;
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(text);
+  if (!match) return null;
+  const year = Number(match[1]);
+  const month = Number(match[2]) - 1;
+  const day = Number(match[3]);
+  const date = new Date(year, month, day);
+  if (
+    date.getFullYear() !== year ||
+    date.getMonth() !== month ||
+    date.getDate() !== day
+  ) {
+    return null;
+  }
+  return date;
+}
+
+function addDays(date, offset) {
+  if (!(date instanceof Date)) return null;
+  const result = new Date(date);
+  result.setDate(result.getDate() + Number(offset || 0));
+  return result;
+}
+
+function isSameDay(a, b) {
+  if (!(a instanceof Date) || !(b instanceof Date)) return false;
+  return (
+    a.getFullYear() === b.getFullYear() &&
+    a.getMonth() === b.getMonth() &&
+    a.getDate() === b.getDate()
+  );
+}
+
+function formatDisplayDate(date) {
+  if (!(date instanceof Date)) return "";
+  return `${date.getMonth() + 1}月${date.getDate()}日`;
+}
+
+function normalizeDateValue(value) {
+  const date = parseISODate(value);
+  return date ? formatISODate(date) : "";
+}
+
+function resolveDateRange(startText, endText) {
+  const start = parseISODate(startText);
+  const end = parseISODate(endText);
+  if (start && end) {
+    if (end < start) return { start: formatISODate(start), end: formatISODate(start) };
+    return { start: formatISODate(start), end: formatISODate(end) };
+  }
+  if (start) return { start: formatISODate(start), end: formatISODate(start) };
+  if (end) return { start: formatISODate(end), end: formatISODate(end) };
+  return { start: "", end: "" };
+}
+
+function getTodayKey() {
+  return formatISODate(new Date());
+}
+
+function normalizeDateKey(value) {
+  const parsed = parseISODate(value);
+  if (parsed) return formatISODate(parsed);
+  return getTodayKey();
+}
+
+function ensureRecurringCompletionStore(task) {
+  if (!task || typeof task !== "object") return null;
+  if (!task.recurringCompletion || typeof task.recurringCompletion !== "object") {
+    task.recurringCompletion = {};
+  }
+  return task.recurringCompletion;
+}
+
+function getRecurringStateForDate(task, dateKey) {
+  const key = normalizeDateKey(dateKey);
+  if (!task || !task.isRecurring) {
+    const workflowStates = Array.isArray(task?.workflow)
+      ? task.workflow.map((step) => Boolean(step?.done))
+      : [];
+    return { key, done: Boolean(task?.done), workflow: workflowStates };
+  }
+  const store =
+    task && typeof task.recurringCompletion === "object" && task.recurringCompletion !== null
+      ? task.recurringCompletion
+      : null;
+  const entry = store?.[key];
+  const workflowStates = Array.isArray(task.workflow)
+    ? task.workflow.map((_, index) => {
+        if (!entry?.workflow || typeof entry.workflow !== "object") return false;
+        return Boolean(entry.workflow[index]);
+      })
+    : [];
+  return {
+    key,
+    done: Boolean(entry?.done),
+    workflow: workflowStates,
+  };
+}
+
+function isRecurringTaskCompleteOnDate(task, dateKey) {
+  if (!task?.isRecurring) return Boolean(task?.done);
+  const state = getRecurringStateForDate(task, dateKey);
+  if (state.done) return true;
+  if (!Array.isArray(task?.workflow) || task.workflow.length === 0) return false;
+  return state.workflow.length > 0 && state.workflow.every((flag) => Boolean(flag));
+}
+
+function setRecurringTaskDoneForDate(task, dateKey, value) {
+  if (!task) return;
+  if (!task.isRecurring) {
+    task.done = Boolean(value);
+    return;
+  }
+  const key = normalizeDateKey(dateKey || getTodayKey());
+  const store = ensureRecurringCompletionStore(task);
+  const entry = store[key] ?? { workflow: {} };
+  if (!entry.workflow || typeof entry.workflow !== "object") {
+    entry.workflow = {};
+  }
+  if (value) {
+    entry.done = true;
+    store[key] = entry;
+  } else {
+    delete entry.done;
+    if (entry.workflow && Object.keys(entry.workflow).length > 0) {
+      store[key] = entry;
+    } else {
+      delete store[key];
+    }
+  }
+  task.lastWorkflowResetDate = store[key] ? key : "";
+  if (Object.keys(store).length === 0) {
+    delete task.recurringCompletion;
+  }
+}
+
+function setRecurringWorkflowStepForDate(task, dateKey, stepIndex, value) {
+  if (!task || Number.isNaN(stepIndex)) return;
+  if (!Array.isArray(task.workflow)) return;
+  if (!task.isRecurring) {
+    const step = task.workflow[stepIndex];
+    if (step) step.done = Boolean(value);
+    return;
+  }
+  const key = normalizeDateKey(dateKey || getTodayKey());
+  const store = ensureRecurringCompletionStore(task);
+  const entry = store[key] ?? { workflow: {} };
+  if (!entry.workflow || typeof entry.workflow !== "object") {
+    entry.workflow = {};
+  }
+  if (value) {
+    entry.workflow[stepIndex] = true;
+    store[key] = entry;
+  } else {
+    delete entry.workflow[stepIndex];
+    if (entry.done || Object.keys(entry.workflow).length > 0) {
+      store[key] = entry;
+    } else {
+      delete store[key];
+    }
+  }
+  task.lastWorkflowResetDate = store[key] ? key : "";
+  if (Object.keys(store).length === 0) {
+    delete task.recurringCompletion;
+  }
+}
+
+function syncRecurringStateToTask(task, dateKey) {
+  if (!task?.isRecurring) return;
+  const key = dateKey || getTodayKey();
+  const state = getRecurringStateForDate(task, key);
+  if (Boolean(task.done) !== state.done) {
+    task.done = state.done;
+  }
+  if (Array.isArray(task.workflow)) {
+    task.workflow.forEach((step, index) => {
+      const desired = state.workflow[index] ?? false;
+      if (Boolean(step.done) !== desired) {
+        step.done = desired;
+      }
+    });
+  }
+}
+
+function toRecurringCompletionStore(source) {
+  if (typeof source !== "object" || source === null) return {};
+  const result = {};
+  Object.entries(source).forEach(([rawKey, rawValue]) => {
+    const parsedDate = parseISODate(rawKey);
+    if (!parsedDate) return;
+    const key = formatISODate(parsedDate);
+    if (typeof rawValue === "boolean") {
+      if (rawValue) {
+        result[key] = { done: true, workflow: {} };
+      }
+      return;
+    }
+    if (typeof rawValue !== "object" || rawValue === null) return;
+    const entry = {};
+    if (rawValue.done) {
+      entry.done = Boolean(rawValue.done);
+    }
+    const workflowSource = rawValue.workflow;
+    if (Array.isArray(workflowSource)) {
+      const workflow = {};
+      workflowSource.forEach((flag, index) => {
+        if (flag) workflow[index] = Boolean(flag);
+      });
+      if (Object.keys(workflow).length > 0) {
+        entry.workflow = workflow;
+      }
+    } else if (typeof workflowSource === "object" && workflowSource !== null) {
+      const workflow = {};
+      Object.entries(workflowSource).forEach(([stepKey, flag]) => {
+        const idx = Number(stepKey);
+        if (Number.isInteger(idx) && flag) {
+          workflow[idx] = Boolean(flag);
+        }
+      });
+      if (Object.keys(workflow).length > 0) {
+        entry.workflow = workflow;
+      }
+    }
+    if (entry.done || entry.workflow) {
+      if (!entry.workflow) entry.workflow = {};
+      result[key] = entry;
+    }
+  });
+  return result;
+}
+
+function toWorkflowSteps(value) {
+  if (Array.isArray(value)) {
+    return value
+      .map((item) => {
+        if (typeof item === "string") {
+          const text = sanitizeText(item);
+          return text ? { text, done: false } : null;
+        }
+        if (typeof item === "object" && item !== null) {
+          const raw = toPlainString(item.text);
+          const text = sanitizeText(raw);
+          return { text, done: Boolean(item.done) };
+        }
+        return null;
+      })
+      .filter(Boolean);
+  }
+  return sanitizeText(value)
+    .split(/\r?\n/)
+    .map((item) => sanitizeText(item))
+    .filter(Boolean)
+    .map((text) => ({ text, done: false }));
+}
+
+function normalizeTask(source) {
+  const task = typeof source === "object" && source !== null ? source : {};
+  const title = sanitizeText(task.title, "未命名事项");
+  const description = sanitizeText(task.description);
+  const notes = sanitizeText(task.notes);
+  const workflow = toWorkflowSteps(task.workflow);
+  const range = resolveDateRange(task.startDate, task.endDate);
+  return {
+    title,
+    description,
+    workflow,
+    notes,
+    urgency: normalizeUrgency(task.urgency),
+    importance: normalizeImportance(task.importance),
+    done: Boolean(task.done),
+    startDate: range.start,
+    endDate: range.end,
+    lastWorkflowResetDate: sanitizeText(task.lastWorkflowResetDate),
+    isRecurring: Boolean(task.isRecurring),
+    recurringCompletion: toRecurringCompletionStore(task.recurringCompletion),
+  };
+}
+
+function normalizeCategory(source) {
+  if (typeof source !== "object" || source === null) return null;
+  const id = sanitizeText(source.id) || generateCategoryId();
+  const name = sanitizeText(source.name, "未命名分类");
+  const tasks = Array.isArray(source.tasks)
+    ? source.tasks.map((task) => normalizeTask(task))
+    : [];
+  return { id, name, tasks };
+}
+
+function normalizeMeta(source) {
+  const meta = typeof source === "object" && source !== null ? source : {};
+  return {
+    title: sanitizeText(meta.title, defaultState.meta.title),
+    subtitle: sanitizeText(meta.subtitle, defaultState.meta.subtitle),
+  };
+}
+
+function getStorage() {
+  try {
+    return window.localStorage;
+  } catch (error) {
+    console.warn("无法访问本地存储，仅使用会话数据。", error);
+    return null;
+  }
+}
+
+function loadState() {
+  const storage = getStorage();
+  if (!storage) return null;
+  try {
+    const raw = storage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch (error) {
+    console.warn("读取存储失败，已忽略损坏的数据。", error);
+    return null;
+  }
+}
+
+function saveState() {
+  const storage = getStorage();
+  if (!storage) return;
+  const payload = {
+    version: STORAGE_VERSION,
+    meta: { ...boardMeta },
+    categories: categories.map((category) => ({
+      id: category.id,
+      name: category.name,
+      tasks: category.tasks.map((task) => ({
+        title: task.title,
+        description: task.description,
+        workflow: Array.isArray(task.workflow)
+          ? task.workflow.map((step) => ({
+              text: sanitizeText(step?.text),
+              done: Boolean(step?.done),
+            }))
+          : [],
+        notes: task.notes,
+        urgency: task.urgency || DEFAULT_URGENCY,
+        importance: task.importance || DEFAULT_IMPORTANCE,
+        done: task.done,
+        startDate: task.startDate,
+        endDate: task.endDate,
+        lastWorkflowResetDate: task.lastWorkflowResetDate,
+        isRecurring: task.isRecurring,
+        recurringCompletion: toRecurringCompletionStore(task.recurringCompletion),
+      })),
+    })),
+  };
+  try {
+    storage.setItem(STORAGE_KEY, JSON.stringify(payload));
+  } catch (error) {
+    console.warn("保存失败，请检查浏览器存储配额或权限。", error);
+  }
+}
+
+function restoreState() {
+  const saved = loadState();
+  if (!saved) {
+    categories = cloneCategories(defaultCategories);
+    boardMeta = { ...defaultState.meta };
+    applyBoardMeta();
+    saveState();
+    return;
+  }
+  boardMeta = normalizeMeta(saved.meta);
+  const normalizedCategories = Array.isArray(saved.categories)
+    ? saved.categories.map((category) => normalizeCategory(category)).filter(Boolean)
+    : [];
+  categories =
+    normalizedCategories.length > 0
+      ? normalizedCategories
+      : cloneCategories(defaultCategories);
+  applyBoardMeta();
+  if (saved.version !== STORAGE_VERSION) {
+    saveState();
+  }
+}
+
+function loadUIState() {
+  const storage = getStorage();
+  if (!storage) return null;
+  try {
+    const raw = storage.getItem(UI_STORAGE_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch (error) {
+    console.warn("读取界面状态失败，已忽略。", error);
+    return null;
+  }
+}
+
+function saveUIState() {
+  if (isRestoringUIState) return;
+  const storage = getStorage();
+  if (!storage) return;
+  const month = calendarState.current instanceof Date ? calendarState.current : new Date();
+  const payload = {
+    view: currentView,
+    filter: currentFilter,
+    calendarCollapsed,
+    selectedDate: selectedCalendarDate,
+    month: formatISODate(month),
+  };
+  try {
+    storage.setItem(UI_STORAGE_KEY, JSON.stringify(payload));
+  } catch (error) {
+    console.warn("保存界面状态失败，请检查浏览器权限。", error);
+  }
+}
+
+function restoreUIState() {
+  const saved = loadUIState();
+  if (!saved) {
+    setCalendarCollapsed(false, { skipSave: true });
+    selectedCalendarDate = "";
+    const today = new Date();
+    calendarState.current = new Date(today.getFullYear(), today.getMonth(), 1);
+    return;
+  }
+  if (saved.view === "edit" || saved.view === "calendar") {
+    currentView = saved.view;
+  }
+  if (typeof saved.filter === "string" && saved.filter) {
+    const candidate = saved.filter;
+    if (candidate === "all" || categories.some((category) => category.id === candidate)) {
+      currentFilter = candidate;
+    } else {
+      currentFilter = "all";
+    }
+  }
+  const monthDate = parseISODate(saved.month);
+  if (monthDate) {
+    calendarState.current = new Date(monthDate.getFullYear(), monthDate.getMonth(), 1);
+  }
+  if (typeof saved.selectedDate === "string") {
+    selectedCalendarDate = saved.selectedDate;
+  }
+  if (typeof saved.calendarCollapsed === "boolean") {
+    setCalendarCollapsed(saved.calendarCollapsed, { skipSave: true });
+  } else {
+    setCalendarCollapsed(false, { skipSave: true });
+  }
+}
+
+function applyBoardMeta() {
+  if (headingTitleEl) {
+    headingTitleEl.textContent = boardMeta.title;
+    headingTitleEl.classList.toggle("is-empty", !boardMeta.title.trim());
+  }
+  if (headingSubtitleEl) {
+    headingSubtitleEl.textContent = boardMeta.subtitle;
+    headingSubtitleEl.classList.toggle("is-empty", !boardMeta.subtitle.trim());
+  }
+}
+
+function setupEditableText(element, key) {
+  if (!element) return;
+  const placeholder = element.dataset.placeholder ?? "";
+  const syncEmptyState = () => {
+    element.classList.toggle("is-empty", element.textContent.trim().length === 0);
+  };
+  const commit = () => {
+    const value = sanitizeText(element.textContent, placeholder);
+    boardMeta[key] = value;
+    element.textContent = value;
+    syncEmptyState();
+    applyBoardMeta();
+    saveState();
+  };
+  element.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      element.blur();
+    }
+  });
+  element.addEventListener("blur", commit);
+  element.addEventListener("input", syncEmptyState);
+  syncEmptyState();
+}
+
+function generateCategoryId() {
+  return `cat-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
+}
+
+function findCategory(categoryId) {
+  return categories.find((category) => category.id === categoryId);
+}
+
+function makeTaskKey(categoryId, index) {
+  return `${categoryId}::${index}`;
+}
+
+function cleanupExpanded() {
+  const keys = Array.from(expandedTasks);
+  keys.forEach((key) => {
+    const [categoryId, indexText] = key.split("::");
+    const index = Number(indexText);
+    const category = findCategory(categoryId);
+    if (!category || !Number.isInteger(index) || index < 0 || index >= category.tasks.length) {
+      expandedTasks.delete(key);
+    }
+  });
+}
+
+function buildTaskMeta(task) {
+  if (task.isRecurring) return "常态任务";
+  const start = parseISODate(task.startDate);
+  const end = parseISODate(task.endDate);
+  if (start && end) {
+    if (isSameDay(start, end)) return `计划日期：${formatDisplayDate(start)}`;
+    return `计划区间：${formatDisplayDate(start)} - ${formatDisplayDate(end)}`;
+  }
+  if (start) return `开始：${formatDisplayDate(start)}`;
+  if (end) return `结束：${formatDisplayDate(end)}`;
+  const preview = sanitizeText(task.description) || sanitizeText(task.notes);
+  return preview ? preview.slice(0, 40) : "展开查看详情并补充内容";
+}
+
+function createProgressElement({
+  totalSteps = 0,
+  completedSteps = 0,
+  done = false,
+  prefix = "任务进度",
+  variant = "default",
+  className = "",
+} = {}) {
+  const progress = document.createElement("div");
+  const classes = ["progress-meter"];
+  if (className) classes.push(className);
+  progress.className = classes.join(" ");
+  if (variant) {
+    progress.dataset.variant = variant;
+  }
+
+  const totalNumber = Number(totalSteps);
+  const safeTotal = Number.isFinite(totalNumber) ? Math.max(0, totalNumber) : 0;
+  const completedNumber = Number(completedSteps);
+  let safeCompleted = Number.isFinite(completedNumber) ? completedNumber : 0;
+  safeCompleted = Math.max(0, Math.min(safeCompleted, safeTotal));
+  const hasWorkflow = safeTotal > 0;
+
+  let percent = hasWorkflow && safeTotal > 0 ? Math.round((safeCompleted / safeTotal) * 100) : done ? 100 : 0;
+  if (done) {
+    percent = 100;
+  }
+  percent = Math.min(Math.max(percent, 0), 100);
+
+  if (percent >= 100 && (hasWorkflow || done)) {
+    progress.classList.add("is-complete");
+  }
+  if (!hasWorkflow && !done) {
+    progress.classList.add("is-empty");
+  }
+
+  const bar = document.createElement("div");
+  bar.className = "progress-meter__bar";
+  bar.setAttribute("role", "progressbar");
+  bar.setAttribute("aria-valuemin", "0");
+  bar.setAttribute("aria-valuemax", "100");
+  bar.setAttribute("aria-valuenow", String(percent));
+  const labelText = `${prefix} · ${percent}%`;
+  bar.setAttribute("aria-label", labelText);
+
+  const fill = document.createElement("div");
+  fill.className = "progress-meter__fill";
+  fill.style.width = `${percent}%`;
+  bar.appendChild(fill);
+
+  const value = document.createElement("span");
+  value.className = "progress-meter__value";
+  value.textContent = labelText;
+
+  progress.append(bar, value);
+  return progress;
+}
+
+function buildCalendarTooltipSummary(task) {
+  if (!task) return "";
+  const description = sanitizeText(task.description);
+  const notes = sanitizeText(task.notes);
+  const lines = [];
+  if (description) lines.push(description);
+  if (notes) lines.push(notes);
+  if (lines.length === 0) return "";
+  const combined = lines.join(" · ");
+  return combined.length > 60 ? `${combined.slice(0, 60)}…` : combined;
+}
+
+function createTaskChip({ modifier, text, icon, color }) {
+  const chip = document.createElement("span");
+  const classes = ["task__chip"];
+  if (modifier) classes.push(`task__chip--${modifier}`);
+  chip.className = classes.join(" ");
+  if (color) {
+    chip.style.setProperty("--chip-color", color);
+    chip.style.setProperty("--chip-color-rgb", hexToRgb(color));
+  }
+  if (icon) {
+    const iconSpan = document.createElement("span");
+    iconSpan.className = "task__chip-icon";
+    iconSpan.textContent = icon;
+    chip.appendChild(iconSpan);
+  }
+  const textSpan = document.createElement("span");
+  textSpan.className = "task__chip-text";
+  textSpan.textContent = text;
+  chip.appendChild(textSpan);
+  return chip;
+}
+
+function createImportanceChip(importanceValue) {
+  const importance = normalizeImportance(importanceValue);
+  const config = getImportanceConfig(importance) ?? getImportanceConfig(DEFAULT_IMPORTANCE);
+  const label = getImportanceLabel(importance);
+  return createTaskChip({
+    modifier: "importance",
+    text: `重要性：${label}`,
+    icon: config?.icon ?? "",
+    color: config?.color ?? "#6366f1",
+  });
+}
+
+function createUrgencyChip(urgencyValue) {
+  const urgency = normalizeUrgency(urgencyValue);
+  const config = getUrgencyConfig(urgency) ?? getUrgencyConfig(DEFAULT_URGENCY);
+  const label = config?.label ?? "适中";
+  return createTaskChip({
+    modifier: "urgency",
+    text: `紧急性：${label}`,
+    icon: config?.icon ?? "",
+    color: config?.color ?? "#4f46e5",
+  });
+}
+
+function renderFilters() {
+  if (!filtersContainer) return;
+  filtersContainer.innerHTML = "";
+  const createButton = (id, label) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.dataset.category = id;
+    button.textContent = label;
+    button.className = "filters__button";
+    const active = currentFilter === id;
+    button.classList.toggle("is-active", active);
+    button.setAttribute("aria-pressed", String(active));
+    return button;
+  };
+  filtersContainer.appendChild(createButton("all", "全部"));
+  categories.forEach((category) => {
+    filtersContainer.appendChild(
+      createButton(category.id, category.name || "未命名分类")
+    );
+  });
+}
+
+function createEditableBlock({
+  label,
+  field,
+  placeholder,
+  value,
+  categoryId,
+  taskIndex,
+  singleLine = false,
+}) {
+  const block = document.createElement("div");
+  block.className = "task__detail-block";
+
+  const heading = document.createElement("h4");
+  heading.textContent = label;
+  block.appendChild(heading);
+
+  if (field === "workflow" && !singleLine) {
+    const textarea = document.createElement("textarea");
+    textarea.className = "task__editable task__editable--textarea";
+    textarea.dataset.field = field;
+    textarea.dataset.categoryId = categoryId;
+    textarea.dataset.taskIndex = String(taskIndex);
+    textarea.placeholder = placeholder;
+    textarea.value = Array.isArray(value) ? value.join("\n") : sanitizeText(value);
+    block.appendChild(textarea);
+    return block;
+  }
+
+  const editor = document.createElement("div");
+  editor.className = `task__editable${singleLine ? " task__editable--single" : ""}`;
+  editor.contentEditable = "true";
+  editor.dataset.field = field;
+  editor.dataset.categoryId = categoryId;
+  editor.dataset.taskIndex = String(taskIndex);
+  editor.dataset.placeholder = placeholder;
+  editor.textContent = sanitizeText(value);
+  block.appendChild(editor);
+  return block;
+}
+
+function createScheduleBlock(task, categoryId, taskIndex) {
+  const block = document.createElement("div");
+  block.className = "task__detail-block task__detail-block--schedule";
+
+  const heading = document.createElement("h4");
+  heading.textContent = "时间安排";
+  block.appendChild(heading);
+
+  const schedule = document.createElement("div");
+  schedule.className = "task__schedule";
+
+  const createDateField = (field, label) => {
+    const wrapper = document.createElement("label");
+    wrapper.className = "task__schedule-field";
+
+    const caption = document.createElement("span");
+    caption.className = "task__schedule-label";
+    caption.textContent = label;
+
+    const input = document.createElement("input");
+    input.type = "date";
+    input.className = "task__schedule-input";
+    input.dataset.field = field;
+    input.dataset.categoryId = categoryId;
+    input.dataset.taskIndex = String(taskIndex);
+    input.value = task[field] || "";
+
+    wrapper.append(caption, input);
+    return wrapper;
+  };
+
+  const recurringWrapper = document.createElement("label");
+  recurringWrapper.className = "task__schedule-recurring";
+
+  const recurringInput = document.createElement("input");
+  recurringInput.type = "checkbox";
+  recurringInput.dataset.field = "isRecurring";
+  recurringInput.dataset.categoryId = categoryId;
+  recurringInput.dataset.taskIndex = String(taskIndex);
+  recurringInput.checked = Boolean(task.isRecurring);
+
+  const recurringLabel = document.createElement("span");
+  recurringLabel.textContent = "常态任务（每日执行）";
+
+  recurringWrapper.append(recurringInput, recurringLabel);
+
+  schedule.append(
+    createDateField("startDate", "开始"),
+    createDateField("endDate", "结束"),
+    recurringWrapper
+  );
+
+  block.appendChild(schedule);
+  return block;
+}
+
+function applyImportanceAppearance(select, config) {
+  const resolved = config ?? getImportanceConfig(select.value) ?? getImportanceConfig(DEFAULT_IMPORTANCE);
+  if (!resolved) return;
+  const color = resolved.color ?? "#4f46e5";
+  const rgb = hexToRgb(color);
+
+  select.dataset.importance = resolved.value;
+  select.style.setProperty("--importance-color", color);
+  select.style.setProperty("--importance-color-rgb", rgb);
+
+  const wrapper = select.closest(".task__importance-select-wrapper");
+  if (wrapper) {
+    wrapper.style.setProperty("--importance-color", color);
+    wrapper.style.setProperty("--importance-color-rgb", rgb);
+  }
+
+  const chip =
+    (wrapper?.querySelector(".task__importance-chip") ?? select.previousElementSibling);
+  if (chip instanceof HTMLElement && chip.classList.contains("task__importance-chip")) {
+    chip.textContent = resolved.icon || "";
+    chip.setAttribute("title", resolved.label ?? "");
+    chip.style.setProperty("--importance-color", color);
+    chip.style.setProperty("--importance-color-rgb", rgb);
+  }
+}
+
+function createImportanceBlock(task, categoryId, taskIndex) {
+  const block = document.createElement("div");
+  block.className = "task__detail-block task__detail-block--importance";
+
+  const heading = document.createElement("h4");
+  heading.textContent = "重要性";
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "task__importance-select-wrapper";
+
+  const chip = document.createElement("span");
+  chip.className = "task__importance-chip";
+  chip.setAttribute("aria-hidden", "true");
+
+  const select = document.createElement("select");
+  select.className = "task__importance-select";
+  select.dataset.field = "importance";
+  select.dataset.categoryId = categoryId;
+  select.dataset.taskIndex = String(taskIndex);
+
+  const currentConfig = getImportanceConfig(task.importance) ?? getImportanceConfig(DEFAULT_IMPORTANCE);
+  const currentValue = currentConfig?.value ?? DEFAULT_IMPORTANCE;
+  IMPORTANCE_LEVELS.forEach((level) => {
+    const option = document.createElement("option");
+    option.value = level.value;
+    const iconText = level.icon ? `${level.icon} ` : "";
+    option.textContent = `${iconText}${level.label}`;
+    option.dataset.importance = level.value;
+    if (currentValue === level.value) option.selected = true;
+    select.appendChild(option);
+  });
+
+  wrapper.append(chip, select);
+  block.append(heading, wrapper);
+  applyImportanceAppearance(select, currentConfig ?? undefined);
+  return block;
+}
+
+function createUrgencyBlock(task, categoryId, taskIndex) {
+  const block = document.createElement("div");
+  block.className = "task__detail-block task__detail-block--urgency";
+
+  const heading = document.createElement("h4");
+  heading.textContent = "紧急程度";
+
+  const currentValue = getUrgencyConfig(task.urgency)?.value ?? DEFAULT_URGENCY;
+  const currentConfig = getUrgencyConfig(currentValue) ?? getUrgencyConfig(DEFAULT_URGENCY);
+  const currentLabel = currentConfig?.label ?? "常规";
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "task__urgency-select-wrapper";
+  wrapper.style.setProperty("--urgency-color", currentConfig?.color ?? "#4f46e5");
+  wrapper.style.setProperty("--urgency-color-rgb", hexToRgb(currentConfig?.color ?? "#4f46e5"));
+
+  const chip = document.createElement("span");
+  chip.className = "task__urgency-chip";
+  chip.style.setProperty("--urgency-color", currentConfig?.color ?? "#4f46e5");
+  chip.style.setProperty("--urgency-color-rgb", hexToRgb(currentConfig?.color ?? "#4f46e5"));
+  chip.setAttribute("title", currentLabel);
+  chip.setAttribute("aria-hidden", "true");
+  chip.textContent = currentConfig?.icon ?? "⏱";
+
+  const select = document.createElement("select");
+  select.className = "task__urgency-select";
+  select.dataset.field = "urgency";
+  select.dataset.categoryId = categoryId;
+  select.dataset.taskIndex = String(taskIndex);
+
+  URGENCY_LEVELS.forEach((level) => {
+    const option = document.createElement("option");
+    option.value = level.value;
+    option.textContent = `${level.icon} ${level.label}`;
+    option.dataset.urgency = level.value;
+    if (currentValue === level.value) option.selected = true;
+    select.appendChild(option);
+  });
+
+  select.dataset.urgency = currentValue;
+  select.setAttribute("aria-label", `紧急程度：${currentLabel}`);
+  select.style.setProperty("--urgency-color", currentConfig?.color ?? "#4f46e5");
+  select.style.setProperty("--urgency-color-rgb", hexToRgb(currentConfig?.color ?? "#4f46e5"));
+
+  wrapper.append(select, chip);
+  block.append(heading, wrapper);
+  return block;
+}
+
+function createWorkflowBlock(task, categoryId, taskIndex) {
+  const block = document.createElement("div");
+  block.className = "task__detail-block task__detail-block--workflow";
+
+  const header = document.createElement("div");
+  header.className = "task__workflow-header";
+
+  const heading = document.createElement("h4");
+  heading.textContent = "工作流程";
+
+  const addButton = document.createElement("button");
+  addButton.type = "button";
+  addButton.className = "task__workflow-add";
+  addButton.dataset.categoryId = categoryId;
+  addButton.dataset.taskIndex = String(taskIndex);
+  addButton.textContent = "新增步骤";
+
+  header.append(heading, addButton);
+  block.appendChild(header);
+
+  const list = document.createElement("ul");
+  list.className = "task__workflow-list";
+
+  if (!Array.isArray(task.workflow) || task.workflow.length === 0) {
+    const empty = document.createElement("li");
+    empty.className = "task__workflow-empty";
+    empty.textContent = "暂无步骤，点击新增步骤开始规划。";
+    list.appendChild(empty);
+  } else {
+    task.workflow.forEach((step, stepIndex) => {
+      const item = document.createElement("li");
+      item.className = "task__workflow-item";
+      if (step.done) item.classList.add("is-complete");
+
+      const toggle = document.createElement("input");
+      toggle.type = "checkbox";
+      toggle.className = "task__workflow-toggle";
+      toggle.dataset.categoryId = categoryId;
+      toggle.dataset.taskIndex = String(taskIndex);
+      toggle.dataset.stepIndex = String(stepIndex);
+      toggle.checked = Boolean(step.done);
+
+      const text = document.createElement("div");
+      text.className = "task__workflow-text";
+      text.contentEditable = "true";
+      text.dataset.categoryId = categoryId;
+      text.dataset.taskIndex = String(taskIndex);
+      text.dataset.stepIndex = String(stepIndex);
+      text.dataset.placeholder = "输入步骤内容";
+      text.textContent = sanitizeText(step.text);
+
+      const deleteButton = document.createElement("button");
+      deleteButton.type = "button";
+      deleteButton.className = "task__action task__delete task__workflow-delete";
+      deleteButton.dataset.categoryId = categoryId;
+      deleteButton.dataset.taskIndex = String(taskIndex);
+      deleteButton.dataset.stepIndex = String(stepIndex);
+      deleteButton.setAttribute("aria-label", "删除流程步骤");
+      deleteButton.textContent = "删除";
+
+      item.append(toggle, text, deleteButton);
+      list.appendChild(item);
+    });
+  }
+
+  block.appendChild(list);
+  return block;
+}
+
+function renderBoard() {
+  if (!board) return;
+  ensureRecurringWorkflowFreshness();
+  board.innerHTML = "";
+  cleanupExpanded();
+
+  let visibleCount = 0;
+
+  categories.forEach((category) => {
+    const isVisible = currentFilter === "all" || currentFilter === category.id;
+    if (!isVisible) return;
+    visibleCount += 1;
+
+    const card = document.createElement("article");
+    card.className = "category-card";
+    card.dataset.category = category.id;
+
+    const header = document.createElement("div");
+    header.className = "category-card__header";
+
+    const headline = document.createElement("div");
+    headline.className = "category-card__headline";
+
+    const titleBar = document.createElement("div");
+    titleBar.className = "category-card__title-bar";
+
+    const title = document.createElement("h2");
+    title.className = "category-card__title";
+    title.contentEditable = "true";
+    title.dataset.categoryId = category.id;
+    title.spellcheck = false;
+    title.textContent = category.name || "未命名分类";
+
+    const addBtn = document.createElement("button");
+    addBtn.type = "button";
+    addBtn.className = "category-card__add";
+    addBtn.dataset.categoryId = category.id;
+    addBtn.textContent = "新增任务";
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.type = "button";
+    deleteBtn.className = "category-card__delete-link";
+    deleteBtn.dataset.categoryId = category.id;
+    deleteBtn.textContent = "删除";
+
+    const actionsBar = document.createElement("div");
+    actionsBar.className = "category-card__actions";
+    actionsBar.append(addBtn, deleteBtn);
+
+    titleBar.append(title, actionsBar);
+
+    const count = document.createElement("span");
+    count.className = "category-card__count";
+    const remaining = category.tasks.filter((task) => !task.done).length;
+    count.textContent = `剩余 ${remaining} 项`;
+
+    headline.append(titleBar, count);
+    header.append(headline);
+    card.appendChild(header);
+
+    if (category.tasks.length === 0) {
+      const emptyMessage = document.createElement("p");
+      emptyMessage.className = "category-card__empty";
+      emptyMessage.textContent = "该分类没有事项，点击新增即可开始规划。";
+      card.appendChild(emptyMessage);
+    } else {
+      const list = document.createElement("ul");
+      list.className = "task-list";
+
+      category.tasks.forEach((task, index) => {
+        const listItem = document.createElement("li");
+        listItem.className = "task-item";
+
+        if (!Array.isArray(task.workflow)) {
+          task.workflow = [];
+        }
+        const workflowItems = task.workflow;
+        if (!getUrgencyConfig(task.urgency)) {
+          task.urgency = DEFAULT_URGENCY;
+        }
+        const importanceValue = normalizeImportance(task.importance);
+        task.importance = importanceValue;
+
+        const key = makeTaskKey(category.id, index);
+        if (expandedTasks.has(key)) {
+          listItem.classList.add("is-expanded");
+        }
+
+        const container = document.createElement("div");
+        container.className = "task";
+        container.dataset.categoryId = category.id;
+        container.dataset.taskIndex = String(index);
+        const urgency = normalizeUrgency(task.urgency);
+        const urgencyConfig = getUrgencyConfig(urgency) ?? getUrgencyConfig(DEFAULT_URGENCY);
+        container.dataset.urgency = urgency;
+        container.style.setProperty("--urgency-color", urgencyConfig?.color ?? "#4f46e5");
+        container.style.setProperty("--urgency-color-rgb", hexToRgb(urgencyConfig?.color ?? "#4f46e5"));
+        if (task._pulse && Date.now() - task._pulse < 900) {
+          container.classList.add("task--urgency-pulse");
+        } else if (task._pulse) {
+          delete task._pulse;
+        }
+        if (task.done) container.classList.add("is-complete");
+        if (task.isRecurring) container.classList.add("is-recurring");
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.className = "task__toggle";
+        checkbox.dataset.categoryId = category.id;
+        checkbox.dataset.taskIndex = String(index);
+        checkbox.checked = Boolean(task.done);
+
+        const body = document.createElement("div");
+        body.className = "task__body";
+
+        const summary = document.createElement("button");
+        summary.type = "button";
+        summary.className = "task__summary";
+        summary.dataset.categoryId = category.id;
+        summary.dataset.taskIndex = String(index);
+
+        const titleSpan = document.createElement("span");
+        titleSpan.className = "task__title";
+        titleSpan.textContent = task.title || "未命名事项";
+        if (task.isRecurring) {
+          const badge = document.createElement("span");
+          badge.className = "task__badge";
+          badge.textContent = "常";
+          titleSpan.append(" ", badge);
+        }
+
+        const meta = document.createElement("span");
+        meta.className = "task__meta";
+        meta.textContent = buildTaskMeta(task);
+
+        const badges = document.createElement("div");
+        badges.className = "task__badges";
+        badges.append(createImportanceChip(task.importance), createUrgencyChip(urgency));
+
+        summary.append(titleSpan, meta, badges);
+
+        const info = document.createElement("div");
+        info.className = "task__info";
+        info.appendChild(summary);
+
+        let completedWorkflowSteps = 0;
+        workflowItems.forEach((step) => {
+          if (step && step.done) {
+            completedWorkflowSteps += 1;
+          }
+        });
+        const progress = createProgressElement({
+          totalSteps: workflowItems.length,
+          completedSteps: completedWorkflowSteps,
+          done: Boolean(task.done),
+          className: "task__progress",
+        });
+        info.appendChild(progress);
+
+        const actions = document.createElement("div");
+        actions.className = "task__actions";
+
+        const deleteTaskButton = document.createElement("button");
+        deleteTaskButton.type = "button";
+        deleteTaskButton.className = "task__action task__delete";
+        deleteTaskButton.dataset.categoryId = category.id;
+        deleteTaskButton.dataset.taskIndex = String(index);
+        deleteTaskButton.textContent = "删除";
+
+        actions.appendChild(deleteTaskButton);
+        body.append(info, actions);
+
+        container.append(checkbox, body);
+
+        const detail = document.createElement("div");
+        detail.className = "task__detail";
+
+        detail.append(
+          createEditableBlock({
+            label: "事项标题",
+            field: "title",
+            placeholder: "请输入事项标题",
+            value: task.title,
+            categoryId: category.id,
+            taskIndex: index,
+            singleLine: true,
+          }),
+          createEditableBlock({
+            label: "事项描述",
+            field: "description",
+            placeholder: "补充事项的详细描述",
+            value: task.description,
+            categoryId: category.id,
+            taskIndex: index,
+          }),
+          createWorkflowBlock(task, category.id, index),
+          createEditableBlock({
+            label: "备注笔记",
+            field: "notes",
+            placeholder: "记录额外信息或补充说明",
+            value: task.notes,
+            categoryId: category.id,
+            taskIndex: index,
+          }),
+          createImportanceBlock(task, category.id, index),
+          createUrgencyBlock(task, category.id, index),
+          createScheduleBlock(task, category.id, index)
+        );
+
+        listItem.append(container, detail);
+        list.appendChild(listItem);
+      });
+
+      card.appendChild(list);
+    }
+
+    board.appendChild(card);
+  });
+
+  if (emptyHint) {
+    emptyHint.style.display = visibleCount === 0 ? "block" : "none";
+  }
+}
+
+function setCalendarCollapsed(collapsed, options = {}) {
+  if (!calendarSidebar || !calendarExpandBtn) return;
+  const shouldCollapse = Boolean(collapsed);
+  calendarCollapsed = shouldCollapse;
+  calendarSidebar.classList.toggle("is-collapsed", shouldCollapse);
+  calendarSidebar.setAttribute("aria-hidden", shouldCollapse ? "true" : "false");
+  calendarExpandBtn.classList.toggle("is-visible", shouldCollapse);
+  calendarExpandBtn.setAttribute("aria-expanded", shouldCollapse ? "false" : "true");
+  if (workspace) {
+    workspace.classList.toggle("workspace--calendar-collapsed", shouldCollapse);
+  }
+  if (!options?.skipSave) {
+    saveUIState();
+  }
+}
+
+function matchesDate(task, date) {
+  if (!(date instanceof Date)) return false;
+  if (task.isRecurring) return true;
+  const start = parseISODate(task.startDate);
+  const end = parseISODate(task.endDate);
+  if (start && end) {
+    return !(date < start || date > end);
+  }
+  if (start) return isSameDay(start, date);
+  if (end) return isSameDay(end, date);
+  return false;
+}
+
+function getTasksForDateKey(dateKey) {
+  const date = parseISODate(dateKey);
+  if (!date) return [];
+  const list = [];
+  categories.forEach((category) => {
+    category.tasks.forEach((task, index) => {
+      const includeTask = task.isRecurring || !task.done;
+      if (includeTask && matchesDate(task, date)) {
+        list.push({
+          categoryId: category.id,
+          categoryName: category.name,
+          taskIndex: index,
+          task,
+        });
+      }
+    });
+  });
+  return list;
+}
+
+function setView(mode) {
+  if (mode !== "edit" && mode !== "calendar") return;
+  currentView = mode;
+  if (document.body) {
+    document.body.dataset.view = mode;
+  }
+  viewEditBtn?.classList.toggle("is-active", mode === "edit");
+  viewCalendarBtn?.classList.toggle("is-active", mode === "calendar");
+  if (mode === "calendar") {
+    setCalendarCollapsed(false, { skipSave: true });
+    renderCalendar();
+  }
+  saveUIState();
+}
+
+function updateCalendarDetail(dateKey) {
+  if (!calendarDetail || !calendarDetailDate || !calendarDetailCount || !calendarDetailList) {
+    return;
+  }
+
+  const date = parseISODate(dateKey);
+  if (!date) {
+    calendarDetailDate.textContent = "选择日期";
+    calendarDetailCount.textContent = "0 项任务";
+    calendarDetailList.innerHTML = "";
+    const emptyItem = document.createElement("li");
+    emptyItem.className = "calendar-detail__empty";
+    emptyItem.textContent = "请选择日历中的某一天查看任务。";
+    calendarDetailList.appendChild(emptyItem);
+    return;
+  }
+
+  const tasksForDetail = getTasksForDateKey(dateKey).filter(({ task }) => !task.isRecurring);
+  calendarDetailDate.textContent = formatDisplayDate(date);
+  calendarDetailCount.textContent = `${tasksForDetail.length} 项任务`;
+  calendarDetailList.innerHTML = "";
+
+  if (tasksForDetail.length === 0) {
+    const emptyItem = document.createElement("li");
+    emptyItem.className = "calendar-detail__empty";
+    emptyItem.textContent = "该日期暂无任务，欢迎安排新计划。";
+    calendarDetailList.appendChild(emptyItem);
+    return;
+  }
+
+  const sortedTasksForDetail = [...tasksForDetail].sort(compareTaskPriority);
+  const activeItems = [];
+  const completedItems = [];
+
+  sortedTasksForDetail.forEach(({ categoryName, task, categoryId, taskIndex }) => {
+    const item = document.createElement("li");
+    item.className = "calendar-detail__item";
+    item.dataset.categoryId = categoryId;
+    item.dataset.taskIndex = String(taskIndex);
+    const detailKey = `${dateKey}:${categoryId}:${taskIndex}`;
+    const initialExpanded = expandedDayDetailItems.has(detailKey);
+
+    const urgency = normalizeUrgency(task.urgency);
+    const urgencyConfig = getUrgencyConfig(urgency) ?? getUrgencyConfig(DEFAULT_URGENCY);
+    item.dataset.urgency = urgency;
+    item.style.setProperty("--urgency-color", urgencyConfig?.color ?? "#4f46e5");
+    item.style.setProperty("--urgency-color-rgb", hexToRgb(urgencyConfig?.color ?? "#4f46e5"));
+
+    const header = document.createElement("div");
+    header.className = "calendar-detail__item-header";
+
+    const title = document.createElement("p");
+    title.className = "calendar-detail__title";
+    const taskTitle = sanitizeText(task.title);
+    title.textContent = taskTitle || "未命名事项";
+
+
+
+
+
+    header.appendChild(title);
+    item.appendChild(header);
+
+    const importanceDisplay = getImportanceDisplay(task.importance);
+    const urgencyLabel = urgencyConfig?.label ?? "常规";
+    const categoryLabel = sanitizeText(categoryName) || "未命名分类";
+
+    const start = parseISODate(task.startDate);
+    const end = parseISODate(task.endDate);
+    let dateText = "待安排";
+    if (start && end) {
+      dateText = isSameDay(start, end)
+        ? formatDisplayDate(start)
+        : `${formatDisplayDate(start)} - ${formatDisplayDate(end)}`;
+    } else if (start) {
+      dateText = formatDisplayDate(start);
+    } else if (end) {
+      dateText = formatDisplayDate(end);
+    }
+
+    const meta = document.createElement("p");
+    meta.className = "calendar-detail__meta";
+    const metaParts = [
+      `重要性：${importanceDisplay}`,
+      `紧急性：${urgencyLabel}`,
+      `分类：${categoryLabel}`,
+      `日期：${dateText || "待安排"}`,
+    ];
+    meta.textContent = metaParts.join(" | ");
+
+    item.appendChild(meta);
+
+    const description = sanitizeText(task.description);
+    const notes = sanitizeText(task.notes);
+    const tooltipLines = [];
+    if (description) tooltipLines.push(`描述：${description}`);
+    if (notes) tooltipLines.push(`备注：${notes}`);
+    if (tooltipLines.length > 0) {
+      item.title = tooltipLines.join("\n\n");
+    }
+
+    const workflowItems = Array.isArray(task.workflow) ? task.workflow : [];
+    let completedWorkflowSteps = 0;
+    workflowItems.forEach((step) => {
+      if (step && step.done) {
+        completedWorkflowSteps += 1;
+      }
+    });
+    const isWorkflowComplete = workflowItems.length > 0 && workflowItems.every((step) => step.done);
+    const isTaskComplete = Boolean(task.done) || isWorkflowComplete;
+    const progress = createProgressElement({
+      totalSteps: workflowItems.length,
+      completedSteps: completedWorkflowSteps,
+      done: isTaskComplete,
+      variant: "subtle",
+      className: "calendar-detail__progress",
+    });
+    item.appendChild(progress);
+
+    if (isTaskComplete) {
+      item.classList.add("is-complete");
+    }
+    const extraElements = [];
+    let toggleButton = null;
+
+    if (description) {
+      const descriptionField = document.createElement("div");
+      descriptionField.className = "calendar-detail__extra-field";
+
+      const descriptionLabel = document.createElement("span");
+      descriptionLabel.className = "calendar-detail__extra-label";
+      descriptionLabel.textContent = "描述";
+
+      const descriptionValue = document.createElement("p");
+      descriptionValue.className = "calendar-detail__extra-text";
+      descriptionValue.textContent = description;
+
+      descriptionField.append(descriptionLabel, descriptionValue);
+      extraElements.push(descriptionField);
+    }
+
+    if (notes) {
+      const notesField = document.createElement("div");
+      notesField.className = "calendar-detail__extra-field";
+
+      const notesLabel = document.createElement("span");
+      notesLabel.className = "calendar-detail__extra-label";
+      notesLabel.textContent = "备注";
+
+      const notesValue = document.createElement("p");
+      notesValue.className = "calendar-detail__extra-text";
+      notesValue.textContent = notes;
+
+      notesField.append(notesLabel, notesValue);
+      extraElements.push(notesField);
+    }
+    if (workflowItems.length > 0) {
+      item.classList.add("has-workflow");
+
+      const workflowContainer = document.createElement("div");
+      workflowContainer.className = "calendar-detail__workflow";
+
+      const workflowList = document.createElement("ul");
+      workflowList.className = "calendar-detail__workflow-list";
+      const workflowId = `calendar-workflow-${categoryId}-${taskIndex}`;
+      workflowList.id = workflowId;
+
+      workflowItems.forEach((step, stepIndex) => {
+        const li = document.createElement("li");
+        li.className = "calendar-detail__workflow-item";
+        if (step.done) li.classList.add("is-complete");
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.className = "calendar-detail__workflow-toggle-input task__workflow-toggle";
+        checkbox.checked = Boolean(step.done);
+        checkbox.dataset.categoryId = categoryId;
+        checkbox.dataset.taskIndex = String(taskIndex);
+        checkbox.dataset.stepIndex = String(stepIndex);
+
+        const label = document.createElement("span");
+        label.className = "calendar-detail__workflow-text";
+        label.textContent = sanitizeText(step.text);
+
+        li.append(checkbox, label);
+        workflowList.appendChild(li);
+      });
+
+      workflowContainer.append(workflowList);
+      extraElements.push(workflowContainer);
+    }
+
+    if (extraElements.length > 0) {
+      item.classList.add("is-expandable");
+
+      toggleButton = document.createElement("button");
+      toggleButton.type = "button";
+      toggleButton.className = "calendar-detail__toggle";
+      toggleButton.dataset.collapsedLabel = "展开任务详情";
+      toggleButton.dataset.expandedLabel = "收起任务详情";
+      const toggleIcon = document.createElement("span");
+      toggleIcon.className = "calendar-detail__toggle-icon";
+      toggleButton.appendChild(toggleIcon);
+      header.appendChild(toggleButton);
+
+      toggleButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const expanded = !item.classList.contains("is-open");
+        if (expanded) {
+          collapseOtherCalendarDetailItems(item);
+        }
+        setCalendarDetailItemExpanded(item, detailKey, expanded);
+      });
+
+      const extra = document.createElement("div");
+      extra.className = "calendar-detail__extra";
+      extraElements.forEach((element) => extra.appendChild(element));
+      item.appendChild(extra);
+
+      setCalendarDetailItemExpanded(item, detailKey, initialExpanded);
+    } else {
+      expandedDayDetailItems.delete(detailKey);
+    }
+
+    const targetList = isTaskComplete ? completedItems : activeItems;
+    targetList.push(item);
+  });
+
+  [...activeItems, ...completedItems].forEach((element) => {
+    calendarDetailList.appendChild(element);
+  });
+}
+
+function renderCalendar() {
+  if (!calendarGrid || !calendarSidebar) return;
+  ensureRecurringWorkflowFreshness();
+  const current = calendarState.current instanceof Date ? calendarState.current : new Date();
+  const month = new Date(current.getFullYear(), current.getMonth(), 1);
+  calendarState.current = month;
+
+  if (calendarCurrentEl) {
+    calendarCurrentEl.textContent = `${month.getFullYear()} 年 ${month.getMonth() + 1} 月`;
+  }
+
+  const todayKey = formatISODate(new Date());
+  if (!selectedCalendarDate) {
+    selectedCalendarDate = todayKey;
+  }
+  const selectedKey = selectedCalendarDate;
+
+  calendarGrid.innerHTML = "";
+
+  const header = document.createElement("div");
+  header.className = "calendar-grid__header";
+  DAY_NAMES.forEach((day) => {
+    const cell = document.createElement("span");
+    cell.className = "calendar-grid__header-cell";
+    cell.textContent = day;
+    header.appendChild(cell);
+  });
+  calendarGrid.appendChild(header);
+
+  const monthStart = new Date(month);
+  const monthEnd = new Date(month.getFullYear(), month.getMonth() + 1, 0);
+  const gridStart = new Date(monthStart);
+  gridStart.setDate(gridStart.getDate() - gridStart.getDay());
+  const gridEnd = new Date(monthEnd);
+  gridEnd.setDate(gridEnd.getDate() + (6 - gridEnd.getDay()));
+
+  for (let cursor = new Date(gridStart); cursor <= gridEnd; ) {
+    const week = document.createElement("div");
+    week.className = "calendar-week";
+
+    const daysRow = document.createElement("div");
+    daysRow.className = "calendar-week__days";
+
+    for (let i = 0; i < 7; i += 1) {
+      const date = new Date(cursor);
+      const dateKey = formatISODate(date);
+      const dayButton = document.createElement("button");
+      dayButton.type = "button";
+      dayButton.className = "calendar-day";
+      dayButton.dataset.date = dateKey;
+
+      if (date.getMonth() !== month.getMonth()) {
+        dayButton.classList.add("is-outside");
+      }
+      if (dateKey === todayKey) {
+        dayButton.classList.add("is-today");
+      }
+      if (dateKey === selectedKey) {
+        dayButton.classList.add("is-selected");
+      }
+
+      const number = document.createElement("span");
+      number.className = "calendar-day__number";
+      number.textContent = String(date.getDate());
+
+      const summary = document.createElement("div");
+      summary.className = "calendar-day__summary";
+
+      const tasks = getTasksForDateKey(dateKey);
+      if (tasks.length > 0) {
+        const totalBadge = document.createElement("span");
+        totalBadge.className = "calendar-day__badge calendar-day__badge--total";
+        totalBadge.setAttribute("aria-label", `${tasks.length} 项任务`);
+        const badgeIcon = document.createElement("span");
+        badgeIcon.className = "calendar-day__badge-icon";
+        badgeIcon.setAttribute("aria-hidden", "true");
+        badgeIcon.textContent = "🗒️";
+        const totalCount = document.createElement("span");
+        totalCount.className = "calendar-day__badge-count";
+        totalCount.textContent = tasks.length > 99 ? "99+" : String(tasks.length);
+        totalBadge.append(badgeIcon, totalCount);
+        summary.appendChild(totalBadge);
+
+        const tooltip = document.createElement("div");
+        tooltip.className = "calendar-day__tooltip";
+
+        const tooltipList = document.createElement("ul");
+        tooltipList.className = "calendar-day__tooltip-list";
+
+        const sortedTasks = [...tasks].sort(compareTaskPriority);
+
+        sortedTasks.forEach(({ task, categoryName }) => {
+          const item = document.createElement("li");
+          item.className = "calendar-day__tooltip-item";
+          const isRecurringTask = Boolean(task.isRecurring);
+          const isCompleteForDay = isRecurringTask ? isRecurringTaskCompleteOnDate(task, dateKey) : Boolean(task.done);
+          if (isCompleteForDay) item.classList.add("is-complete");
+
+          const description = sanitizeText(task.description);
+          const notes = sanitizeText(task.notes);
+          const tooltipLines = [];
+          if (description) tooltipLines.push(`描述：${description}`);
+          if (notes) tooltipLines.push(`备注：${notes}`);
+          if (tooltipLines.length > 0) {
+            item.title = tooltipLines.join("\n\n");
+          }
+
+          const body = document.createElement("div");
+          body.className = "calendar-day__tooltip-body";
+
+          const header = document.createElement("div");
+          header.className = "calendar-day__tooltip-header";
+
+          const categoryLabel = document.createElement("span");
+          categoryLabel.className = "calendar-day__tooltip-category";
+          categoryLabel.textContent = sanitizeText(categoryName) || "未命名分类";
+          header.appendChild(categoryLabel);
+
+          if (isRecurringTask) {
+            const recurringBadge = document.createElement("span");
+            recurringBadge.className = "calendar-day__tooltip-badge";
+            recurringBadge.textContent = "常态任务";
+            header.appendChild(recurringBadge);
+          }
+
+          if (isCompleteForDay) {
+            const statusBadge = document.createElement("span");
+            statusBadge.className = "calendar-day__tooltip-badge calendar-day__tooltip-badge--done";
+            statusBadge.textContent = "已完成";
+            header.appendChild(statusBadge);
+          }
+
+          const titleEl = document.createElement("p");
+          titleEl.className = "calendar-day__tooltip-title";
+          titleEl.textContent = sanitizeText(task.title, "未命名事项");
+
+          const tagsRow = document.createElement("div");
+          tagsRow.className = "calendar-day__tooltip-tags";
+          tagsRow.append(createUrgencyChip(task.urgency), createImportanceChip(task.importance));
+
+          const summaryText = buildCalendarTooltipSummary(task);
+
+          body.append(header, titleEl, tagsRow);
+
+          if (summaryText) {
+            const summaryEl = document.createElement("p");
+            summaryEl.className = "calendar-day__tooltip-summary";
+            summaryEl.textContent = summaryText;
+            body.appendChild(summaryEl);
+          }
+
+          item.append(body);
+          tooltipList.appendChild(item);
+        });
+
+        tooltip.appendChild(tooltipList);
+        dayButton.append(number, summary, tooltip);
+
+        let tooltipHideTimer = null;
+        const showTooltip = () => {
+          if (tooltipHideTimer) {
+            window.clearTimeout(tooltipHideTimer);
+            tooltipHideTimer = null;
+          }
+          dayButton.classList.add("is-hovered");
+        };
+        const hideTooltip = () => {
+          if (tooltipHideTimer) window.clearTimeout(tooltipHideTimer);
+          tooltipHideTimer = window.setTimeout(() => {
+            dayButton.classList.remove("is-hovered");
+            tooltipHideTimer = null;
+          }, 120);
+        };
+
+        dayButton.addEventListener("mouseenter", showTooltip);
+        dayButton.addEventListener("mouseleave", hideTooltip);
+        dayButton.addEventListener("focus", showTooltip);
+        dayButton.addEventListener("blur", hideTooltip);
+        tooltip.addEventListener("mouseenter", showTooltip);
+        tooltip.addEventListener("mouseleave", hideTooltip);
+      } else {
+        summary.classList.add("calendar-day__summary--empty");
+        dayButton.append(number, summary);
+      }
+      daysRow.appendChild(dayButton);
+
+      cursor.setDate(cursor.getDate() + 1);
+    }
+
+    week.appendChild(daysRow);
+    calendarGrid.appendChild(week);
+  }
+
+  if (calendarRecurringList) {
+    calendarRecurringList.innerHTML = "";
+    const recurringTasks = [];
+    categories.forEach((category) => {
+      category.tasks.forEach((task, index) => {
+        if (task.isRecurring) {
+          recurringTasks.push({ category, task, index });
+        }
+      });
+    });
+    const visibleRecurringKeys = new Set();
+
+    if (recurringTasks.length === 0) {
+      const emptyItem = document.createElement("li");
+      emptyItem.className = "calendar-recurring__empty";
+      emptyItem.textContent = "暂无常态任务。";
+      calendarRecurringList.appendChild(emptyItem);
+    } else {
+      const activeRecurringItems = [];
+      const completedRecurringItems = [];
+      recurringTasks.forEach(({ category, task, index }) => {
+        const item = document.createElement("li");
+        item.className = "calendar-recurring__item";
+        item.dataset.categoryId = category.id;
+        item.dataset.taskIndex = String(index);
+        const detailKey = `recurring:${category.id}:${index}`;
+        visibleRecurringKeys.add(detailKey);
+        const initialExpanded = expandedRecurringItems.has(detailKey);
+        const urgency = normalizeUrgency(task.urgency);
+        const config = getUrgencyConfig(urgency) ?? getUrgencyConfig(DEFAULT_URGENCY);
+        item.dataset.urgency = urgency;
+        item.style.setProperty("--urgency-color", config?.color ?? "#4f46e5");
+        item.style.setProperty("--urgency-color-rgb", hexToRgb(config?.color ?? "#4f46e5"));
+
+        const header = document.createElement("div");
+        header.className = "calendar-recurring__item-header";
+
+        const dot = document.createElement("span");
+        dot.className = "calendar-recurring__dot";
+
+        const text = document.createElement("div");
+        text.className = "calendar-recurring__text";
+
+        const title = document.createElement("span");
+        title.className = "calendar-recurring__title";
+        const taskTitle = sanitizeText(task.title);
+        title.textContent = `${config?.icon ?? "⏱"} ${taskTitle || "未命名事项"}`;
+
+        const meta = document.createElement("span");
+        meta.className = "calendar-recurring__meta";
+        meta.textContent = sanitizeText(category.name) || "未命名分类";
+
+        const importance = document.createElement("span");
+        importance.className = "calendar-recurring__importance";
+        importance.textContent = `重要性：${getImportanceDisplay(task.importance)}`;
+
+        text.append(title, meta, importance);
+        header.append(dot, text);
+        item.append(header);
+
+        const description = sanitizeText(task.description);
+        const notes = sanitizeText(task.notes);
+        const tooltipLines = [];
+        if (description) tooltipLines.push(`描述：${description}`);
+        if (notes) tooltipLines.push(`备注：${notes}`);
+        if (tooltipLines.length > 0) {
+          item.title = tooltipLines.join("\n\n");
+        }
+
+        const workflowItems = Array.isArray(task.workflow) ? task.workflow : [];
+        const recurringState = getRecurringStateForDate(task, selectedKey);
+        const workflowState = Array.isArray(recurringState.workflow) ? recurringState.workflow : [];
+        const hasWorkflow = workflowItems.length > 0;
+        const completedWorkflowSteps = hasWorkflow
+          ? workflowState.reduce((count, flag) => (flag ? count + 1 : count), 0)
+          : 0;
+        const isWorkflowCompleteForDate = hasWorkflow ? workflowState.every((flag) => Boolean(flag)) : false;
+        const isCompleteForSelectedDate = Boolean(recurringState.done) || isWorkflowCompleteForDate;
+        if (isCompleteForSelectedDate) {
+          item.classList.add("is-complete");
+        }
+        const progress = createProgressElement({
+          totalSteps: workflowItems.length,
+          completedSteps: completedWorkflowSteps,
+          done: isCompleteForSelectedDate,
+          variant: "compact",
+          className: "calendar-recurring__progress",
+        });
+        item.appendChild(progress);
+        const extraElements = [];
+
+        if (description) {
+          const descriptionField = document.createElement("div");
+          descriptionField.className = "calendar-recurring__extra-field";
+
+          const descriptionLabel = document.createElement("span");
+          descriptionLabel.className = "calendar-recurring__extra-label";
+          descriptionLabel.textContent = "描述";
+
+          const descriptionValue = document.createElement("p");
+          descriptionValue.className = "calendar-recurring__extra-text";
+          descriptionValue.textContent = description;
+
+          descriptionField.append(descriptionLabel, descriptionValue);
+          extraElements.push(descriptionField);
+        }
+
+        if (notes) {
+          const notesField = document.createElement("div");
+          notesField.className = "calendar-recurring__extra-field";
+
+          const notesLabel = document.createElement("span");
+          notesLabel.className = "calendar-recurring__extra-label";
+          notesLabel.textContent = "备注";
+
+          const notesValue = document.createElement("p");
+          notesValue.className = "calendar-recurring__extra-text";
+          notesValue.textContent = notes;
+
+          notesField.append(notesLabel, notesValue);
+          extraElements.push(notesField);
+        }
+
+        if (workflowItems.length > 0) {
+          const workflowContainer = document.createElement("div");
+          workflowContainer.className = "calendar-recurring__workflow";
+
+          const workflowList = document.createElement("ul");
+          workflowList.className = "calendar-recurring__workflow-list";
+          const workflowId = `calendar-recurring-workflow-${category.id}-${index}`;
+          workflowList.id = workflowId;
+
+          workflowItems.forEach((step, stepIndex) => {
+            const li = document.createElement("li");
+            li.className = "calendar-recurring__workflow-item";
+            const stepCompleteForSelectedDate = Boolean(workflowState[stepIndex]);
+            if (stepCompleteForSelectedDate) li.classList.add("is-complete");
+
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.className = "calendar-recurring__workflow-toggle task__workflow-toggle";
+            checkbox.checked = stepCompleteForSelectedDate;
+            checkbox.dataset.categoryId = category.id;
+            checkbox.dataset.taskIndex = String(index);
+            checkbox.dataset.stepIndex = String(stepIndex);
+            checkbox.dataset.date = selectedKey;
+
+            const label = document.createElement("span");
+            label.className = "calendar-recurring__workflow-text";
+            label.textContent = sanitizeText(step.text);
+
+            li.append(checkbox, label);
+            workflowList.appendChild(li);
+          });
+
+          workflowContainer.append(workflowList);
+          extraElements.push(workflowContainer);
+        }
+
+        if (extraElements.length > 0) {
+          item.classList.add("is-expandable");
+
+          const toggleButton = document.createElement("button");
+          toggleButton.type = "button";
+          toggleButton.className = "calendar-recurring__toggle";
+          toggleButton.dataset.collapsedLabel = "展开任务详情";
+          toggleButton.dataset.expandedLabel = "收起任务详情";
+          const toggleIcon = document.createElement("span");
+          toggleIcon.className = "calendar-recurring__toggle-icon";
+          toggleButton.appendChild(toggleIcon);
+          header.appendChild(toggleButton);
+
+          toggleButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            const expanded = !item.classList.contains("is-open");
+            if (expanded) {
+              collapseOtherCalendarRecurringItems(item);
+            }
+            setCalendarRecurringItemExpanded(item, detailKey, expanded);
+          });
+
+          const extra = document.createElement("div");
+          extra.className = "calendar-recurring__extra";
+          extraElements.forEach((element) => extra.appendChild(element));
+          item.appendChild(extra);
+
+          setCalendarRecurringItemExpanded(item, detailKey, initialExpanded);
+        } else {
+          expandedRecurringItems.delete(detailKey);
+        }
+
+        const targetList = isCompleteForSelectedDate ? completedRecurringItems : activeRecurringItems;
+        targetList.push(item);
+      });
+      [...activeRecurringItems, ...completedRecurringItems].forEach((element) => {
+        calendarRecurringList.appendChild(element);
+      });
+    }
+    expandedRecurringItems.forEach((key) => {
+      if (!visibleRecurringKeys.has(key)) {
+        expandedRecurringItems.delete(key);
+      }
+    });
+  }
+
+  updateCalendarDetail(selectedKey);
+}
+
+function changeCalendarMonth(delta) {
+  const current = calendarState.current instanceof Date ? calendarState.current : new Date();
+  const next = new Date(current.getFullYear(), current.getMonth() + delta, 1);
+  calendarState.current = next;
+  const candidate = parseISODate(selectedCalendarDate);
+  if (!candidate || candidate.getMonth() !== next.getMonth() || candidate.getFullYear() !== next.getFullYear()) {
+    selectedCalendarDate = formatISODate(next);
+  }
+  renderCalendar();
+  saveUIState();
+}
+
+function promptForCategoryName() {
+  const name = window.prompt("请输入新的分类名称：", "");
+  if (name === null) return null;
+  const trimmed = name.trim();
+  if (!trimmed) {
+    window.alert("分类名称不能为空！");
+    return null;
+  }
+  return trimmed;
+}
+
+function createTaskCard() {
+  const name = promptForCategoryName();
+  if (!name) return;
+  const newCategory = { id: generateCategoryId(), name, tasks: [] };
+  categories.push(newCategory);
+  currentFilter = newCategory.id;
+  saveState();
+  renderFilters();
+  renderBoard();
+  renderCalendar();
+}
+
+function clearAllTasks() {
+  if (categories.length === 0) return;
+  if (!window.confirm("确认删除所有项目卡片？此操作不可撤销。")) return;
+
+  categories = [];
+  currentFilter = "all";
+  expandedTasks.clear();
+  expandedDayDetailItems.clear();
+  expandedRecurringItems.clear();
+
+  saveState();
+  renderFilters();
+  renderBoard();
+  renderCalendar();
+}
+
+function commitWorkflowStepText(element) {
+  const categoryId = element.dataset.categoryId;
+  const taskIndex = Number(element.dataset.taskIndex);
+  const stepIndex = Number(element.dataset.stepIndex);
+  if (!categoryId || Number.isNaN(taskIndex) || Number.isNaN(stepIndex)) return;
+
+  const category = findCategory(categoryId);
+  if (!category) return;
+  const task = category.tasks[taskIndex];
+  if (!task || !Array.isArray(task.workflow)) return;
+
+  const step = task.workflow[stepIndex];
+  const value = sanitizeText(element.textContent);
+
+  if (!value) {
+    task.workflow.splice(stepIndex, 1);
+  } else if (step) {
+    step.text = value;
+  }
+
+  saveState();
+  renderBoard();
+  renderCalendar();
+}
+
+function commitTaskField(element) {
+  const field = element.dataset.field;
+  const categoryId = element.dataset.categoryId;
+  const taskIndex = Number(element.dataset.taskIndex);
+  if (!field || !categoryId || Number.isNaN(taskIndex)) return;
+
+  const category = findCategory(categoryId);
+  if (!category) return;
+  const task = category.tasks[taskIndex];
+  if (!task) return;
+
+  if (element instanceof HTMLTextAreaElement) {
+    task[field] = sanitizeText(element.value);
+    element.value = task[field];
+  } else {
+    const value = sanitizeText(element.textContent);
+    switch (field) {
+      case "title":
+        task.title = value || "未命名事项";
+        element.textContent = task.title;
+        break;
+      case "description":
+        task.description = value;
+        element.textContent = value;
+        break;
+      case "notes":
+        task.notes = value;
+        element.textContent = value;
+        break;
+      default:
+        break;
+    }
+  }
+
+  saveState();
+  renderBoard();
+  renderCalendar();
+}
+
+function commitCategoryTitle(element) {
+  const categoryId = element.dataset.categoryId;
+  if (!categoryId) return;
+  const category = findCategory(categoryId);
+  if (!category) return;
+  const name = sanitizeText(element.textContent, "未命名分类");
+  element.textContent = name;
+  if (category.name === name) return;
+  category.name = name;
+  saveState();
+  renderFilters();
+  renderBoard();
+  renderCalendar();
+}
+
+setupEditableText(headingTitleEl, "title");
+setupEditableText(headingSubtitleEl, "subtitle");
+
+selectedCalendarDate = formatISODate(new Date());
+restoreState();
+restoreUIState();
+renderFilters();
+renderBoard();
+renderCalendar();
+isRestoringUIState = false;
+
+filtersContainer?.addEventListener("click", (event) => {
+  const target = event.target;
+  if (!(target instanceof HTMLButtonElement)) return;
+  const categoryId = target.dataset.category ?? "all";
+  if (categoryId === currentFilter) return;
+  currentFilter = categoryId;
+  renderFilters();
+  renderBoard();
+  renderCalendar();
+  saveUIState();
+});
+
+addCategoryBtn?.addEventListener("click", createTaskCard);
+addTaskCardBtn?.addEventListener("click", createTaskCard);
+clearAllTasksBtn?.addEventListener("click", clearAllTasks);
+
+board?.addEventListener(
+  "focusout",
+  (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+    if (target.classList.contains("task__editable")) {
+      commitTaskField(target);
+    } else if (target.classList.contains("task__workflow-text")) {
+      commitWorkflowStepText(target);
+    } else if (target.classList.contains("category-card__title")) {
+      commitCategoryTitle(target);
+    }
+  },
+  true
+);
+
+board?.addEventListener("keydown", (event) => {
+  const target = event.target;
+  if (!(target instanceof HTMLElement)) return;
+  if (target.classList.contains("category-card__title") && event.key === "Enter") {
+    event.preventDefault();
+    target.blur();
+    return;
+  }
+  if (target.classList.contains("task__editable") && target.dataset.field === "title" && event.key === "Enter") {
+    event.preventDefault();
+    target.blur();
+  }
+  if (target.classList.contains("task__workflow-text") && event.key === "Enter") {
+    event.preventDefault();
+    target.blur();
+  }
+});
+
+board?.addEventListener("change", (event) => {
+  const target = event.target;
+  if (!(target instanceof HTMLElement)) return;
+
+  if (target instanceof HTMLInputElement && target.classList.contains("task__toggle")) {
+    const category = findCategory(target.dataset.categoryId);
+    const index = Number(target.dataset.taskIndex);
+    if (!category || Number.isNaN(index)) return;
+    const task = category.tasks[index];
+    if (!task) return;
+    if (task.isRecurring) {
+      const dateKey = target.dataset.date || getTodayKey();
+      setRecurringTaskDoneForDate(task, dateKey, target.checked);
+      syncRecurringStateToTask(task, getTodayKey());
+    } else {
+      task.done = target.checked;
+    }
+    saveState();
+    renderBoard();
+    renderCalendar();
+    return;
+  }
+
+  if (target instanceof HTMLSelectElement && target.classList.contains("task__urgency-select")) {
+    const category = findCategory(target.dataset.categoryId);
+    const index = Number(target.dataset.taskIndex);
+    if (!category || Number.isNaN(index)) return;
+    const task = category.tasks[index];
+    if (!task) return;
+    task.urgency = normalizeUrgency(target.value);
+    task._pulse = Date.now();
+    saveState();
+    renderBoard();
+    renderCalendar();
+    return;
+  }
+
+  if (target instanceof HTMLSelectElement && target.classList.contains("task__importance-select")) {
+    const category = findCategory(target.dataset.categoryId);
+    const index = Number(target.dataset.taskIndex);
+    if (!category || Number.isNaN(index)) return;
+    const task = category.tasks[index];
+    if (!task) return;
+    const newValue = normalizeImportance(target.value);
+    target.value = newValue;
+    task.importance = newValue;
+    const config = getImportanceConfig(newValue) ?? getImportanceConfig(DEFAULT_IMPORTANCE);
+    applyImportanceAppearance(target, config ?? undefined);
+    saveState();
+    renderBoard();
+    renderCalendar();
+    return;
+  }
+
+  if (target instanceof HTMLInputElement && target.classList.contains("task__workflow-toggle")) {
+    toggleWorkflowStep(target);
+    return;
+  }
+
+  if (target instanceof HTMLInputElement && target.classList.contains("task__schedule-input")) {
+    const category = findCategory(target.dataset.categoryId);
+    const index = Number(target.dataset.taskIndex);
+    if (!category || Number.isNaN(index)) return;
+    const task = category.tasks[index];
+    if (!task) return;
+    const field = target.dataset.field;
+    if (field !== "startDate" && field !== "endDate") return;
+    const normalized = normalizeDateValue(target.value);
+    if (field === "startDate") {
+      task.startDate = normalized;
+    } else {
+      task.endDate = normalized;
+    }
+    const range = resolveDateRange(task.startDate, task.endDate);
+    task.startDate = range.start;
+    task.endDate = range.end;
+    target.value = task[field] || "";
+    saveState();
+    renderBoard();
+    renderCalendar();
+    return;
+  }
+
+  if (target instanceof HTMLInputElement && target.dataset.field === "isRecurring") {
+    const category = findCategory(target.dataset.categoryId);
+    const index = Number(target.dataset.taskIndex);
+    if (!category || Number.isNaN(index)) return;
+    const task = category.tasks[index];
+    if (!task) return;
+    task.isRecurring = target.checked;
+    if (task.isRecurring && (typeof task.recurringCompletion !== "object" || task.recurringCompletion === null)) {
+      task.recurringCompletion = {};
+    }
+    saveState();
+    renderBoard();
+    renderCalendar();
+  }
+});
+
+board?.addEventListener("click", (event) => {
+  const target = event.target;
+  if (!(target instanceof HTMLElement)) return;
+
+  const summary = target.closest(".task__summary");
+  if (summary) {
+    const categoryId = summary.dataset.categoryId;
+    const taskIndex = Number(summary.dataset.taskIndex);
+    if (!categoryId || Number.isNaN(taskIndex)) return;
+    const key = makeTaskKey(categoryId, taskIndex);
+    if (expandedTasks.has(key)) expandedTasks.delete(key);
+    else expandedTasks.add(key);
+    renderBoard();
+    renderCalendar();
+    return;
+  }
+
+  const workflowDeleteButton = target.closest(".task__workflow-delete");
+  if (workflowDeleteButton instanceof HTMLElement) {
+    const categoryId = workflowDeleteButton.dataset.categoryId;
+    const taskIndex = Number(workflowDeleteButton.dataset.taskIndex);
+    const stepIndex = Number(workflowDeleteButton.dataset.stepIndex);
+    if (!categoryId || Number.isNaN(taskIndex) || Number.isNaN(stepIndex)) return;
+    const category = findCategory(categoryId);
+    if (!category) return;
+    const task = category.tasks[taskIndex];
+    if (!task || !Array.isArray(task.workflow)) return;
+    task.workflow.splice(stepIndex, 1);
+    saveState();
+    renderBoard();
+    renderCalendar();
+    return;
+  }
+
+  if (target.classList.contains("task__workflow-add")) {
+    const categoryId = target.dataset.categoryId;
+    const taskIndex = Number(target.dataset.taskIndex);
+    const category = findCategory(categoryId);
+    if (!category || Number.isNaN(taskIndex)) return;
+    const task = category.tasks[taskIndex];
+    if (!task) return;
+    if (!Array.isArray(task.workflow)) task.workflow = [];
+    task.workflow.push({ text: "", done: false });
+    const newStepIndex = task.workflow.length - 1;
+    saveState();
+    renderBoard();
+    renderCalendar();
+    requestAnimationFrame(() => {
+      const selector = `.task__workflow-text[data-category-id="${categoryId}"][data-task-index="${taskIndex}"][data-step-index="${newStepIndex}"]`;
+      const editor = board?.querySelector(selector);
+      if (editor instanceof HTMLElement) {
+        editor.focus();
+        const selection = window.getSelection();
+        const range = document.createRange();
+        range.selectNodeContents(editor);
+        if (selection) {
+          selection.removeAllRanges();
+          selection.addRange(range);
+        }
+      }
+    });
+    return;
+  }
+
+  if (target.classList.contains("category-card__add")) {
+    const categoryId = target.dataset.categoryId;
+    const category = findCategory(categoryId);
+    if (!category) return;
+    category.tasks.push({
+      title: "未命名事项",
+      description: "",
+      workflow: [],
+      notes: "",
+      urgency: DEFAULT_URGENCY,
+      importance: DEFAULT_IMPORTANCE,
+      done: false,
+      startDate: "",
+      endDate: "",
+      lastWorkflowResetDate: formatISODate(new Date()),
+      isRecurring: false,
+      recurringCompletion: {},
+    });
+    const newIndex = category.tasks.length - 1;
+    expandedTasks.add(makeTaskKey(category.id, newIndex));
+    saveState();
+    renderBoard();
+    renderCalendar();
+    requestAnimationFrame(() => {
+      const selector = `.task__editable[data-field="title"][data-category-id="${category.id}"][data-task-index="${newIndex}"]`;
+      const editable = board.querySelector(selector);
+      if (editable instanceof HTMLElement) {
+        editable.focus();
+        const selection = window.getSelection();
+        const range = document.createRange();
+        range.selectNodeContents(editable);
+        if (selection) {
+          selection.removeAllRanges();
+          selection.addRange(range);
+        }
+      }
+    });
+    return;
+  }
+
+  if (target.classList.contains("category-card__delete-link")) {
+    const categoryId = target.dataset.categoryId;
+    const index = categories.findIndex((category) => category.id === categoryId);
+    if (index === -1) return;
+    if (!window.confirm("删除分类会同时移除其下所有事项，确认删除吗？")) return;
+    categories.splice(index, 1);
+    if (currentFilter === categoryId) currentFilter = "all";
+    saveState();
+    renderFilters();
+    renderBoard();
+    renderCalendar();
+    return;
+  }
+
+  if (target.classList.contains("task__delete")) {
+    const categoryId = target.dataset.categoryId;
+    const taskIndex = Number(target.dataset.taskIndex);
+    const category = findCategory(categoryId);
+    if (!category || Number.isNaN(taskIndex)) return;
+    if (!window.confirm("确定删除该事项吗？")) return;
+    category.tasks.splice(taskIndex, 1);
+    saveState();
+    renderBoard();
+    renderCalendar();
+  }
+});
+
+calendarPrevBtn?.addEventListener("click", () => changeCalendarMonth(-1));
+calendarNextBtn?.addEventListener("click", () => changeCalendarMonth(1));
+
+calendarExpandBtn?.addEventListener("click", () => {
+  setCalendarCollapsed(false);
+});
+
+calendarGrid?.addEventListener("click", (event) => {
+  const target = event.target;
+  if (!(target instanceof HTMLElement)) return;
+  const day = target.closest(".calendar-day");
+  if (!day) return;
+  const dateKey = day.dataset.date;
+  if (!dateKey) return;
+  selectedCalendarDate = dateKey;
+  renderCalendar();
+  saveUIState();
+});
+
+calendarDetailList?.addEventListener("click", (event) => {
+  const target = event.target;
+  if (!(target instanceof HTMLElement)) return;
+  if (target instanceof HTMLInputElement) return;
+  if (target.closest(".calendar-detail__workflow-list")) return;
+  if (target.closest(".calendar-detail__extra")) return;
+  if (target.closest(".calendar-detail__toggle")) return;
+  const item = target.closest(".calendar-detail__item.is-expandable");
+  if (!item) return;
+  const detailKey = `${selectedCalendarDate}:${item.dataset.categoryId}:${item.dataset.taskIndex}`;
+  const expanded = !item.classList.contains("is-open");
+  if (expanded) {
+    collapseOtherCalendarDetailItems(item);
+  }
+  setCalendarDetailItemExpanded(item, detailKey, expanded);
+});
+
+calendarDetailList?.addEventListener("change", (event) => {
+  const target = event.target;
+  if (!(target instanceof HTMLElement)) return;
+  if (target instanceof HTMLInputElement && target.classList.contains("task__workflow-toggle")) {
+    toggleWorkflowStep(target);
+  }
+});
+
+calendarRecurringList?.addEventListener("click", (event) => {
+  const target = event.target;
+  if (!(target instanceof HTMLElement)) return;
+  if (target.closest(".calendar-recurring__toggle")) return;
+  if (target instanceof HTMLInputElement) return;
+  if (target.closest(".calendar-recurring__workflow-list")) return;
+  if (target.closest(".calendar-recurring__extra")) return;
+  const item = target.closest(".calendar-recurring__item.is-expandable");
+  if (!item) return;
+  const detailKey = `recurring:${item.dataset.categoryId}:${item.dataset.taskIndex}`;
+  const expanded = !item.classList.contains("is-open");
+  if (expanded) {
+    collapseOtherCalendarRecurringItems(item);
+  }
+  setCalendarRecurringItemExpanded(item, detailKey, expanded);
+});
+
+calendarRecurringList?.addEventListener("change", (event) => {
+  const target = event.target;
+  if (!(target instanceof HTMLElement)) return;
+  if (target instanceof HTMLInputElement && target.classList.contains("task__workflow-toggle")) {
+    toggleWorkflowStep(target);
+  }
+});
+
+
+
+viewEditBtn?.addEventListener("click", () => setView("edit"));
+viewCalendarBtn?.addEventListener("click", () => setView("calendar"));
+setView(currentView);
+
+</script>
+</body>
+</html>
+

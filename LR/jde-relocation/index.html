@@ -1,0 +1,4708 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relocation from China (with Chinese Characteristics)</title>
+    <meta name="description"
+        content="A deep dive into the paper 'Relocation from China (with Chinese Characteristics)', analyzing global supply chain restructuring, FDI shifts, and the indirect trade relationships between China, the US, and third-party countries.">
+    <meta name="keywords"
+        content="China, Relocation, Supply Chain, FDI, Trade War, US Import, Manufacturing, Economics">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Relocation from China (with Chinese Characteristics)">
+    <meta property="og:description"
+        content="A deep dive into global supply chain restructuring and China's indirect trade relationships.">
+    <meta property="og:type" content="article">
+    <meta property="og:image"
+        content="https://cdn.jsdelivr.net/gh/dwdecon/paper_on_the_cloud@main/dify/Figure_1_Share_of_China_in_imports_of_US_and_rest_of_world_Panel_A_1.png">
+
+    <!-- Mandatory CSS & JS (Copy Verbatim) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false}
+        ],
+        throwOnError: false
+    });">
+    </script>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #2299dd;
+            --text-main: #333;
+            --text-secondary: #666;
+            --bg-paper: #fdfdfd;
+            --bg-body: #f4f5f7;
+            --bg-card: #fff;
+            --border-color: #e0e0e0;
+            --sidebar-width: 280px;
+            --font-size-base: 12pt;
+            --transition-speed: 0.3s;
+        }
+
+        /* 暗黑模式 */
+        [data-theme="dark"] {
+            --primary-color: #5d9cec;
+            --accent-color: #f39c12;
+            --text-main: #e0e0e0;
+            --text-secondary: #aaa;
+            --bg-paper: #1e1e1e;
+            --bg-body: #121212;
+            --bg-card: #2d2d2d;
+            --border-color: #404040;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        /* 滚动条美化 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a0aec0;
+        }
+
+        body {
+            font-family: "Merriweather", serif;
+            background-color: var(--bg-body);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            line-height: 1.8;
+            color: var(--text-main);
+            font-size: var(--font-size-base);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        /* 控制栏 */
+        .control-bar {
+            position: fixed;
+            top: 10px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            z-index: 9000;
+        }
+        .control-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.2s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .control-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* 阅读信息栏 */
+        .reading-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            font-family: "Inter", sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* 版权声明样式 */
+        .copyright-footer {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 20px;
+            color: var(--text-secondary);
+            font-family: "Inter", sans-serif;
+            font-size: 0.85rem;
+        }
+
+        .copyright-footer p {
+            margin: 5px 0;
+            line-height: 1.6;
+        }
+
+        [data-theme="dark"] .copyright-footer {
+            color: #777;
+        }
+
+        /* 打印样式 */
+        @media print {
+            body { background: white; padding: 0; }
+            .paper-sheet { box-shadow: none; border: none; max-width: 100%; padding: 20px; }
+            #progress-container, #toc-sidebar, #mobile-toc-btn, #mobile-toc-modal, #back-to-top, .control-bar, #lightbox-overlay, #table-lightbox-overlay, #math-lightbox-overlay { display: none !important; }
+            .img-container, .table-wrapper { break-inside: avoid; box-shadow: none; }
+            h2, h3 { break-after: avoid; }
+        }
+
+        /* 暗黑模式元素样式 */
+        [data-theme="dark"] .paper-sheet {
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+        }
+        [data-theme="dark"] #toc-sidebar {
+            background: rgba(45, 45, 45, 0.95);
+        }
+        [data-theme="dark"] .toc-title {
+            border-bottom-color: #404040;
+        }
+        [data-theme="dark"] #toc-list a {
+            color: #aaa;
+        }
+        [data-theme="dark"] .takeaway-section {
+            background: #2a4a6b;
+        }
+        [data-theme="dark"] .takeaway-card {
+            background: rgba(255, 255, 255, 0.08);
+        }
+        [data-theme="dark"] .table-wrapper {
+            background: var(--bg-card);
+        }
+        [data-theme="dark"] table {
+            border-color: var(--border-color);
+        }
+        [data-theme="dark"] th {
+            background: #3a3a3a !important;
+            color: var(--text-main);
+        }
+        [data-theme="dark"] td {
+            border-color: var(--border-color);
+            color: var(--text-main);
+        }
+        [data-theme="dark"] tr:hover td {
+            background-color: #333 !important;
+        }
+        [data-theme="dark"] .img-container {
+            background: var(--bg-card);
+            border-color: var(--border-color);
+        }
+        [data-theme="dark"] .img-caption {
+            color: var(--text-secondary);
+        }
+        [data-theme="dark"] h2,
+        [data-theme="dark"] h3 {
+            color: var(--primary-color);
+        }
+        [data-theme="dark"] .pos {
+            background-color: rgba(39, 174, 96, 0.2);
+            color: #2ecc71;
+        }
+        [data-theme="dark"] .neg {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: #e74c3c;
+        }
+        [data-theme="dark"] ::-webkit-scrollbar-track {
+            background: #2d2d2d;
+        }
+        [data-theme="dark"] ::-webkit-scrollbar-thumb {
+            background: #555;
+        }
+        [data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+            background: #777;
+        }
+
+        .paper-sheet {
+            background-color: var(--bg-paper);
+            padding: 70px 90px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            width: 100%;
+            max-width: 240mm;
+            box-sizing: border-box;
+            border-top: 6px solid var(--primary-color);
+            overflow: hidden;
+            position: relative;
+            /* Context for TOC positioning calculations if needed */
+        }
+
+        /* -------------------
+           New Features CSS
+           ------------------- */
+
+        /* 1. Reading Progress Bar */
+        #progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 9999;
+        }
+
+        #progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #2299dd, #66ccff);
+            width: 0%;
+            transition: width 0.1s;
+        }
+
+        /* 2. Table of Contents (TOC) */
+        /* Desktop Sidebar */
+        #toc-sidebar {
+            position: fixed;
+            top: 40px;
+            /* Move to Right */
+            right: calc(50% - 240mm/2 - var(--sidebar-width) - 30px);
+            width: var(--sidebar-width);
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: var(--bg-body);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 8px;
+            box-sizing: border-box;
+            /* Include padding in width */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            display: none;
+            /* Hidden by default, shown via JS if width allows */
+            z-index: 100;
+            scrollbar-width: none;
+        }
+
+        #toc-sidebar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Adjusted breakpoint: (PaperHalf 453 + Sidebar 280 + Gap 30) * 2 ≈ 1526px */
+        @media (min-width: 1550px) {
+            #toc-sidebar {
+                display: block;
+            }
+        }
+
+        .toc-title {
+            font-family: "Inter", sans-serif;
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid #efefef;
+            padding-bottom: 5px;
+        }
+
+        #toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #toc-list li {
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        #toc-list a {
+            text-decoration: none;
+            color: #666;
+            font-size: 0.9rem;
+            font-family: "Inter", sans-serif;
+            transition: all 0.2s;
+            display: block;
+            border-left: 2px solid transparent;
+            padding-left: 10px;
+        }
+
+        #toc-list a:hover,
+        #toc-list a.active {
+            color: var(--accent-color);
+            border-left-color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        #toc-list li.sub-item {
+            padding-left: 15px;
+            font-size: 0.85rem;
+        }
+
+        /* Mobile TOC Toggle */
+        #mobile-toc-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            z-index: 1000;
+            transition: transform 0.2s;
+            border: none;
+            font-size: 1.2rem;
+        }
+
+        #mobile-toc-btn:hover {
+            transform: scale(1.1);
+        }
+
+        @media (min-width: 1550px) {
+            #mobile-toc-btn {
+                display: none;
+            }
+        }
+
+        /* Mobile TOC Modal */
+        #mobile-toc-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            display: none;
+            justify-content: flex-end;
+            backdrop-filter: blur(2px);
+        }
+
+        #mobile-toc-content {
+            width: 80%;
+            max-width: 320px;
+            height: 100%;
+            background: white;
+            padding: 30px 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-out;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        #mobile-toc-modal.open #mobile-toc-content {
+            transform: translateX(0);
+        }
+
+        /* 移动端目录列表样式 */
+        #mobile-toc-content .toc-title {
+            font-family: "Inter", sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #eee;
+        }
+
+        #mobile-toc-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #mobile-toc-content li {
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        #mobile-toc-content a {
+            text-decoration: none;
+            color: #555;
+            font-size: 0.95rem;
+            font-family: "Inter", sans-serif;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        #mobile-toc-content a:hover {
+            background: rgba(66, 139, 202, 0.12);
+            color: #2c5aa0;
+        }
+
+        #mobile-toc-content a.active {
+            background: rgba(66, 139, 202, 0.18);
+            color: #2c5aa0;
+            font-weight: 600;
+        }
+
+        #mobile-toc-content li.sub-item {
+            margin-left: 16px;
+        }
+
+        #mobile-toc-content li.sub-item a {
+            font-size: 0.88rem;
+            color: #777;
+            padding: 6px 12px;
+        }
+
+        /* 暗黑模式下的移动端目录 */
+        [data-theme="dark"] #mobile-toc-content {
+            background: #1e1e1e;
+            border-left-color: var(--primary-color);
+        }
+
+        [data-theme="dark"] #mobile-toc-content .toc-title {
+            color: var(--primary-color);
+            border-bottom-color: #333;
+        }
+
+        [data-theme="dark"] #mobile-toc-content a {
+            color: #bbb;
+        }
+
+        [data-theme="dark"] #mobile-toc-content a:hover {
+            background: rgba(93, 156, 236, 0.2);
+            color: #7ab3ef;
+        }
+
+        [data-theme="dark"] #mobile-toc-content a.active {
+            background: rgba(93, 156, 236, 0.25);
+            color: #7ab3ef;
+        }
+
+        [data-theme="dark"] #mobile-toc-content li.sub-item a {
+            color: #888;
+        }
+
+        /* 3. Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 90px;
+            right: 35px;
+            width: 40px;
+            height: 40px;
+            background: white;
+            color: var(--primary-color);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+            z-index: 900;
+            font-size: 1.2rem;
+        }
+
+        #back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #back-to-top:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* 4. Image Lightbox */
+        .img-container img {
+            cursor: zoom-in;
+            transition: transform 0.2s;
+        }
+
+        .img-container img:hover {
+            transform: scale(1.01);
+        }
+
+        #lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        #lightbox-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        #lightbox-img {
+            max-width: 95%;
+            max-height: 95%;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s;
+        }
+
+        #lightbox-overlay.active #lightbox-img {
+            transform: scale(1);
+        }
+
+        /* Math Formula Lightbox */
+        #math-lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #math-lightbox-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        #math-lightbox-content {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 40px 50px;
+            max-width: 90%;
+            max-height: 90%;
+            overflow: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            cursor: default;
+            text-align: center;
+        }
+
+        #math-lightbox-overlay.active #math-lightbox-content {
+            transform: scale(1);
+        }
+
+        .math-lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 48px;
+            color: #ffffff;
+            cursor: pointer;
+            z-index: 3001;
+            transition: transform 0.2s ease, color 0.2s ease;
+            font-weight: 300;
+            line-height: 1;
+            user-select: none;
+        }
+
+        .math-lightbox-close:hover {
+            transform: scale(1.2) rotate(90deg);
+            color: #e67e22;
+        }
+
+        /* 灯箱中的公式样式 */
+        #math-lightbox-content .katex-display {
+            font-size: 1.5em;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            #math-lightbox-content {
+                padding: 30px 25px;
+                max-width: 95%;
+            }
+
+            .math-lightbox-close {
+                font-size: 36px;
+                top: 20px;
+                right: 25px;
+            }
+
+            #math-lightbox-content .katex-display {
+                font-size: 1.2em;
+            }
+        }
+
+        /* 5. Enhanced Table Styles */
+
+
+        table {
+            font-size: 0.85rem;
+        }
+
+        thead th {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #f7f9fa;
+            /* Lighter grey */
+            box-shadow: 0 1px 0 #ddd;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #fcfcfc;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f8ff;
+            /* Subtle highlight on hover */
+        }
+
+        caption {
+            background: linear-gradient(to right, #fbfbfb, #fdfdfd);
+            border-bottom: 2px solid var(--primary-color);
+            padding: 12px;
+        }
+
+        /* 标题系统 */
+        h1.main-title {
+            font-family: "Inter", sans-serif;
+            font-size: 22pt;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-family: "Inter", sans-serif;
+            font-size: 12pt;
+            color: #666;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-family: "Inter", sans-serif;
+            font-size: 16pt;
+            border-bottom: 1px solid var(--primary-color);
+            padding-bottom: 8px;
+            margin-top: 40px;
+            color: var(--primary-color);
+        }
+
+        h3 {
+            font-family: "Inter", sans-serif;
+            font-size: 13pt;
+            margin-top: 30px;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 10px;
+            color: var(--primary-color);
+            background: linear-gradient(90deg, #f9f9f9, transparent);
+        }
+
+        p {
+            font-size: 12pt;
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            font-size: 12pt;
+        }
+
+        li:has(.img-container),
+        li:has(.table-wrapper),
+        li:has(.math-block-latex) {
+            list-style-type: none !important;
+            margin-left: 0;
+            /* Reset margin to align left/center properly */
+            padding: 0;
+            text-indent: 0;
+        }
+
+        /* ★★★ 表格组件：强制自适应，无滚动条 (Zoom/Fit) ★★★ */
+        .table-wrapper {
+            display: block;
+            width: 100%;
+            margin: 30px auto;
+            padding: 20px;
+            /* whitespace */
+            border: 1px solid #e0e0e0;
+            /* Slightly darker border */
+            border-radius: 12px;
+            /* Smooth corners */
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.15);
+            /* Check: Floating Effect */
+            /* 禁止溢出 */
+            overflow: hidden;
+            /* Ensure content outside bounding box is hidden */
+            margin: 5px auto 30px auto;
+            /* Reduced top margin to 5px */
+            cursor: zoom-in;
+            /* Indicate clickable */
+            transition: transform 0.2s;
+        }
+
+        .table-wrapper:hover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: "Inter", sans-serif;
+            /* 改用非衬线体更易缩放 */
+            font-size: 0.8rem;
+            /* 整体缩小字号模拟缩放 */
+            table-layout: auto;
+            /* 自动布局 */
+        }
+
+        th,
+        td {
+            padding: 6px 8px;
+            border-bottom: 1px solid #eee;
+            /* word-break: break-word; REMOVED */
+            white-space: nowrap;
+            /* Keep data columns on one line */
+            /* hyphens: auto; REMOVED */
+            text-align: center;
+            /* Default to center alignment for data */
+        }
+
+        /* First column: Allow wrapping at spaces for long variable names */
+        th:first-child,
+        td:first-child {
+            text-align: left;
+            white-space: normal;
+            /* Allow wrapping */
+            min-width: 120px;
+            /* Ensure minimum readability width */
+            max-width: 400px;
+            /* Prevent it from being excessively wide */
+        }
+
+        /* Override specific classes if needed, though center is now default */
+        .pos {
+            color: #c0392b;
+            font-weight: 600;
+        }
+
+        .neg {
+            color: #27ae60;
+            font-weight: 600;
+        }
+
+        /* External Table Title */
+        .table-title {
+            text-align: center;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            /* Reduced from 10px */
+            margin-top: 30px;
+            font-size: 0.95rem;
+            font-family: "Inter", sans-serif;
+        }
+
+        /* Hide original caption just in case JS fails or implementation differences */
+        caption {
+            display: none;
+        }
+
+        thead th {
+            background-color: #f4f4f4;
+            font-weight: 600;
+            color: #444;
+            vertical-align: bottom;
+            /* Ensure (1), (2) align at bottom */
+            padding-bottom: 8px;
+        }
+
+
+
+        /* ★★★ 公式组件：现代卡片式 + 智能缩放 (Modern Card + Smart Scale) ★★★ */
+        .math-block-latex {
+            /* 布局：容器居中 */
+            display: block;
+            max-width: fit-content;
+            margin: 25px auto;
+
+            /* 视觉：现代卡片 */
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08),
+                        0 2px 6px rgba(0, 0, 0, 0.04);
+            padding: 20px 28px;
+
+            /* 内容：居中对齐 */
+            text-align: center;
+
+            /* 缩放：默认0.9倍，JS会动态调整 */
+            font-size: 0.9em;
+
+            /* 溢出：默认隐藏，JS会按需添加滚动 */
+            overflow-x: hidden;
+            overflow-y: hidden;
+
+            /* 交互：悬停效果 + 点击放大提示 */
+            cursor: zoom-in;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .math-block-latex:hover {
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12),
+                        0 4px 10px rgba(0, 0, 0, 0.06);
+        }
+
+        /* 超长公式：开启滚动 */
+        .math-block-latex.math-overflow {
+            overflow-x: auto;
+            max-width: 90%;
+        }
+
+        /* 美化滚动条 */
+        .math-block-latex.math-overflow::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .math-block-latex.math-overflow::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .math-block-latex.math-overflow::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+            border-radius: 3px;
+        }
+
+        .math-block-latex.math-overflow::-webkit-scrollbar-thumb:hover {
+            background: #a0aec0;
+        }
+
+        /* 覆盖 KaTeX 默认样式，确保继承容器字号 */
+        .katex {
+            font-size: 1em !important;
+            font-family: "Times New Roman", serif;
+        }
+
+        .katex-display {
+            margin: 0 !important;
+            padding: 0 !important;
+            text-align: center !important;
+        }
+
+        /* 移动端/窄屏适配：字体进一步缩小到 0.75em (约等于 \scriptsize) */
+        @media (max-width: 768px) {
+            .paper-sheet {
+                padding: 30px 20px;
+            }
+
+            table {
+                font-size: 0.7rem;
+            }
+
+            .math-block-latex {
+                font-size: 0.75em;
+                padding: 15px 18px;
+                margin: 20px auto;
+                max-width: 95%;
+            }
+
+            .math-block-latex.math-overflow {
+                max-width: 100%;
+            }
+
+            /* 屏幕变窄，字体变小，尽量避免滚动 */
+        }
+
+        /* 图片组件 */
+        .img-container {
+            display: block;
+            text-align: center;
+            margin: 40px auto 15px auto;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            background-color: #fff;
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.15);
+            /* Check: Floating Effect */
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .img-caption {
+            font-family: "Inter", sans-serif;
+            font-size: 9pt;
+            color: #777;
+            margin-top: 0px;
+            margin-bottom: 40px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .paper-sheet {
+                padding: 30px 20px;
+            }
+
+            table {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Table Lightbox */
+        #table-lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 4000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        #table-lightbox-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        #table-lightbox-content {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 95%;
+            max-height: 90vh;
+            overflow: auto;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        #table-lightbox-content table {
+            width: auto !important;
+            /* Allow natural width */
+            transform: none !important;
+            /* Reset scaling */
+        }
+
+        /* Close button for lightbox */
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 4001;
+        }
+
+        /* 版权说明样式 */
+        .copyright-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .copyright-section p {
+            margin: 6px 0;
+            font-size: 9pt;
+            color: #666;
+            text-align: center;
+        }
+
+        .copyright-disclaimer {
+            font-size: 8.5pt;
+            color: #999;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .copyright-credit {
+            font-weight: 500;
+            color: #555;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 控制栏 -->
+    <div class="control-bar">
+        <button class="control-btn" id="theme-toggle" title="切换暗黑模式 (Alt+D)">🌙</button>
+        <button class="control-btn" id="font-decrease" title="减小字体 (Alt+-)">A-</button>
+        <button class="control-btn" id="font-increase" title="增大字体 (Alt+=)">A+</button>
+    </div>
+
+    <!-- Table Lightbox -->
+    <div id="table-lightbox-overlay">
+        <div class="lightbox-close">&times;</div>
+        <div id="table-lightbox-content"></div>
+    </div>
+
+    <!-- 1. Reading Progress Bar -->
+    <div id="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+
+    <!-- 2. Desktop TOC Sidebar -->
+    <nav id="toc-sidebar">
+        <div class="toc-title">目录 (Catalog)</div>
+        <ul id="toc-list"></ul>
+    </nav>
+
+    <!-- 3. Mobile TOC Button -->
+    <button id="mobile-toc-btn" title="查看目录">
+        ☰
+    </button>
+
+    <!-- 4. Mobile TOC Modal -->
+    <div id="mobile-toc-modal">
+        <div id="mobile-toc-content">
+            <div class="toc-title">目录</div>
+            <ul id="mobile-toc-list">
+                <!-- Cloned from desktop TOC -->
+            </ul>
+        </div>
+    </div>
+
+    <div class="paper-sheet">
+        <h1 class="main-title">Relocation from China (with Chinese Characteristics)<br>具有中国特色的供应链重构</h1>
+
+        <!-- 阅读信息 -->
+        <div class="reading-info">
+            <span id="word-count">📖 字数统计中...</span>
+            <span id="reading-time">⏱️ 预计阅读时间计算中...</span>
+        </div>
+
+        <style>
+            /* Academic Takeaway Section */
+            .takeaway-section {
+                margin: 40px 0;
+                padding: 30px 35px;
+                background: #3c6ea8;
+                border-radius: 12px;
+                border: 1px solid #e2e8f0;
+            }
+
+            .takeaway-section h2 {
+                font-family: "Inter", serif;
+                font-weight: 700;
+                font-size: 1.4rem;
+                color: #ffffff;
+                margin: 0 0 25px 0;
+                padding-bottom: 15px;
+                border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+                display: inline-block;
+            }
+
+            .takeaway-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            @media (max-width: 768px) {
+                .takeaway-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            .takeaway-card {
+                background: rgba(255, 255, 255, 0.9);
+                backdrop-filter: blur(12px);
+                border-radius: 10px;
+                padding: 16px 18px;
+                border: 1px solid rgba(255, 255, 255, 0.5);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), 0 4px 6px rgba(0, 0, 0, 0.05);
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+
+            .takeaway-card:hover {
+                background: rgba(255, 255, 255, 0.95);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+                transform: translateY(-2px);
+            }
+
+            .takeaway-card .card-header {
+                display: flex;
+                align-items: center;
+                margin-bottom: 8px;
+            }
+
+            .takeaway-card .card-number {
+                width: 28px;
+                height: 28px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+                font-size: 0.9rem;
+                margin-right: 8px;
+                flex-shrink: 0;
+            }
+
+            .takeaway-card.finding .card-number {
+                background: #fed7d7;
+                color: #c53030;
+            }
+
+            .takeaway-card.theory .card-number {
+                background: #e9d8fd;
+                color: #6b46c1;
+            }
+
+            .takeaway-card.method .card-number {
+                background: #c6f6d5;
+                color: #276749;
+            }
+
+            .takeaway-card.policy .card-number {
+                background: #fdf1ba;
+                color: #b7860b;
+            }
+
+            .takeaway-card .card-title {
+                font-family: "Inter", sans-serif;
+                font-weight: 700;
+                font-size: 0.95rem;
+                color: #2d3748;
+                margin: 0;
+            }
+
+            .takeaway-card .card-body {
+                font-size: 0.9rem;
+                color: #4a5568;
+                line-height: 1.5;
+                margin: 0;
+            }
+
+            .takeaway-card .card-body strong {
+                color: #2d3748;
+            }
+
+            @media (max-width: 600px) {
+                .takeaway-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+
+        <section class="takeaway-section">
+            <h2>💡 核心价值 (Takeaway)</h2>
+            <div class="takeaway-grid">
+                <div class="takeaway-card finding">
+                    <div class="card-header">
+                        <span class="card-number">1</span>
+                        <h3 class="card-title">核心结论</h3>
+                    </div>
+                    <p class="card-body">
+                        脱钩并未真正发生，而是演变为<strong>供应链的"延长"</strong>：中国通过在越南、墨西哥设立子公司完成成品组装，同时显著增加了这些国家对中国零部件的进口需求。
+                    </p>
+                </div>
+
+                <div class="takeaway-card theory">
+                    <div class="card-header">
+                        <span class="card-number">2</span>
+                        <h3 class="card-title">理论创新</h3>
+                    </div>
+                    <p class="card-body">
+                        提出<strong>"具有中国特色的迁移"</strong>概念：生产地点转移伴随着中国资本(FDI)和中间品紧密跟随，形成"组装在外，供链在内"的新模式。
+                    </p>
+                </div>
+
+                <div class="takeaway-card method">
+                    <div class="card-header">
+                        <span class="card-number">3</span>
+                        <h3 class="card-title">方法亮点</h3>
+                    </div>
+                    <p class="card-body">
+                        创新性使用<strong>微观企业层面的HS6位码贸易数据</strong>，精确匹配"特定成品"与"对应零部件"的微观联系。
+                    </p>
+                </div>
+
+                <div class="takeaway-card policy">
+                    <div class="card-header">
+                        <span class="card-number">4</span>
+                        <h3 class="card-title">政策启示</h3>
+                    </div>
+                    <p class="card-body">
+                        贸易壁垒的<strong>有限效果</strong>：企业通过FDI和供应链重组成功规避关税。传统意义的"脱钩"难以实现，全球供应链展现高度韧性与适应性。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+
+        <h2>1. 作者信息</h2>
+
+        <h3>作者信息</h3>
+        <ul>
+            <li><strong>Jason Garred</strong>：渥太华大学（University of Ottawa）。</li>
+            <li><strong>Song Yuan</strong>：浙江大学（Zhejiang University）。</li>
+            <li><strong>研究背景</strong>：两位作者专注于国际贸易、全球供应链重组以及贸易政策对企业行为的影响。</li>
+        </ul>
+
+        <h3>发表信息</h3>
+        <ul>
+            <li><strong>时间</strong>：2025年9月。</li>
+            <li><strong>状态</strong>：发表于《Journal of Development Economics》（《JDE》），JEL分类号为F14, F21, O19。
+            </li>
+        </ul>
+
+
+
+        <h2>2. 研究背景与核心故事</h2>
+
+        <h3>宏观背景</h3>
+        <p>随着全球政治紧张局势加剧和贸易保护主义政策（如美国对华关税）的推行，全球化面临威胁。特别是2016年以来，美国对华经济政策发生急剧转变，导致中美直接贸易大幅下降。核心争议在于：这究竟代表了受影响经济体的彻底“脱钩”（decoupling），还是贸易伙伴关系以更复杂的方式进行了重塑？
+        </p>
+
+        <div class="img-container">
+            <img src="https://cdn.jsdelivr.net/gh/dwdecon/paper_on_the_cloud@main/dify/Figure_1_Share_of_China_in_imports_of_US_and_rest_of_world_Panel_A_1.png"
+                alt="Panel A - Import share of China - US vs.ROW" loading="lazy">
+        </div>
+        <div class="img-caption">Figure 1: Share of China in imports of US and rest of world (Panel A: Import share
+            of China - US vs.ROW)</div>
+
+        <div class="img-container">
+            <img src="https://cdn.jsdelivr.net/gh/dwdecon/paper_on_the_cloud@main/dify/Figure_1_Share_of_China_in_imports_of_US_and_rest_of_world_Panel_B_2.png"
+                alt="Panel B - Import share of China - US vs.ROW (weighted)" loading="lazy">
+        </div>
+        <div class="img-caption">Figure 1: Share of China in imports of US and rest of world (Panel B: weighted by
+            2012 product-level demand shares)</div>
+
+        <ul>
+            <li><strong>解读</strong>：
+                <ul>
+                    <li><strong>Panel A (原始数据)</strong>：显示2018年后，中国在美国进口总额中的份额（实线）急剧下降，而在世界其他地区（ROW，虚线）的份额并未出现类似下降。</li>
+                    <li><strong>Panel B
+                            (固定需求权重)</strong>：为了排除疫情期间需求结构变化的影响，作者将产品层面的需求份额固定在2012年水平。结果显示，中国在美国市场的份额下降更为明显。</li>
+                </ul>
+            </li>
+            <li><strong>作者意图</strong>：确立“直接贸易脱钩”的事实——中国在美国市场的份额显著流失，且这是针对美国的特定现象，而非中国出口能力的普遍衰退。</li>
+        </ul>
+
+        <div class="table-wrapper">
+            <table>
+                <caption>Table A1: Top ten and bottom ten countries by 2018-2022 change in US import share</caption>
+                <thead>
+                    <tr>
+                        <th colspan="2">Top ten countries</th>
+                        <th colspan="2">Bottom ten countries</th>
+                    </tr>
+                    <tr>
+                        <th>Country</th>
+                        <th>Δ Aggregate US import share (pp)</th>
+                        <th>Country</th>
+                        <th>Δ Aggregate US import share (pp)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Vietnam</td>
+                        <td class="pos">2.06</td>
+                        <td>China</td>
+                        <td class="neg">-4.50</td>
+                    </tr>
+                    <tr>
+                        <td>Taiwan</td>
+                        <td class="pos">1.04</td>
+                        <td>Japan</td>
+                        <td class="neg">-1.00</td>
+                    </tr>
+                    <tr>
+                        <td>Canada</td>
+                        <td class="pos">0.77</td>
+                        <td>Venezuela</td>
+                        <td class="neg">-0.50</td>
+                    </tr>
+                    <tr>
+                        <td>Korea</td>
+                        <td class="pos">0.67</td>
+                        <td>Germany</td>
+                        <td class="neg">-0.46</td>
+                    </tr>
+                    <tr>
+                        <td>Thailand</td>
+                        <td class="pos">0.60</td>
+                        <td>United Kingdom</td>
+                        <td class="neg">-0.44</td>
+                    </tr>
+                    <tr>
+                        <td>India</td>
+                        <td class="pos">0.54</td>
+                        <td>Russia</td>
+                        <td class="neg">-0.38</td>
+                    </tr>
+                    <tr>
+                        <td>Indonesia</td>
+                        <td class="pos">0.27</td>
+                        <td>France</td>
+                        <td class="neg">-0.30</td>
+                    </tr>
+                    <tr>
+                        <td>Mexico</td>
+                        <td class="pos">0.24</td>
+                        <td>Saudi Arabia</td>
+                        <td class="neg">-0.23</td>
+                    </tr>
+                    <tr>
+                        <td>Ireland</td>
+                        <td class="pos">0.24</td>
+                        <td>Israel</td>
+                        <td class="neg">-0.20</td>
+                    </tr>
+                    <tr>
+                        <td>Cambodia</td>
+                        <td class="pos">0.24</td>
+                        <td>Iraq</td>
+                        <td class="neg">-0.16</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ul>
+            <li><strong>解读</strong>：表A1列出了2018-2022年间美国进口份额增长最快（赢家）和下降最快（输家）的国家。中国以下降4.50个百分点位居“输家”榜首。而“赢家”主要集中在越南（+2.06%）、台湾、韩国、泰国等东亚和东南亚经济体，以及加拿大和墨西哥。
+            </li>
+            <li><strong>作者意图</strong>：识别具体的“第三方赢家”，为后续分析这些国家是否成为中国企业“借道”的中转站提供目标样本。</li>
+        </ul>
+
+        <div class="table-wrapper">
+            <table>
+                <caption>Table A2: Top percentile of changes in US import share by country and industry</caption>
+                <thead>
+                    <tr>
+                        <th>Country</th>
+                        <th>Industry</th>
+                        <th>Δ Share</th>
+                        <th>Country</th>
+                        <th>Industry</th>
+                        <th>Δ Share</th>
+                        <th>Country</th>
+                        <th>Industry</th>
+                        <th>Δ Share</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Australia</td>
+                        <td>Metal products</td>
+                        <td class="pos">2.94</td>
+                        <td>Korea</td>
+                        <td>Chemicals</td>
+                        <td class="pos">4.66</td>
+                        <td>Thailand</td>
+                        <td>Chemical fibers</td>
+                        <td class="pos">2.71</td>
+                    </tr>
+                    <tr>
+                        <td>Belgium</td>
+                        <td>Pharmaceuticals</td>
+                        <td class="pos">2.60</td>
+                        <td></td>
+                        <td>Automobiles</td>
+                        <td class="pos">3.10</td>
+                        <td></td>
+                        <td>Electrical equipment</td>
+                        <td class="pos">1.77</td>
+                    </tr>
+                    <tr>
+                        <td>Bangladesh</td>
+                        <td>Apparel</td>
+                        <td class="pos">5.04</td>
+                        <td></td>
+                        <td>Iron and steel</td>
+                        <td class="pos">1.79</td>
+                        <td></td>
+                        <td>Electronics</td>
+                        <td class="pos">1.71</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Textiles</td>
+                        <td class="pos">1.58</td>
+                        <td></td>
+                        <td>Non-ferrous metal</td>
+                        <td class="pos">1.79</td>
+                        <td>Turkey</td>
+                        <td>Chemical fibers</td>
+                        <td class="pos">3.03</td>
+                    </tr>
+                    <tr>
+                        <td>Brazil</td>
+                        <td>Wood products</td>
+                        <td class="pos">1.73</td>
+                        <td></td>
+                        <td>Electrical equipment</td>
+                        <td class="pos">1.70</td>
+                        <td></td>
+                        <td>Non-metal products</td>
+                        <td class="pos">2.74</td>
+                    </tr>
+                    <tr>
+                        <td>Cambodia</td>
+                        <td>Leather/footwear</td>
+                        <td class="pos">4.22</td>
+                        <td>Malaysia</td>
+                        <td>Furniture</td>
+                        <td class="pos">1.45</td>
+                        <td>UK</td>
+                        <td>Recycling</td>
+                        <td class="pos">3.50</td>
+                    </tr>
+                    <tr>
+                        <td>Canada</td>
+                        <td>Transport equipment</td>
+                        <td class="pos">2.24</td>
+                        <td>Mexico</td>
+                        <td>Beverages</td>
+                        <td class="pos">10.56</td>
+                        <td>Vietnam</td>
+                        <td>Furniture</td>
+                        <td class="pos">10.89</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Iron and steel</td>
+                        <td class="pos">1.98</td>
+                        <td></td>
+                        <td>Oil refining</td>
+                        <td class="pos">3.96</td>
+                        <td></td>
+                        <td>Electronics</td>
+                        <td class="pos">8.00</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Oil refining</td>
+                        <td class="pos">1.85</td>
+                        <td></td>
+                        <td>Iron and steel</td>
+                        <td class="pos">3.72</td>
+                        <td></td>
+                        <td>Leather/footwear</td>
+                        <td class="pos">6.00</td>
+                    </tr>
+                    <tr>
+                        <td>Dom. Rep.</td>
+                        <td>Food processing</td>
+                        <td class="pos">1.72</td>
+                        <td></td>
+                        <td>Automobiles</td>
+                        <td class="pos">3.20</td>
+                        <td></td>
+                        <td>Chemical fibers</td>
+                        <td class="pos">5.07</td>
+                    </tr>
+                    <tr>
+                        <td>Germany</td>
+                        <td>Tobacco</td>
+                        <td class="pos">4.84</td>
+                        <td></td>
+                        <td>Transport equipment</td>
+                        <td class="pos">3.10</td>
+                        <td></td>
+                        <td>Apparel</td>
+                        <td class="pos">4.15</td>
+                    </tr>
+                    <tr>
+                        <td>India</td>
+                        <td>Chemical fibers</td>
+                        <td class="pos">1.56</td>
+                        <td></td>
+                        <td>Recycling</td>
+                        <td class="pos">2.29</td>
+                        <td></td>
+                        <td>Rubber/plastic</td>
+                        <td class="pos">3.03</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Non-metal products</td>
+                        <td class="pos">2.50</td>
+                        <td>Netherlands</td>
+                        <td>Oil refining</td>
+                        <td class="pos">1.58</td>
+                        <td></td>
+                        <td>Printing</td>
+                        <td class="pos">2.91</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Iron and steel</td>
+                        <td class="pos">2.12</td>
+                        <td>Nicaragua</td>
+                        <td>Tobacco</td>
+                        <td class="pos">5.26</td>
+                        <td></td>
+                        <td>Stationery/recreation</td>
+                        <td class="pos">2.77</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Apparel</td>
+                        <td class="pos">1.62</td>
+                        <td>Saudi Arabia</td>
+                        <td>Oil refining</td>
+                        <td class="pos">3.46</td>
+                        <td></td>
+                        <td>Textiles</td>
+                        <td class="pos">2.44</td>
+                    </tr>
+                    <tr>
+                        <td>Indonesia</td>
+                        <td>Printing</td>
+                        <td class="pos">1.46</td>
+                        <td>South Africa</td>
+                        <td>Non-ferrous metals</td>
+                        <td class="pos">2.23</td>
+                        <td></td>
+                        <td>Electrical equipment</td>
+                        <td class="pos">2.29</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Chemical fibers</td>
+                        <td class="pos">3.49</td>
+                        <td>Spain</td>
+                        <td>Recycling</td>
+                        <td class="pos">1.50</td>
+                        <td></td>
+                        <td>Wood products</td>
+                        <td class="pos">2.22</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Leather/footwear</td>
+                        <td class="pos">3.01</td>
+                        <td>Sweden</td>
+                        <td>Paper products</td>
+                        <td class="pos">1.83</td>
+                        <td></td>
+                        <td>Non-metal products</td>
+                        <td class="pos">2.14</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Food processing</td>
+                        <td class="pos">2.21</td>
+                        <td>Switzerland</td>
+                        <td>Metal products</td>
+                        <td class="pos">9.19</td>
+                        <td></td>
+                        <td>General machinery</td>
+                        <td class="pos">1.70</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Furniture</td>
+                        <td class="pos">1.73</td>
+                        <td></td>
+                        <td>Instruments</td>
+                        <td class="pos">2.83</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Iraq</td>
+                        <td>Oil refining</td>
+                        <td class="pos">2.61</td>
+                        <td></td>
+                        <td>Non-ferrous metals</td>
+                        <td class="pos">1.44</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Ireland</td>
+                        <td>Chemicals</td>
+                        <td class="pos">1.96</td>
+                        <td>Taiwan</td>
+                        <td>Electronics</td>
+                        <td class="pos">5.44</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Italy</td>
+                        <td>Printing</td>
+                        <td class="pos">2.01</td>
+                        <td></td>
+                        <td>Transport equipment</td>
+                        <td class="pos">1.91</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Leather/footwear</td>
+                        <td class="pos">1.61</td>
+                        <td></td>
+                        <td>General machinery</td>
+                        <td class="pos">1.40</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ul>
+            <li><strong>解读</strong>：展示了在“国家-行业”层面，美国进口份额增长最快的具体案例。例如越南的家具（+10.89%）和电子产品（+8.00%），墨西哥的饮料（+10.56%）。</li>
+            <li><strong>作者意图</strong>：表明“赢家”现象在行业层面存在显著异质性，这为利用细分产品层面的微观数据进行识别提供了依据。</li>
+        </ul>
+
+        <h3>现实矛盾</h3>
+        <p>虽然宏观数据显示中美直接贸易急剧下降，但这并不一定意味着中国经济主体退出了生产过程。如果生产转移到了第三方国家，但这些国家依赖中国的投资（FDI）或中间品（Parts），那么“脱钩”可能只是表面现象，实际上形成了更隐蔽的“间接联系”（indirect
+            relationships）。</p>
+
+        <h3>问题提出</h3>
+        <ul>
+            <li><strong>核心研究问题</strong>：中美直接贸易的下降是否导致了真正的“脱钩”，还是通过供应链重组形成了新的间接联系？</li>
+            <li><strong>子问题</strong>：
+                <ol>
+                    <li>中国企业是否通过对外直接投资（FDI），在那些赢得美国市场份额的“第三方国家”建立了新的生产基地？</li>
+                    <li>这些“第三方国家”在增加对美出口特定产品的同时，是否增加了对中国该产品零部件的进口？</li>
+                </ol>
+            </li>
+        </ul>
+
+        <h3>文章贡献与创新</h3>
+        <ul>
+            <li><strong>实证贡献</strong>：不同于以往基于宏观或行业层面数据的研究（如 Freund et al.,
+                2024），本文利用<strong>企业层面（firm-level）</strong>的海外子公司数据和<strong>细分产品层面（product-level）</strong>的零部件贸易数据，提供了微观证据。
+            </li>
+            <li><strong>概念创新</strong>：提出了“具有中国特色的迁移”（Relocation with Chinese characteristics），即生产地点的转移伴随着中国资本和中间品投入的跟随。
+            </li>
+            <li><strong>方法细节</strong>：利用HS分类系统的特性，精确匹配特定成品的零部件贸易流（如“真空吸尘器”与“真空吸尘器零件”），构建了比传统投入产出表更精确的供应链联系。</li>
+        </ul>
+
+
+
+        <h2>3. 理论分析与假设</h2>
+
+        <h3>核心逻辑链条</h3>
+        <p>贸易壁垒/地缘政治紧张 $\rightarrow$ 改变比较优势 $\rightarrow$ 生产向第三国转移（Reallocation） $\rightarrow$ 中国企业为保持市场份额进行应对：</p>
+        <ul>
+            <li><strong>应对路径 A（资本渠道）</strong>：中国企业通过FDI在第三国设厂（Manufacturing Affiliates）。</li>
+            <li><strong>应对路径 B（中间品渠道）</strong>：第三国工厂依赖中国成熟且低成本的供应链，增加中国零部件进口（Parts Exports）。</li>
+        </ul>
+
+        <h3>理论假设</h3>
+        <ul>
+            <li><strong>假设 1 (FDI
+                    Channel)</strong>：如果新的贸易壁垒改变了第三国相对于中国的比较优势，使其成为对美出口的替代基地，那么这些国家也会成为中国制造业投资的吸引地。因此，主要向美国出口特定产品的中国企业，会在该产品美国市场份额增长较快的第三国设立更多制造型子公司。
+            </li>
+            <li><strong>假设 2 (Parts
+                    Channel)</strong>：即使最终组装转移，中国企业仍可能是中间投入品的最低成本供应商。因此，在特定产品上赢得美国市场份额的国家，会同时增加该产品对应的中国零部件的进口份额。</li>
+        </ul>
+
+
+
+        <h2>4. 研究设计与识别方法</h2>
+
+        <h3>变量设计与数据来源</h3>
+        <ul>
+            <li><strong>数据来源</strong>：
+                <ul>
+                    <li><strong>FDI数据</strong>：CSMAR数据库中上市公司的年报，提取海外子公司信息。利用关键词（如“manufacturing”,
+                        “assembly”）识别制造业子公司，排除贸易/销售子公司（Section 3.1）。</li>
+                    <li><strong>贸易数据（企业级）</strong>：中国海关数据（截至2016年），用于确定企业初始的对美出口产品结构。</li>
+                    <li><strong>贸易数据（零部件）</strong>：UN Comtrade数据库，利用HS分类识别153类具有明确对应关系的“零部件-成品”组合（Section 4.1）。</li>
+                </ul>
+            </li>
+            <li><strong>核心变量测度</strong>：
+                <ul>
+                    <li><strong>被解释变量 1 ($New Affiliates_{fc}$)</strong>：企业 $f$ 在2019-2022年间在国家 $c$ 新设制造业子公司的数量（泊松回归）。
+                    </li>
+                    <li><strong>被解释变量 2 ($\Delta China Export Share_{gc}$)</strong>：2018-2022年间，国家 $c$ 在中国关于商品类别 $g$
+                        的零部件出口中所占份额的变化。</li>
+                    <li><strong>核心解释变量 1 ($\Delta USImportShare_{fc}$)</strong>：基于企业 $f$ 2016年对美出口产品组合加权的、国家 $c$
+                        在美国进口市场份额的变化（2018-2022）。
+                        <div class="math-block-latex">$$ \Delta U S I m p o r t S h a r e _ { f c } = \sum _ { p } \frac
+                            { E x p o r t s t o U S _ { p f , 2 0 1 6 } } { E x p o r t s t o U S _ { f , 2 0 1 6 } }
+                            \left( \frac { U S I m p o r t s _ { p c , 2 0 2 2 } } { U S I m p o r t s _ { p , 2 0 2 2 }
+                            } - \frac { U S I m p o r t s _ { p c , 2 0 1 8 } } { U S I m p o r t s _ { p , 2 0 1 8 } }
+                            \right) $$</div>
+                    </li>
+                    <li><strong>核心解释变量 2 ($\Delta USImportShare_{gc}$)</strong>：2018-2022年间，国家 $c$ 在商品类别 $g$
+                        的下游成品美国进口市场份额的变化。</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>实证策略</h3>
+        <ul>
+            <li><strong>模型 1（FDI 分析 - 泊松回归）</strong>：
+                <div class="math-block-latex">$$ N e w A f f i l i a t e s _ { f c } = e x p ( \beta \Delta U S I m p o
+                    r t S h a r e _ { f c } + \delta _ { f } + \gamma _ { c } ) \times \epsilon _ { f c } $$</div>
+                <ul>
+                    <li><strong>固定效应</strong>：$\delta_f$ 控制企业特征，$\gamma_c$ 控制国家特征（如距离、制度环境）。</li>
+                </ul>
+            </li>
+            <li><strong>模型 2（零部件分析 - OLS回归）</strong>：
+                <div class="math-block-latex">$$ \Delta C h i n a E x p o r t S h a r e _ { g c } = \beta \Delta U S I m
+                    p o r t S h a r e _ { g c } + \delta _ { g } + \gamma _ { c } + \epsilon _ { g c } $$</div>
+                <ul>
+                    <li><strong>固定效应</strong>：$\delta_g$ 控制商品类别特征，$\gamma_c$ 控制国家特征。</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>方法分析</h3>
+        <ul>
+            <li><strong>泊松回归的合理性</strong>：因变量（新设子公司数）是计数变量且存在大量零值，使用PPML（泊松伪最大似然估计）比OLS更合适。</li>
+            <li><strong>长差分（Long Differences）</strong>：使用2018-2022年的变化量，捕捉贸易战后的结构性调整，而非短期波动。</li>
+            <li><strong>安慰剂检验</strong>：使用“非制造业子公司”作为对照组，排除“赢家”国家整体经济增长带来的普遍吸引力。</li>
+        </ul>
+
+
+
+        <h2>5. 结果分析</h2>
+
+        <h3>描述性证据</h3>
+
+        <div class="img-container">
+            <img src="https://cdn.jsdelivr.net/gh/dwdecon/paper_on_the_cloud@main/dify/Figure_2_Trends_in_Chinese_economic_relations_with_top_ten_winner_countries_Pane_3.png"
+                alt="Panel A - Share of manufacturing affiliates of listed Chinese firms" loading="lazy">
+        </div>
+        <div class="img-caption">Figure 2: Trends in Chinese economic relations with top ten ‘winner’ countries
+            (Panel A)</div>
+
+        <div class="img-container">
+            <img src="https://cdn.jsdelivr.net/gh/dwdecon/paper_on_the_cloud@main/dify/Figure_2_Trends_in_Chinese_economic_relations_with_top_ten_winner_countries_Pane_4.png"
+                alt="Panel B - Share of Chinese parts exports on average across goods categories" loading="lazy">
+        </div>
+        <div class="img-caption">Figure 2: Trends in Chinese economic relations with top ten ‘winner’ countries
+            (Panel B)</div>
+
+        <ul>
+            <li><strong>解读</strong>：
+                <ul>
+                    <li><strong>Panel A
+                            (FDI)</strong>：展示了十大“赢家”国家（见表A1）在中国上市公司海外制造业子公司中的份额（实线），该份额与这些国家在美国进口中的份额（虚线）同步急剧上升。</li>
+                    <li><strong>Panel B (Parts)</strong>：展示了这些国家在中国零部件出口中的份额（实线），同样与它们在美国市场的份额增长高度同步。</li>
+                </ul>
+            </li>
+            <li><strong>作者意图</strong>：提供直观的宏观趋势证据，表明“赢家”国家不仅赢得了美国市场，同时也吸引了中国的投资和零部件。</li>
+        </ul>
+
+        <div class="table-wrapper">
+            <table>
+                <caption>Table A3: Summary statistics for Table 1</caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Mean</th>
+                        <th>SD</th>
+                        <th>p1</th>
+                        <th>p25</th>
+                        <th>p50</th>
+                        <th>p75</th>
+                        <th>p99</th>
+                        <th>Max</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="10"><strong>Panel A - Manufacturing affiliates in sample for Table 1 columns (1)
+                                and (2)</strong></td>
+                    </tr>
+                    <tr>
+                        <td colspan="10"><i>By firm (250 firms):</i></td>
+                    </tr>
+                    <tr>
+                        <td>New manufacturing affiliates</td>
+                        <td class="pos">2.11</td>
+                        <td class="pos">2.35</td>
+                        <td></td>
+                        <td class="pos">1</td>
+                        <td class="pos">1</td>
+                        <td class="pos">2</td>
+                        <td></td>
+                        <td class="pos">16</td>
+                        <td class="pos">527</td>
+                    </tr>
+                    <tr>
+                        <td>Manufacturing affiliates in 2017</td>
+                        <td class="pos">1.53</td>
+                        <td class="pos">3.49</td>
+                        <td></td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td class="pos">2</td>
+                        <td></td>
+                        <td class="pos">33</td>
+                        <td class="pos">382</td>
+                    </tr>
+                    <tr>
+                        <td colspan="10"><i>By country (67 countries):</i></td>
+                    </tr>
+                    <tr>
+                        <td>New manufacturing affiliates</td>
+                        <td class="pos">7.87</td>
+                        <td class="pos">13.35</td>
+                        <td></td>
+                        <td class="pos">1</td>
+                        <td class="pos">3</td>
+                        <td class="pos">9</td>
+                        <td></td>
+                        <td class="pos">85</td>
+                        <td class="pos">527</td>
+                    </tr>
+                    <tr>
+                        <td>Manufacturing affiliates in 2017</td>
+                        <td class="pos">5.70</td>
+                        <td class="pos">8.66</td>
+                        <td></td>
+                        <td class="pos">1</td>
+                        <td class="pos">3</td>
+                        <td class="pos">6</td>
+                        <td></td>
+                        <td class="pos">49</td>
+                        <td class="pos">382</td>
+                    </tr>
+                    <tr>
+                        <td colspan="10"><i>By firm-country (16,750 observations):</i></td>
+                    </tr>
+                    <tr>
+                        <td>New manufacturing affiliates</td>
+                        <td class="pos">0.03</td>
+                        <td class="pos">0.24</td>
+                        <td></td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td></td>
+                        <td class="pos">8</td>
+                        <td class="pos">527</td>
+                    </tr>
+                    <tr>
+                        <td>Manufacturing affiliates in 2017</td>
+                        <td class="pos">0.02</td>
+                        <td class="pos">0.22</td>
+                        <td></td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td></td>
+                        <td class="pos">11</td>
+                        <td class="pos">382</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="10"><strong>Panel B - Non-manufacturing affiliates in sample for Table 1 columns
+                                (3) and (4)</strong></td>
+                    </tr>
+                    <tr>
+                        <td colspan="10"><i>By firm (352 firms):</i></td>
+                    </tr>
+                    <tr>
+                        <td>New non-manufacturing affiliates</td>
+                        <td class="pos">3.33</td>
+                        <td class="pos">5.66</td>
+                        <td></td>
+                        <td class="pos">1</td>
+                        <td class="pos">1.5</td>
+                        <td class="pos">3</td>
+                        <td></td>
+                        <td class="pos">57</td>
+                        <td class="pos">1172</td>
+                    </tr>
+                    <tr>
+                        <td>Non-manufacturing affiliates in 2017</td>
+                        <td class="pos">2.66</td>
+                        <td class="pos">5.98</td>
+                        <td></td>
+                        <td>0</td>
+                        <td class="pos">1</td>
+                        <td class="pos">3</td>
+                        <td></td>
+                        <td class="pos">53</td>
+                        <td class="pos">938</td>
+                    </tr>
+                    <tr>
+                        <td colspan="10"><i>By country (91 countries):</i></td>
+                    </tr>
+                    <tr>
+                        <td>New non-manufacturing affiliates</td>
+                        <td class="pos">12.88</td>
+                        <td class="pos">21.33</td>
+                        <td></td>
+                        <td class="pos">1</td>
+                        <td class="pos">5</td>
+                        <td class="pos">14</td>
+                        <td></td>
+                        <td class="pos">146</td>
+                        <td class="pos">1172</td>
+                    </tr>
+                    <tr>
+                        <td>Non-manufacturing affiliates in 2017</td>
+                        <td class="pos">10.30</td>
+                        <td class="pos">18.89</td>
+                        <td></td>
+                        <td class="pos">1</td>
+                        <td class="pos">3</td>
+                        <td class="pos">12</td>
+                        <td></td>
+                        <td class="pos">97</td>
+                        <td class="pos">938</td>
+                    </tr>
+                    <tr>
+                        <td colspan="10"><i>By firm-country (32,032 observations):</i></td>
+                    </tr>
+                    <tr>
+                        <td>New non-manufacturing affiliates</td>
+                        <td class="pos">0.03</td>
+                        <td class="pos">0.34</td>
+                        <td></td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td></td>
+                        <td class="pos">28</td>
+                        <td class="pos">1172</td>
+                    </tr>
+                    <tr>
+                        <td>Non-manufacturing affiliates in 2017</td>
+                        <td class="pos">0.03</td>
+                        <td class="pos">0.32</td>
+                        <td></td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td></td>
+                        <td class="pos">25</td>
+                        <td class="pos">938</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="10"><strong>Panel C - Changes in US import shares in samples for Table 1</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Δ US import share (×100, pp):</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Manufacturing affiliates sample</td>
+                        <td class="pos">0.11</td>
+                        <td class="pos">1.56</td>
+                        <td class="neg">-2.73</td>
+                        <td class="neg">-0.46</td>
+                        <td>0.00</td>
+                        <td class="pos">1.20</td>
+                        <td class="pos">5.18</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Non-manufacturing affiliates sample</td>
+                        <td class="pos">0.08</td>
+                        <td class="pos">1.55</td>
+                        <td class="neg">-2.56</td>
+                        <td class="neg">-0.34</td>
+                        <td>0.00</td>
+                        <td class="pos">0.76</td>
+                        <td class="pos">4.37</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ul>
+            <li><strong>解读</strong>：报告了FDI回归样本的描述性统计。平均每个企业在样本期间新设2.11个制造业子公司。</li>
+            <li><strong>作者意图</strong>：展示数据的分布特征，特别是零值的普遍性，证明使用泊松回归的必要性。</li>
+        </ul>
+
+        <div class="table-wrapper">
+            <table>
+                <caption>Table A4: Summary statistics for Table 2</caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Mean</th>
+                        <th>SD</th>
+                        <th>p1</th>
+                        <th>p5</th>
+                        <th>p50</th>
+                        <th>p95</th>
+                        <th>p99</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="8"><b>Δ US downstream import share (×100, pp):</b></td>
+                    </tr>
+                    <tr>
+                        <td>All goods categories<br><br></td> <!-- Extra br to align with 3-line headers -->
+                        <td class="pos">0.02</td>
+                        <td class="pos">1.22</td>
+                        <td class="neg">-1.38</td>
+                        <td class="neg">-0.05</td>
+                        <td>0.00</td>
+                        <td class="pos">0.12</td>
+                        <td class="pos">2.19</td>
+                    </tr>
+                    <tr>
+                        <td>Excluding smallest<br>5%</td>
+                        <td class="pos">0.02</td>
+                        <td class="pos">1.12</td>
+                        <td class="neg">-1.28</td>
+                        <td class="neg">-0.05</td>
+                        <td>0.00</td>
+                        <td class="pos">0.12</td>
+                        <td class="pos">2.13</td>
+                    </tr>
+                    <tr>
+                        <td>Excluding smallest<br>10%</td>
+                        <td class="pos">0.02</td>
+                        <td class="pos">1.04</td>
+                        <td class="neg">-1.21</td>
+                        <td class="neg">-0.04</td>
+                        <td>0.00</td>
+                        <td class="pos">0.12</td>
+                        <td class="pos">1.89</td>
+                    </tr>
+                    <tr>
+                        <td>Excluding smallest<br>25%</td>
+                        <td class="pos">0.03</td>
+                        <td class="pos">0.83</td>
+                        <td class="neg">-0.96</td>
+                        <td class="neg">-0.04</td>
+                        <td>0.00</td>
+                        <td class="pos">0.12</td>
+                        <td class="pos">1.67</td>
+                    </tr>
+                    <tr>
+                        <td colspan="8"><b>Δ China parts export share (×100, pp):</b></td>
+                    </tr>
+                    <tr>
+                        <td>All goods categories</td>
+                        <td class="neg">-0.00</td>
+                        <td class="pos">1.42</td>
+                        <td class="neg">-3.07</td>
+                        <td class="neg">-0.39</td>
+                        <td>0.00</td>
+                        <td class="pos">0.51</td>
+                        <td class="pos">2.88</td>
+                    </tr>
+                    <tr>
+                        <td>Excluding smallest 5%</td>
+                        <td class="neg">-0.00</td>
+                        <td class="pos">1.42</td>
+                        <td class="neg">-3.05</td>
+                        <td class="neg">-0.39</td>
+                        <td>0.00</td>
+                        <td class="pos">0.50</td>
+                        <td class="pos">2.85</td>
+                    </tr>
+                    <tr>
+                        <td>Excluding smallest 10%</td>
+                        <td class="neg">-0.00</td>
+                        <td class="pos">1.38</td>
+                        <td class="neg">-2.99</td>
+                        <td class="neg">-0.39</td>
+                        <td>0.00</td>
+                        <td class="pos">0.49</td>
+                        <td class="pos">2.77</td>
+                    </tr>
+                    <tr>
+                        <td>Excluding smallest 25%</td>
+                        <td class="neg">-0.00</td>
+                        <td class="pos">1.11</td>
+                        <td class="neg">-2.62</td>
+                        <td class="neg">-0.37</td>
+                        <td>0.00</td>
+                        <td class="pos">0.47</td>
+                        <td class="pos">2.48</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ul>
+            <li><strong>解读</strong>：报告了零部件回归样本的统计量。</li>
+        </ul>
+
+        <h3>基准回归结果</h3>
+
+        <div class="table-wrapper">
+            <table>
+                <caption>Table 1: Number of new affiliates by firm and country</caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th colspan="2">Manufacturing affiliates</th>
+                        <th colspan="2">Non-manufacturing affiliates</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th>(1)</th>
+                        <th>(2)</th>
+                        <th>(3)</th>
+                        <th>(4)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Variable 1 -->
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">8.237</td>
+                        <td class="pos">8.103</td>
+                        <td class="neg">-1.516</td>
+                        <td class="neg">-1.442</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(3.127)</td>
+                        <td>(3.340)</td>
+                        <td>(1.775)</td>
+                        <td>(1.945)</td>
+                    </tr>
+                    <!-- Variable 2 -->
+                    <tr class="coef-row">
+                        <td>Number of affiliates in 2017</td>
+                        <td></td>
+                        <td class="pos">0.334</td>
+                        <td></td>
+                        <td class="pos">0.203</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td></td>
+                        <td>(0.090)</td>
+                        <td></td>
+                        <td>(0.080)</td>
+                    </tr>
+                    <!-- Fixed Effects & Stats -->
+                    <tr>
+                        <td>Firm FEs</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Country FEs</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Firms</td>
+                        <td>250</td>
+                        <td>250</td>
+                        <td>352</td>
+                        <td>352</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>67</td>
+                        <td>67</td>
+                        <td>91</td>
+                        <td>91</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>16,750</td>
+                        <td>16,750</td>
+                        <td>32,032</td>
+                        <td>32,032</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ul>
+            <li><strong>解读</strong>：
+                <ul>
+                    <li><strong>第(1)列</strong>：系数为8.237且显著。</li>
+                    <li><strong>第(2)列</strong>：加入控制变量（2017年存量子公司数）后，系数为8.103
+                        ($p=0.008$)。这意味着，如果一个国家在某企业主要出口产品的美国市场份额增加1个百分点，该企业在该国新设制造业子公司的数量将增加约 <strong>8.6%</strong>
+                        $(e^{8.237 \times 0.01} - 1)$。</li>
+                    <li><strong>第(3)-(4)列</strong>：作为安慰剂检验，因变量换为“非制造业子公司”（如销售办事处）。系数不显著且为负值。</li>
+                </ul>
+            </li>
+            <li><strong>设计意图</strong>：
+                <ul>
+                    <li><strong>核心效应</strong>：证实了中国制造业投资确实流向了那些抢占美国市场的国家。</li>
+                    <li><strong>排除“本地增长”假说</strong>：非制造业子公司的结果表明，这种投资不是因为这些国家经济整体增长带来的（否则销售子公司也该增加），而是特指与生产相关的转移。</li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="table-wrapper">
+            <table>
+                <caption>Table 2: Share of Chinese parts exports by goods category and country</caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>All goods categories<br><br>(1)</th>
+                        <th>Excluding smallest<br>5%<br>(2)</th>
+                        <th>Excluding smallest<br>10%<br>(3)</th>
+                        <th>Excluding smallest<br>25%<br>(4)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">0.118</td>
+                        <td class="pos">0.156</td>
+                        <td class="pos">0.165</td>
+                        <td class="pos">0.141</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(0.069)</td>
+                        <td>(0.082)</td>
+                        <td>(0.101)</td>
+                        <td>(0.063)</td>
+                    </tr>
+                    <tr>
+                        <td>Goods category FEs</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Country FEs</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Goods categories</td>
+                        <td>153</td>
+                        <td>145</td>
+                        <td>137</td>
+                        <td>114</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>209</td>
+                        <td>209</td>
+                        <td>209</td>
+                        <td>209</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>31,977</td>
+                        <td>30,305</td>
+                        <td>28,633</td>
+                        <td>23,826</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ul>
+            <li><strong>解读</strong>：
+                <ul>
+                    <li><strong>第(1)列</strong>：系数为0.118
+                        ($p=0.091$)。表明某国在某类成品的美国进口份额每增加1个百分点，其在中国该类零部件出口中的份额增加约0.118个百分点。</li>
+                    <li><strong>第(2)-(4)列</strong>：剔除贸易额较小的产品类别后，结果依然稳健，系数甚至略有上升（0.141-0.165）。</li>
+                </ul>
+            </li>
+            <li><strong>设计意图</strong>：证实了供应链的“延长”现象——成品生产转移了，但零部件供应仍留在中国。</li>
+        </ul>
+
+        <h3>稳健性与异质性检验</h3>
+
+        <div class="table-wrapper">
+            <table>
+                <caption>Table 3: Additional evidence on relevance of main results to US-China relations</caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Manufacturing<br>affiliates<br>(1)</th>
+                        <th>Non-manufacturing<br>affiliates<br>(2)</th>
+                        <th>All goods categories<br><br>(3)</th>
+                        <th>Excluding smallest<br>25%<br>(4)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Panel A -->
+                    <tr>
+                        <td colspan="5"><strong>Panel A - Results for other major economies</strong></td>
+                    </tr>
+
+                    <!-- EU -->
+                    <tr class="coef-row">
+                        <td>Δ EU import share</td>
+                        <td class="neg">-1.394</td>
+                        <td class="neg">-0.374</td>
+                        <td class="neg">-0.005</td>
+                        <td class="pos">0.010</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(4.588)</td>
+                        <td>(1.326)</td>
+                        <td>(0.026)</td>
+                        <td>(0.034)</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>12,561</td>
+                        <td>24,840</td>
+                        <td>28,458</td>
+                        <td>21,204</td>
+                    </tr>
+
+                    <!-- Japan -->
+                    <tr class="coef-row">
+                        <td>Δ Japan import share</td>
+                        <td class="neg">-1.193</td>
+                        <td class="pos">3.861</td>
+                        <td class="pos">0.009</td>
+                        <td class="neg">-0.010</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(2.437)</td>
+                        <td>(0.720)</td>
+                        <td>(0.014)</td>
+                        <td>(0.023)</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>12,411</td>
+                        <td>25,010</td>
+                        <td>30,906</td>
+                        <td>23,028</td>
+                    </tr>
+
+                    <!-- Canada -->
+                    <tr class="coef-row">
+                        <td>Δ Canada import share</td>
+                        <td class="pos">1.150</td>
+                        <td class="pos">0.316</td>
+                        <td class="pos">0.016</td>
+                        <td class="pos">0.030</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(5.093)</td>
+                        <td>(0.762)</td>
+                        <td>(0.015)</td>
+                        <td>(0.060)</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>10,443</td>
+                        <td>23,042</td>
+                        <td>31,059</td>
+                        <td>23,142</td>
+                    </tr>
+
+                    <!-- Panel B -->
+                    <tr>
+                        <td colspan="5"><strong>Panel B - Control for change in ROW import share</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">8.377</td>
+                        <td class="neg">-1.353</td>
+                        <td class="pos">0.114</td>
+                        <td class="pos">0.120</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(3.167)</td>
+                        <td>(1.712)</td>
+                        <td>(0.069)</td>
+                        <td>(0.058)</td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ ROW import share</td>
+                        <td class="neg">-4.174</td>
+                        <td class="neg">-2.844</td>
+                        <td class="pos">0.107</td>
+                        <td class="pos">0.272</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(5.134)</td>
+                        <td>(3.628)</td>
+                        <td>(0.052)</td>
+                        <td>(0.056)</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>16,750</td>
+                        <td>32,032</td>
+                        <td>31,977</td>
+                        <td>23,826</td>
+                    </tr>
+
+                    <!-- Panel C -->
+                    <tr>
+                        <td colspan="5"><strong>Panel C - Heterogeneity by Chinese loss or gain in US import
+                                share</strong></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="2" style="border-bottom: 1px solid black;">Manufacturing affiliates</td>
+                        <td colspan="2" style="border-bottom: 1px solid black;">Share of parts exports</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>China loss</td>
+                        <td>China gain</td>
+                        <td>China loss</td>
+                        <td>China gain</td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">9.728</td>
+                        <td class="neg">-4.883</td>
+                        <td class="pos">0.169</td>
+                        <td class="pos">0.001</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(2.491)</td>
+                        <td>(3.083)</td>
+                        <td>(0.099)</td>
+                        <td>(0.039)</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>12,915</td>
+                        <td>21,736</td>
+                        <td>10,241</td>
+                        <td>13,585</td>
+                    </tr>
+
+                    <!-- Panel D -->
+                    <tr>
+                        <td colspan="5"><strong>Panel D - Heterogeneity by exposure to rises in US tariffs on Chinese
+                                goods</strong></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="2" style="border-bottom: 1px solid black;">Manufacturing affiliates</td>
+                        <td colspan="2" style="border-bottom: 1px solid black;">Share of parts exports</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Above-median<br>exposure</td>
+                        <td>Below-median<br>exposure</td>
+                        <td>Above-median<br>exposure</td>
+                        <td>Below-median<br>exposure</td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">12.013</td>
+                        <td class="pos">0.309</td>
+                        <td class="pos">0.139</td>
+                        <td class="pos">0.106</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(3.830)</td>
+                        <td>(4.027)</td>
+                        <td>(0.065)</td>
+                        <td>(0.088)</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>6,000</td>
+                        <td>15,884</td>
+                        <td>16,093</td>
+                        <td>7,733</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <caption>Table A5: Number of new affiliates by firm and country - alternative measure and base year
+                </caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th colspan="2">Manufacturing<br>affiliates</th>
+                        <th colspan="2">Non-manufacturing<br>affiliates</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th>(1)</th>
+                        <th>(2)</th>
+                        <th>(3)</th>
+                        <th>(4)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Panel A -->
+                    <tr>
+                        <td colspan="5"><strong>Panel A - Firm-specific product mix based on listed firms only</strong>
+                        </td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">10.452</td>
+                        <td class="pos">10.185</td>
+                        <td class="pos">0.952</td>
+                        <td class="pos">1.467</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(3.252)</td>
+                        <td>(3.229)</td>
+                        <td>(1.477)</td>
+                        <td>(1.527)</td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Number of affiliates in 2017</td>
+                        <td></td>
+                        <td class="pos">0.306</td>
+                        <td></td>
+                        <td class="pos">0.628</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td></td>
+                        <td>(0.119)</td>
+                        <td></td>
+                        <td>(0.119)</td>
+                    </tr>
+                    <tr>
+                        <td>Firms</td>
+                        <td>181</td>
+                        <td>181</td>
+                        <td>352</td>
+                        <td>352</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>52</td>
+                        <td>52</td>
+                        <td>91</td>
+                        <td>91</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>9,412</td>
+                        <td>9,412</td>
+                        <td>18,634</td>
+                        <td>18,634</td>
+                    </tr>
+
+                    <!-- Panel B -->
+                    <tr>
+                        <td colspan="5"><strong>Panel B - Variables defined using 2017 base year</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">8.125</td>
+                        <td class="pos">8.100</td>
+                        <td class="pos">0.899</td>
+                        <td class="pos">0.851</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(2.700)</td>
+                        <td>(2.743)</td>
+                        <td>(1.342)</td>
+                        <td>(1.472)</td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Number of affiliates in 2017</td>
+                        <td></td>
+                        <td class="pos">0.299</td>
+                        <td></td>
+                        <td class="pos">0.207</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td></td>
+                        <td>(0.090)</td>
+                        <td></td>
+                        <td>(0.078)</td>
+                    </tr>
+                    <tr>
+                        <td>Firms</td>
+                        <td>295</td>
+                        <td>295</td>
+                        <td>400</td>
+                        <td>400</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>78</td>
+                        <td>78</td>
+                        <td>96</td>
+                        <td>96</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>23,010</td>
+                        <td>23,010</td>
+                        <td>38,400</td>
+                        <td>38,400</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ul>
+            <li><strong>解读</strong>：使用2017年作为基期，或者仅使用上市公司本身（而非整个集团）的数据构建变量，结果依然稳健。</li>
+        </ul>
+
+        <div class="table-wrapper">
+            <table>
+                <caption>Table A6: Number of new affiliates by firm and country - ‘top winners’ regressions</caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th colspan="2">Manufacturing<br>affiliates</th>
+                        <th colspan="2">Non-manufacturing<br>affiliates</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th>(1)</th>
+                        <th>(2)</th>
+                        <th>(3)</th>
+                        <th>(4)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Panel A -->
+                    <tr>
+                        <td colspan="5"><strong>Panel A - Top ‘winner’ country by firm-specific product mix</strong>
+                        </td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Top winner dummy</td>
+                        <td class="pos">0.758</td>
+                        <td class="pos">0.778</td>
+                        <td class="neg">-0.079</td>
+                        <td class="neg">-0.001</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(0.290)</td>
+                        <td>(0.292)</td>
+                        <td>(0.268)</td>
+                        <td>(0.303)</td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Number of affiliates in 2017</td>
+                        <td></td>
+                        <td class="pos">0.341</td>
+                        <td></td>
+                        <td class="pos">0.203</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td></td>
+                        <td>(0.092)</td>
+                        <td></td>
+                        <td>(0.079)</td>
+                    </tr>
+                    <tr>
+                        <td>Firms</td>
+                        <td>250</td>
+                        <td>250</td>
+                        <td>352</td>
+                        <td>352</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>67</td>
+                        <td>67</td>
+                        <td>91</td>
+                        <td>91</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>16,750</td>
+                        <td>16,750</td>
+                        <td>32,032</td>
+                        <td>32,032</td>
+                    </tr>
+
+                    <!-- Panel B -->
+                    <tr>
+                        <td colspan="5"><strong>Panel B - Top three ‘winner’ countries by firm-specific product
+                                mix</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Top three winners dummy</td>
+                        <td class="pos">0.721</td>
+                        <td class="pos">0.695</td>
+                        <td class="pos">0.055</td>
+                        <td class="pos">0.104</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(0.311)</td>
+                        <td>(0.302)</td>
+                        <td>(0.177)</td>
+                        <td>(0.192)</td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Number of affiliates in 2017</td>
+                        <td></td>
+                        <td class="pos">0.326</td>
+                        <td></td>
+                        <td class="pos">0.204</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td></td>
+                        <td>(0.077)</td>
+                        <td></td>
+                        <td>(0.079)</td>
+                    </tr>
+                    <tr>
+                        <td>Firms</td>
+                        <td>250</td>
+                        <td>250</td>
+                        <td>352</td>
+                        <td>352</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>67</td>
+                        <td>67</td>
+                        <td>91</td>
+                        <td>91</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>16,750</td>
+                        <td>16,750</td>
+                        <td>32,032</td>
+                        <td>32,032</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ul>
+            <li><strong>解读</strong>：将连续变量替换为“最大赢家”虚拟变量。结果显示企业在“最大赢家”国家的投资增加了113%。</li>
+        </ul>
+
+        <div class="table-wrapper">
+            <table>
+                <caption>Table A7: Number of new affiliates by firm and country - heterogeneity by region</caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th colspan="2">Manufacturing<br>affiliates</th>
+                        <th colspan="2">Non-manufacturing<br>affiliates</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th>(1)</th>
+                        <th>(2)</th>
+                        <th>(3)</th>
+                        <th>(4)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Panel A -->
+                    <tr>
+                        <td colspan="5"><strong>Panel A - Countries in East and Southeast Asia</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">11.250</td>
+                        <td class="pos">12.346</td>
+                        <td class="neg">-0.344</td>
+                        <td class="neg">-0.250</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(3.272)</td>
+                        <td>(3.302)</td>
+                        <td>(3.060)</td>
+                        <td>(3.007)</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>{0.131}</td>
+                        <td>{0.144}</td>
+                        <td>{0.921}</td>
+                        <td>{0.943}</td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Number of affiliates in 2017</td>
+                        <td></td>
+                        <td class="pos">0.648</td>
+                        <td></td>
+                        <td class="pos">0.133</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td></td>
+                        <td>(0.262)</td>
+                        <td></td>
+                        <td>(0.051)</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td></td>
+                        <td>{0.041}</td>
+                        <td></td>
+                        <td>{0.400}</td>
+                    </tr>
+                    <tr>
+                        <td>Firms</td>
+                        <td>149</td>
+                        <td>149</td>
+                        <td>199</td>
+                        <td>199</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>12</td>
+                        <td>12</td>
+                        <td>12</td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>1,788</td>
+                        <td>1,788</td>
+                        <td>2,388</td>
+                        <td>2,388</td>
+                    </tr>
+
+                    <!-- Panel B -->
+                    <tr>
+                        <td colspan="5"><strong>Panel B - Countries outside East and Southeast Asia</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">0.799</td>
+                        <td class="neg">-0.031</td>
+                        <td class="neg">-2.318</td>
+                        <td class="neg">-2.305</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(5.029)</td>
+                        <td>(5.011)</td>
+                        <td>(1.489)</td>
+                        <td>(1.523)</td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Number of affiliates in 2017</td>
+                        <td></td>
+                        <td class="pos">0.251</td>
+                        <td></td>
+                        <td class="pos">0.246</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td></td>
+                        <td>(0.038)</td>
+                        <td></td>
+                        <td>(0.089)</td>
+                    </tr>
+                    <tr>
+                        <td>Firms</td>
+                        <td>142</td>
+                        <td>142</td>
+                        <td>253</td>
+                        <td>253</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>55</td>
+                        <td>55</td>
+                        <td>79</td>
+                        <td>79</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>7,810</td>
+                        <td>7,810</td>
+                        <td>19,987</td>
+                        <td>19,987</td>
+                    </tr>
+
+                    <!-- Panel C -->
+                    <tr>
+                        <td colspan="5"><strong>Panel C - Non-high-income countries outside East and Southeast
+                                Asia</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">9.855</td>
+                        <td class="pos">8.769</td>
+                        <td class="neg">-2.175</td>
+                        <td class="neg">-2.053</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(4.904)</td>
+                        <td>(5.422)</td>
+                        <td>(1.634)</td>
+                        <td>(1.682)</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>{0.255}</td>
+                        <td>{0.379}</td>
+                        <td>{0.427}</td>
+                        <td>{0.454}</td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Number of affiliates in 2017</td>
+                        <td></td>
+                        <td class="pos">0.308</td>
+                        <td></td>
+                        <td class="pos">0.250</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td></td>
+                        <td>(0.174)</td>
+                        <td></td>
+                        <td>(0.407)</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td></td>
+                        <td>{0.364}</td>
+                        <td></td>
+                        <td>{0.539}</td>
+                    </tr>
+                    <tr>
+                        <td>Firms</td>
+                        <td>71</td>
+                        <td>71</td>
+                        <td>95</td>
+                        <td>95</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>26</td>
+                        <td>26</td>
+                        <td>40</td>
+                        <td>40</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>1,846</td>
+                        <td>1,846</td>
+                        <td>3,800</td>
+                        <td>3,800</td>
+                    </tr>
+
+                    <!-- Panel D -->
+                    <tr>
+                        <td colspan="5"><strong>Panel D - High-income countries outside East and Southeast Asia</strong>
+                        </td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="neg">-2.255</td>
+                        <td class="neg">-3.321</td>
+                        <td class="neg">-2.858</td>
+                        <td class="neg">-3.014</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(6.199)</td>
+                        <td>(5.838)</td>
+                        <td>(2.090)</td>
+                        <td>(2.196)</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>{0.821}</td>
+                        <td>{0.725}</td>
+                        <td>{0.281}</td>
+                        <td>{0.279}</td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Number of affiliates in 2017</td>
+                        <td></td>
+                        <td class="pos">0.220</td>
+                        <td></td>
+                        <td class="pos">0.256</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td></td>
+                        <td>(0.035)</td>
+                        <td></td>
+                        <td>(0.079)</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td></td>
+                        <td>{0.099}</td>
+                        <td></td>
+                        <td>{0.000}</td>
+                    </tr>
+                    <tr>
+                        <td>Firms</td>
+                        <td>91</td>
+                        <td>91</td>
+                        <td>211</td>
+                        <td>211</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>29</td>
+                        <td>29</td>
+                        <td>39</td>
+                        <td>39</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ul>
+            <li><strong>解读</strong>：效应主要集中在东亚和东南亚国家（Panel A），非高收入国家（Panel C）也有显著效应，但高收入国家（Panel D）不显著。</li>
+            <li><strong>设计意图</strong>：揭示了供应链转移的地理方向——主要是周边的发展中经济体。</li>
+        </ul>
+
+        <div class="table-wrapper">
+            <table>
+                <caption>Table A8: Number of new affiliates by firm and country - heterogeneity by industry</caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th colspan="2">Manufacturing<br>affiliates</th>
+                        <th colspan="2">Non-manufacturing<br>affiliates</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th>(1)</th>
+                        <th>(2)</th>
+                        <th>(3)</th>
+                        <th>(4)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Panel A -->
+                    <tr>
+                        <td colspan="5"><strong>Panel A - Electronics and instruments</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">4.349</td>
+                        <td class="pos">3.657</td>
+                        <td class="neg">-4.253</td>
+                        <td class="neg">-4.173</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(3.579)</td>
+                        <td>(3.528)</td>
+                        <td>(3.535)</td>
+                        <td>(3.533)</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>{0.396}</td>
+                        <td>{0.488}</td>
+                        <td>{0.252}</td>
+                        <td>{0.264}</td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Number of affiliates in 2017</td>
+                        <td></td>
+                        <td class="pos">1.354</td>
+                        <td></td>
+                        <td class="pos">0.048</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td></td>
+                        <td>(0.307)</td>
+                        <td></td>
+                        <td>(0.037)</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td></td>
+                        <td>{0.031}</td>
+                        <td></td>
+                        <td>{0.286}</td>
+                    </tr>
+                    <tr>
+                        <td>Firms</td>
+                        <td>57</td>
+                        <td>57</td>
+                        <td>75</td>
+                        <td>75</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>27</td>
+                        <td>27</td>
+                        <td>59</td>
+                        <td>59</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>1,539</td>
+                        <td>1,539</td>
+                        <td>4,425</td>
+                        <td>4,425</td>
+                    </tr>
+
+                    <!-- Panel B -->
+                    <tr>
+                        <td colspan="5"><strong>Panel B - Electrical equipment</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">18.836</td>
+                        <td class="pos">18.496</td>
+                        <td class="neg">-8.145</td>
+                        <td class="neg">-7.663</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(3.948)</td>
+                        <td>(5.049)</td>
+                        <td>(4.345)</td>
+                        <td>(5.377)</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>{0.021}</td>
+                        <td>{0.026}</td>
+                        <td>{0.225}</td>
+                        <td>{0.321}</td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Number of affiliates in 2017</td>
+                        <td></td>
+                        <td class="pos">1.400</td>
+                        <td></td>
+                        <td class="pos">0.175</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td></td>
+                        <td>(0.617)</td>
+                        <td></td>
+                        <td>(0.095)</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td></td>
+                        <td>{0.029}</td>
+                        <td></td>
+                        <td>{0.244}</td>
+                    </tr>
+                    <tr>
+                        <td>Firms</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>44</td>
+                        <td>44</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>22</td>
+                        <td>22</td>
+                        <td>39</td>
+                        <td>39</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>792</td>
+                        <td>792</td>
+                        <td>1,716</td>
+                        <td>1,716</td>
+                    </tr>
+
+                    <!-- Panel C -->
+                    <tr>
+                        <td colspan="5"><strong>Panel C - Other machinery</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">10.945</td>
+                        <td class="pos">9.171</td>
+                        <td class="neg">-3.474</td>
+                        <td class="neg">-4.008</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(5.574)</td>
+                        <td>(6.173)</td>
+                        <td>(5.565)</td>
+                        <td>(6.032)</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>{0.109}</td>
+                        <td>{0.168}</td>
+                        <td>{0.590}</td>
+                        <td>{0.579}</td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Number of affiliates in 2017</td>
+                        <td></td>
+                        <td class="pos">0.822</td>
+                        <td></td>
+                        <td class="pos">0.669</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td></td>
+                        <td>(0.166)</td>
+                        <td></td>
+                        <td>(0.217)</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td></td>
+                        <td>{0.041}</td>
+                        <td></td>
+                        <td>{0.041}</td>
+                    </tr>
+                    <tr>
+                        <td>Firms</td>
+                        <td>50</td>
+                        <td>50</td>
+                        <td>63</td>
+                        <td>63</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>41</td>
+                        <td>41</td>
+                        <td>53</td>
+                        <td>53</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>2,050</td>
+                        <td>2,050</td>
+                        <td>3,339</td>
+                        <td>3,339</td>
+                    </tr>
+
+                    <!-- Panel D -->
+                    <tr>
+                        <td colspan="5"><strong>Panel D - All other industries</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">5.891</td>
+                        <td class="pos">6.404</td>
+                        <td class="pos">2.973</td>
+                        <td class="pos">3.481</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(5.164)</td>
+                        <td>(5.733)</td>
+                        <td>(2.676)</td>
+                        <td>(2.601)</td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Number of affiliates in 2017</td>
+                        <td></td>
+                        <td class="pos">0.320</td>
+                        <td></td>
+                        <td class="pos">0.476</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td></td>
+                        <td>(0.086)</td>
+                        <td></td>
+                        <td>(0.094)</td>
+                    </tr>
+                    <tr>
+                        <td>Firms</td>
+                        <td>107</td>
+                        <td>107</td>
+                        <td>170</td>
+                        <td>170</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>52</td>
+                        <td>52</td>
+                        <td>69</td>
+                        <td>69</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>5,564</td>
+                        <td>5,564</td>
+                        <td>11,730</td>
+                        <td>11,730</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ul>
+            <li><strong>解读</strong>：在电气设备（Electrical equipment）行业效应最强。</li>
+        </ul>
+
+        <div class="table-wrapper">
+            <table>
+                <caption>Table A9: Share of Chinese parts exports by goods category and country - alternative measure
+                    and base year</caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>All categories<br><br>(1)</th>
+                        <th>Excluding smallest<br>5%<br>(2)</th>
+                        <th>Excluding smallest<br>10%<br>(3)</th>
+                        <th>Excluding smallest<br>25%<br>(4)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Panel A -->
+                    <tr>
+                        <td colspan="5"><strong>Panel A - Excluding categories where parts are grouped with other
+                                products</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">0.113</td>
+                        <td class="pos">0.155</td>
+                        <td class="pos">0.170</td>
+                        <td class="pos">0.124</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(0.085)</td>
+                        <td>(0.106)</td>
+                        <td>(0.119)</td>
+                        <td>(0.065)</td>
+                    </tr>
+                    <tr>
+                        <td>Goods categories</td>
+                        <td>108</td>
+                        <td>102</td>
+                        <td>96</td>
+                        <td>79</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>209</td>
+                        <td>209</td>
+                        <td>209</td>
+                        <td>209</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>22,572</td>
+                        <td>21,318</td>
+                        <td>20,064</td>
+                        <td>16,511</td>
+                    </tr>
+
+                    <!-- Panel B -->
+                    <tr>
+                        <td colspan="5"><strong>Panel B - Variables defined using 2017 base year</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">0.065</td>
+                        <td class="pos">0.091</td>
+                        <td class="pos">0.113</td>
+                        <td class="pos">0.162</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(0.039)</td>
+                        <td>(0.042)</td>
+                        <td>(0.049)</td>
+                        <td>(0.049)</td>
+                    </tr>
+                    <tr>
+                        <td>Goods categories</td>
+                        <td>153</td>
+                        <td>145</td>
+                        <td>137</td>
+                        <td>114</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>209</td>
+                        <td>209</td>
+                        <td>209</td>
+                        <td>209</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>31,977</td>
+                        <td>30,305</td>
+                        <td>28,633</td>
+                        <td>23,826</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ul>
+            <li><strong>解读</strong>：排除零件与成品混合分类的情况，结果稳健。</li>
+        </ul>
+
+        <div class="table-wrapper">
+            <table>
+                <caption>Table A10: Share of Chinese parts exports by goods category and country - ‘top winners’
+                    regressions</caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>All categories<br><br>(1)</th>
+                        <th>Excluding smallest<br>5%<br>(2)</th>
+                        <th>Excluding smallest<br>10%<br>(3)</th>
+                        <th>Excluding smallest<br>25%<br>(4)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Panel A -->
+                    <tr>
+                        <td colspan="5"><strong>Panel A - Top ‘winner’ country by goods category</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Top winner dummy</td>
+                        <td class="pos">0.008</td>
+                        <td class="pos">0.008</td>
+                        <td class="pos">0.008</td>
+                        <td class="pos">0.011</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(0.008)</td>
+                        <td>(0.008)</td>
+                        <td>(0.009)</td>
+                        <td>(0.009)</td>
+                    </tr>
+                    <tr>
+                        <td>Goods categories</td>
+                        <td>153</td>
+                        <td>145</td>
+                        <td>137</td>
+                        <td>114</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>209</td>
+                        <td>209</td>
+                        <td>209</td>
+                        <td>209</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>31,977</td>
+                        <td>30,305</td>
+                        <td>28,633</td>
+                        <td>23,826</td>
+                    </tr>
+
+                    <!-- Panel B -->
+                    <tr>
+                        <td colspan="5"><strong>Panel B - Top three ‘winner’ countries by goods category</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Top three winners dummy</td>
+                        <td class="pos">0.008</td>
+                        <td class="pos">0.008</td>
+                        <td class="pos">0.007</td>
+                        <td class="pos">0.009</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(0.003)</td>
+                        <td>(0.003)</td>
+                        <td>(0.003)</td>
+                        <td>(0.003)</td>
+                    </tr>
+                    <tr>
+                        <td>Goods categories</td>
+                        <td>153</td>
+                        <td>145</td>
+                        <td>137</td>
+                        <td>114</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>209</td>
+                        <td>209</td>
+                        <td>209</td>
+                        <td>209</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>31,977</td>
+                        <td>30,305</td>
+                        <td>28,633</td>
+                        <td>23,826</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ul>
+            <li><strong>解读</strong>：类似Table A6，使用虚拟变量验证零部件出口结果的稳健性。</li>
+        </ul>
+
+        <div class="table-wrapper">
+            <table>
+                <caption>Table A11: Share of Chinese parts exports by goods category and country - heterogeneity by
+                    region</caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>All categories<br><br>(1)</th>
+                        <th>Excluding smallest<br>5%<br>(2)</th>
+                        <th>Excluding smallest<br>10%<br>(3)</th>
+                        <th>Excluding smallest<br>25%<br>(4)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Panel A -->
+                    <tr>
+                        <td colspan="5"><strong>Panel A - Countries in East and Southeast Asia</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">0.184</td>
+                        <td class="pos">0.192</td>
+                        <td class="pos">0.187</td>
+                        <td class="pos">0.211</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(0.057)</td>
+                        <td>(0.058)</td>
+                        <td>(0.072)</td>
+                        <td>(0.088)</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>{0.052}</td>
+                        <td>{0.044}</td>
+                        <td>{0.057}</td>
+                        <td>{0.033}</td>
+                    </tr>
+                    <tr>
+                        <td>Goods categories</td>
+                        <td>153</td>
+                        <td>145</td>
+                        <td>137</td>
+                        <td>114</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>15</td>
+                        <td>15</td>
+                        <td>15</td>
+                        <td>15</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>2,295</td>
+                        <td>2,175</td>
+                        <td>2,055</td>
+                        <td>1,710</td>
+                    </tr>
+
+                    <!-- Panel B -->
+                    <tr>
+                        <td colspan="5"><strong>Panel B - Countries outside East and Southeast Asia</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">0.090</td>
+                        <td class="pos">0.138</td>
+                        <td class="pos">0.157</td>
+                        <td class="pos">0.058</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(0.096)</td>
+                        <td>(0.129)</td>
+                        <td>(0.154)</td>
+                        <td>(0.064)</td>
+                    </tr>
+                    <tr>
+                        <td>Goods categories</td>
+                        <td>153</td>
+                        <td>145</td>
+                        <td>137</td>
+                        <td>114</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>194</td>
+                        <td>194</td>
+                        <td>194</td>
+                        <td>194</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>29,682</td>
+                        <td>28,130</td>
+                        <td>26,578</td>
+                        <td>22,116</td>
+                    </tr>
+
+                    <!-- Panel C -->
+                    <tr>
+                        <td colspan="5"><strong>Panel C - Non-high-income countries outside East and Southeast
+                                Asia</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">0.045</td>
+                        <td class="pos">0.095</td>
+                        <td class="pos">0.099</td>
+                        <td class="pos">0.146</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(0.018)</td>
+                        <td>(0.045)</td>
+                        <td>(0.047)</td>
+                        <td>(0.029)</td>
+                    </tr>
+                    <tr>
+                        <td>Goods categories</td>
+                        <td>153</td>
+                        <td>145</td>
+                        <td>137</td>
+                        <td>114</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>126</td>
+                        <td>126</td>
+                        <td>126</td>
+                        <td>126</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>19,278</td>
+                        <td>18,270</td>
+                        <td>17,262</td>
+                        <td>14,364</td>
+                    </tr>
+
+                    <!-- Panel D -->
+                    <tr>
+                        <td colspan="5"><strong>Panel D - High-income countries outside East and Southeast Asia</strong>
+                        </td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">0.098</td>
+                        <td class="pos">0.144</td>
+                        <td class="pos">0.165</td>
+                        <td class="pos">0.019</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(0.115)</td>
+                        <td>(0.149)</td>
+                        <td>(0.179)</td>
+                        <td>(0.070)</td>
+                    </tr>
+                    <tr>
+                        <td>Goods categories</td>
+                        <td>153</td>
+                        <td>145</td>
+                        <td>137</td>
+                        <td>114</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>68</td>
+                        <td>68</td>
+                        <td>68</td>
+                        <td>68</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>10,404</td>
+                        <td>9,860</td>
+                        <td>9,316</td>
+                        <td>7,752</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ul>
+            <li><strong>解读</strong>：零部件的转移效应同样在东亚和东南亚最强。</li>
+        </ul>
+
+        <div class="table-wrapper">
+            <table>
+                <caption>Table A12: Share of Chinese parts exports by goods category and country - heterogeneity by
+                    industry</caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>All categories<br><br>(1)</th>
+                        <th>Excluding smallest<br>5%<br>(2)</th>
+                        <th>Excluding smallest<br>10%<br>(3)</th>
+                        <th>Excluding smallest<br>25%<br>(4)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Panel A -->
+                    <tr>
+                        <td colspan="5"><strong>Panel A - Electronics and instruments</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">0.123</td>
+                        <td class="pos">0.142</td>
+                        <td class="pos">0.116</td>
+                        <td class="pos">0.170</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(0.066)</td>
+                        <td>(0.065)</td>
+                        <td>(0.103)</td>
+                        <td>(0.121)</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>{0.224}</td>
+                        <td>{0.157}</td>
+                        <td>{0.313}</td>
+                        <td>{0.229}</td>
+                    </tr>
+                    <tr>
+                        <td>Goods categories</td>
+                        <td>36</td>
+                        <td>35</td>
+                        <td>34</td>
+                        <td>28</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>209</td>
+                        <td>209</td>
+                        <td>209</td>
+                        <td>209</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>7,524</td>
+                        <td>7,315</td>
+                        <td>7,106</td>
+                        <td>5,852</td>
+                    </tr>
+
+                    <!-- Panel B -->
+                    <tr>
+                        <td colspan="5"><strong>Panel B - Electrical equipment</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">0.299</td>
+                        <td class="pos">0.299</td>
+                        <td class="pos">0.299</td>
+                        <td class="pos">0.299</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(0.112)</td>
+                        <td>(0.112)</td>
+                        <td>(0.112)</td>
+                        <td>(0.112)</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>{0.044}</td>
+                        <td>{0.044}</td>
+                        <td>{0.044}</td>
+                        <td>{0.044}</td>
+                    </tr>
+                    <tr>
+                        <td>Goods categories</td>
+                        <td>21</td>
+                        <td>21</td>
+                        <td>21</td>
+                        <td>21</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>209</td>
+                        <td>209</td>
+                        <td>209</td>
+                        <td>209</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>4,389</td>
+                        <td>4,389</td>
+                        <td>4,389</td>
+                        <td>4,389</td>
+                    </tr>
+
+                    <!-- Panel C -->
+                    <tr>
+                        <td colspan="5"><strong>Panel C - Other machinery</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">0.009</td>
+                        <td class="pos">0.022</td>
+                        <td class="pos">0.019</td>
+                        <td class="pos">0.096</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(0.027)</td>
+                        <td>(0.036)</td>
+                        <td>(0.044)</td>
+                        <td>(0.079)</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>{0.755}</td>
+                        <td>{0.602}</td>
+                        <td>{0.719}</td>
+                        <td>{0.163}</td>
+                    </tr>
+                    <tr>
+                        <td>Goods categories</td>
+                        <td>63</td>
+                        <td>58</td>
+                        <td>52</td>
+                        <td>39</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>209</td>
+                        <td>209</td>
+                        <td>209</td>
+                        <td>209</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>13,167</td>
+                        <td>12,122</td>
+                        <td>10,868</td>
+                        <td>8,151</td>
+                    </tr>
+
+                    <!-- Panel D -->
+                    <tr>
+                        <td colspan="5"><strong>Panel D - All other industries</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">0.516</td>
+                        <td class="pos">0.531</td>
+                        <td class="pos">0.530</td>
+                        <td class="pos">0.097</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(0.270)</td>
+                        <td>(0.272)</td>
+                        <td>(0.274)</td>
+                        <td>(0.038)</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>{0.007}</td>
+                        <td>{0.019}</td>
+                        <td>{0.024}</td>
+                        <td>{0.085}</td>
+                    </tr>
+                    <tr>
+                        <td>Goods categories</td>
+                        <td>33</td>
+                        <td>31</td>
+                        <td>30</td>
+                        <td>26</td>
+                    </tr>
+                    <tr>
+                        <td>Countries</td>
+                        <td>209</td>
+                        <td>209</td>
+                        <td>209</td>
+                        <td>209</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>6,897</td>
+                        <td>6,479</td>
+                        <td>6,270</td>
+                        <td>5,434</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ul>
+            <li><strong>解读</strong>：电子和仪器仪表、电气设备行业的效应显著。</li>
+        </ul>
+
+        <div class="table-wrapper">
+            <table>
+                <caption>Table A13: Controls for changes in import shares of major economies</caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Manufacturing<br>affiliates<br>(1)</th>
+                        <th>Non-manufacturing<br>affiliates<br>(2)</th>
+                        <th>All goods categories<br><br>(3)</th>
+                        <th>Excluding smallest<br>25%<br>(4)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Panel A -->
+                    <tr>
+                        <td colspan="5"><strong>Panel A - Control for change in EU import share</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">9.356</td>
+                        <td class="neg">-0.640</td>
+                        <td class="pos">0.094</td>
+                        <td class="pos">0.151</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(2.417)</td>
+                        <td>(1.967)</td>
+                        <td>(0.048)</td>
+                        <td>(0.072)</td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ EU import share</td>
+                        <td class="neg">-3.319</td>
+                        <td class="pos">0.315</td>
+                        <td class="pos">0.004</td>
+                        <td class="pos">0.019</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(4.351)</td>
+                        <td>(2.686)</td>
+                        <td>(0.015)</td>
+                        <td>(0.023)</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>10,320</td>
+                        <td>19,206</td>
+                        <td>27,693</td>
+                        <td>20,634</td>
+                    </tr>
+
+                    <!-- Panel B -->
+                    <tr>
+                        <td colspan="5"><strong>Panel B - Control for change in Japan import share</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">8.881</td>
+                        <td class="neg">-0.693</td>
+                        <td class="pos">0.110</td>
+                        <td class="pos">0.129</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(3.167)</td>
+                        <td>(1.696)</td>
+                        <td>(0.072)</td>
+                        <td>(0.067)</td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ Japan import share</td>
+                        <td class="neg">-3.921</td>
+                        <td class="pos">0.992</td>
+                        <td class="pos">0.023</td>
+                        <td class="neg">-0.000</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(1.641)</td>
+                        <td>(0.800)</td>
+                        <td>(0.008)</td>
+                        <td>(0.026)</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>16,104</td>
+                        <td>30,171</td>
+                        <td>30,294</td>
+                        <td>22,572</td>
+                    </tr>
+
+                    <!-- Panel C -->
+                    <tr>
+                        <td colspan="5"><strong>Panel C - Control for change in Canada import share</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">7.828</td>
+                        <td class="neg">-1.274</td>
+                        <td class="pos">0.127</td>
+                        <td class="pos">0.146</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(3.241)</td>
+                        <td>(2.052)</td>
+                        <td>(0.075)</td>
+                        <td>(0.063)</td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ Canada import share</td>
+                        <td class="pos">0.326</td>
+                        <td class="neg">-0.403</td>
+                        <td class="pos">0.023</td>
+                        <td class="pos">0.027</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(1.811)</td>
+                        <td>(1.681)</td>
+                        <td>(0.017)</td>
+                        <td>(0.030)</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>16,302</td>
+                        <td>31,061</td>
+                        <td>30,600</td>
+                        <td>22,800</td>
+                    </tr>
+
+                    <!-- Panel D -->
+                    <tr>
+                        <td colspan="5"><strong>Panel D - Control for change in China import share</strong></td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ US import share</td>
+                        <td class="pos">8.152</td>
+                        <td class="neg">-1.521</td>
+                        <td class="pos">0.112</td>
+                        <td class="pos">0.140</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(3.115)</td>
+                        <td>(1.759)</td>
+                        <td>(0.075)</td>
+                        <td>(0.062)</td>
+                    </tr>
+                    <tr class="coef-row">
+                        <td>Δ China import share</td>
+                        <td class="pos">1.390</td>
+                        <td class="pos">0.127</td>
+                        <td class="neg">-0.009</td>
+                        <td class="pos">0.011</td>
+                    </tr>
+                    <tr class="se-row">
+                        <td></td>
+                        <td>(0.842)</td>
+                        <td>(0.527)</td>
+                        <td>(0.015)</td>
+                        <td>(0.027)</td>
+                    </tr>
+                    <tr>
+                        <td>Observations</td>
+                        <td>16,750</td>
+                        <td>32,032</td>
+                        <td>31,768</td>
+                        <td>23,826</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+        <h2>6. 讨论与结论</h2>
+
+        <h3>研究结论</h3>
+        <ul>
+            <li>文章通过微观证据表明，中国对美直接贸易的下降并没有导致完全的“脱钩”。相反，供应链发生了重组：
+                <ul>
+                    <li>中国企业积极在那些赢得美国市场份额的“第三国”进行制造业投资（设厂）。</li>
+                    <li>这些“第三国”在增加对美成品出口的同时，增加了对中国零部件的进口。</li>
+                    <li>这种现象具有明显的地缘和行业特征：主要集中在东亚/东南亚国家，以及电子、电气设备行业。</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>文章贡献</h3>
+        <ul>
+            <li>本文揭示了全球化遭遇政治冲击时的一种“中国特色”适应机制。所谓的“脱钩”实际上演变为一种更加迂回的联系（indirect
+                relationships）。中国经济主体通过重新配置资本和中间品流向，继续参与以美国为终点的全球供应链。这挑战了简单的“去全球化”叙事。</li>
+        </ul>
+
+        <h3>局限性</h3>
+        <ul>
+            <li><strong>作者承认的局限</strong>：
+                <ul>
+                    <li>FDI数据仅限于上市公司，可能无法代表中小企业的行为。</li>
+                    <li>零部件分析仅限于HS分类中明确区分“零件”与“成品”的类别，覆盖面有限。</li>
+                    <li>研究仅提供了描述性证据（descriptive evidence），而非严格的因果推断，且仅捕捉了早期的调整（snapshot as of early 2020s）。</li>
+                </ul>
+            </li>
+            <li><strong>未承认但可推知的局限</strong>：
+                <ul>
+                    <li>文章未能完全量化这种“间接联系”在多大程度上抵消了直接贸易的损失（净效应未知）。</li>
+                    <li>缺乏对“第三国”本地附加值比例的具体测算，无法判断这是否仅仅是简单的“转口贸易”（Transshipment）还是实质性的产能合作。</li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- 版权说明 -->
+        <div class="copyright-section">
+            <p class="copyright-disclaimer">仅供学习交流，转载需注明出处</p>
+            <p class="copyright-credit">© by David 2025. All Rights Reserved.</p>
+        </div>
+    </div>
+
+</body>
+
+<!-- 5. Back to Top Button -->
+<button id="back-to-top" title="Back to Top">↑</button>
+
+<!-- 6. Lightbox Overlay -->
+<div id="lightbox-overlay">
+    <img id="lightbox-img" src="" alt="Full size preview">
+</div>
+
+<!-- 7. Math Formula Lightbox -->
+<div id="math-lightbox-overlay">
+    <div class="math-lightbox-close">&times;</div>
+    <div id="math-lightbox-content"></div>
+</div>
+
+<!-- JavaScript Logic -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        /* --- 1. TOC Generation --- */
+        const tocList = document.getElementById('toc-list');
+        const mobileTocList = document.getElementById('mobile-toc-list');
+        const headers = document.querySelectorAll('.paper-sheet h2, .paper-sheet h3');
+
+        headers.forEach((header, index) => {
+            // Add ID if missing
+            if (!header.id) {
+                header.id = 'section-' + index;
+            }
+
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = '#' + header.id;
+            a.textContent = header.textContent;
+            a.classList.add('toc-link');
+            a.dataset.target = header.id;
+
+            if (header.tagName === 'H3') {
+                li.classList.add('sub-item');
+            }
+
+            li.appendChild(a);
+            tocList.appendChild(li);
+        });
+
+        // Clone to mobile
+        mobileTocList.innerHTML = tocList.innerHTML;
+
+        /* --- 2. Active TOC Highlighting --- */
+        const observerOptions = {
+            root: null,
+            rootMargin: '-100px 0px -60% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    // Remove active class from all
+                    document.querySelectorAll('.toc-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    // Add to current
+                    document.querySelectorAll(`.toc-link[data-target="${id}"]`).forEach(link => {
+                        link.classList.add('active');
+                    });
+                }
+            });
+        }, observerOptions);
+
+        headers.forEach(header => observer.observe(header));
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-toc-btn');
+        const mobileModal = document.getElementById('mobile-toc-modal');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileModal.style.display = 'flex';
+            setTimeout(() => mobileModal.classList.add('open'), 10);
+        });
+
+        mobileModal.addEventListener('click', (e) => {
+            if (e.target === mobileModal || e.target.tagName === 'A') {
+                mobileModal.classList.remove('open');
+                setTimeout(() => mobileModal.style.display = 'none', 300);
+            }
+        });
+
+        /* --- 3. Progress Bar & Back to Top --- */
+        const progressBar = document.getElementById('progress-bar');
+        const backToTop = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            // Progress
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            progressBar.style.width = scrolled + "%";
+
+            // Back to Top
+            if (winScroll > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        /* --- 4. Lightbox --- */
+        const lightbox = document.getElementById('lightbox-overlay');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const images = document.querySelectorAll('.img-container img');
+
+        images.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightbox.style.display = 'flex';
+                setTimeout(() => lightbox.classList.add('active'), 10);
+            });
+        });
+
+        lightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            setTimeout(() => lightbox.style.display = 'none', 300);
+        });
+        /* --- 6. Auto Scale Tables --- */
+        function scaleTables() {
+            const tables = document.querySelectorAll('.table-wrapper table');
+            tables.forEach(table => {
+                // Reset first to get natural dimensions
+                table.style.transform = 'none';
+                const wrapper = table.parentElement;
+                wrapper.style.height = 'auto'; // Reset wrapper height
+
+                // Calculate available width inside wrapper (excluding padding)
+                const wrapperStyle = window.getComputedStyle(wrapper);
+                const availableWidth = wrapper.clientWidth - parseFloat(wrapperStyle.paddingLeft) - parseFloat(wrapperStyle.paddingRight);
+
+                const tableWidth = table.offsetWidth;
+
+                if (tableWidth > availableWidth) {
+                    const scale = availableWidth / tableWidth;
+                    table.style.transformOrigin = 'top left';
+                    table.style.transform = `scale(${scale})`;
+
+                    // Adjust wrapper height to fit the scaled table
+                    // We use getBoundingClientRect() to get the actual visual height after transform
+                    const scaledHeight = table.getBoundingClientRect().height;
+                    wrapper.style.height = scaledHeight + 'px';
+                }
+            });
+        }
+
+        window.addEventListener('load', scaleTables);
+        window.addEventListener('resize', scaleTables);
+
+        /* --- 7. Move Captions Outside --- */
+        const captions = document.querySelectorAll('.table-wrapper table caption');
+        captions.forEach(caption => {
+            const wrapper = caption.closest('.table-wrapper');
+            if (wrapper) {
+                const title = document.createElement('div');
+                title.className = 'table-title';
+                title.innerHTML = caption.innerHTML;
+
+                // Insert title before the wrapper
+                wrapper.parentNode.insertBefore(title, wrapper);
+
+                // Insert title before the wrapper
+                wrapper.parentNode.insertBefore(title, wrapper);
+
+                // Remove original caption
+                // caption.remove(); // Optional: kept visually hidden via CSS 'display: none'
+            }
+        });
+
+        /* --- 8. Table Lightbox Interaction --- */
+        const tableLightbox = document.getElementById('table-lightbox-overlay');
+        const tableLightboxContent = document.getElementById('table-lightbox-content');
+        const tableClose = document.querySelector('.lightbox-close');
+
+        document.querySelectorAll('.table-wrapper').forEach(wrapper => {
+            wrapper.addEventListener('click', (e) => {
+                const table = wrapper.querySelector('table');
+                if (table) {
+                    // Clone the table
+                    const clonedTable = table.cloneNode(true);
+
+                    // Reset styles that might interfere
+                    clonedTable.style.transform = 'none';
+                    clonedTable.style.width = '100%';
+                    // Ensure cloned title/cells don't conflict
+
+                    // Clear previous content and append
+                    tableLightboxContent.innerHTML = '';
+                    tableLightboxContent.appendChild(clonedTable);
+
+                    // Show lightbox
+                    tableLightbox.style.display = 'flex';
+                    setTimeout(() => tableLightbox.classList.add('active'), 10);
+                }
+            });
+        });
+
+        // Close behavior
+        function closeTableLightbox() {
+            tableLightbox.classList.remove('active');
+            setTimeout(() => tableLightbox.style.display = 'none', 300);
+        }
+
+        if (tableClose) tableClose.addEventListener('click', closeTableLightbox);
+
+        if (tableLightbox) {
+            tableLightbox.addEventListener('click', (e) => {
+                if (e.target === tableLightbox) {
+                    closeTableLightbox();
+                }
+            });
+        }
+
+        /* --- 9. 暗黑模式切换 --- */
+        const themeToggle = document.getElementById('theme-toggle');
+        const savedTheme = localStorage.getItem('theme') || 'light';
+
+        // 应用保存的主题
+        if (savedTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                themeToggle.textContent = '🌙';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.textContent = '☀️';
+            }
+        });
+
+        /* --- 10. 字体大小控制 --- */
+        const fontDecrease = document.getElementById('font-decrease');
+        const fontIncrease = document.getElementById('font-increase');
+        let currentFontSize = parseFloat(localStorage.getItem('fontSize')) || 12;
+
+        // 应用保存的字体大小
+        document.documentElement.style.setProperty('--font-size-base', currentFontSize + 'pt');
+
+        fontDecrease.addEventListener('click', () => {
+            if (currentFontSize > 10) {
+                currentFontSize -= 1;
+                document.documentElement.style.setProperty('--font-size-base', currentFontSize + 'pt');
+                localStorage.setItem('fontSize', currentFontSize);
+            }
+        });
+
+        fontIncrease.addEventListener('click', () => {
+            if (currentFontSize < 18) {
+                currentFontSize += 1;
+                document.documentElement.style.setProperty('--font-size-base', currentFontSize + 'pt');
+                localStorage.setItem('fontSize', currentFontSize);
+            }
+        });
+
+        /* --- 11. 阅读时间计算 --- */
+        const paperSheet = document.querySelector('.paper-sheet');
+        const textContent = paperSheet.textContent || '';
+
+        // 计算中英文混合字数
+        const chineseChars = (textContent.match(/[\u4e00-\u9fa5]/g) || []).length;
+        const englishWords = textContent.replace(/[\u4e00-\u9fa5]/g, ' ').split(/\s+/).filter(w => w.length > 0).length;
+        const totalWords = chineseChars + englishWords;
+
+        // 中文阅读速度约400字/分钟，英文约200词/分钟，取平均
+        const readingSpeed = 350;
+        const readingMinutes = Math.ceil(totalWords / readingSpeed);
+
+        document.getElementById('word-count').textContent = `📖 约 ${totalWords.toLocaleString()} 字`;
+        document.getElementById('reading-time').textContent = `⏱️ 预计阅读 ${readingMinutes} 分钟`;
+
+        /* --- 12. 键盘快捷键 --- */
+        document.addEventListener('keydown', (e) => {
+            // Alt + D: 切换暗黑模式
+            if (e.altKey && e.key.toLowerCase() === 'd') {
+                e.preventDefault();
+                themeToggle.click();
+            }
+            // Alt + -: 减小字体
+            if (e.altKey && e.key === '-') {
+                e.preventDefault();
+                fontDecrease.click();
+            }
+            // Alt + = 或 Alt + +: 增大字体
+            if (e.altKey && (e.key === '=' || e.key === '+')) {
+                e.preventDefault();
+                fontIncrease.click();
+            }
+            // ESC: 关闭灯箱
+            if (e.key === 'Escape') {
+                if (lightbox.classList.contains('active')) {
+                    lightbox.classList.remove('active');
+                    setTimeout(() => lightbox.style.display = 'none', 300);
+                }
+                if (tableLightbox.classList.contains('active')) {
+                    closeTableLightbox();
+                }
+                if (mobileModal.classList.contains('open')) {
+                    mobileModal.classList.remove('open');
+                    setTimeout(() => mobileModal.style.display = 'none', 300);
+                }
+            }
+            // T: 打开/关闭目录（移动端）
+            if (e.key.toLowerCase() === 't' && !e.altKey && !e.ctrlKey && !e.metaKey) {
+                const activeElement = document.activeElement;
+                if (activeElement.tagName !== 'INPUT' && activeElement.tagName !== 'TEXTAREA') {
+                    e.preventDefault();
+                    if (mobileModal.style.display === 'flex') {
+                        mobileModal.classList.remove('open');
+                        setTimeout(() => mobileModal.style.display = 'none', 300);
+                    } else {
+                        mobileModal.style.display = 'flex';
+                        setTimeout(() => mobileModal.classList.add('open'), 10);
+                    }
+                }
+            }
+        });
+    });
+
+    // ==================== 数学公式灯箱 ====================
+    const mathLightbox = document.getElementById('math-lightbox-overlay');
+    const mathLightboxContent = document.getElementById('math-lightbox-content');
+    const mathLightboxClose = document.querySelector('.math-lightbox-close');
+    const mathBlocks = document.querySelectorAll('.math-block-latex');
+
+    // 为每个公式卡片添加点击事件
+    mathBlocks.forEach(block => {
+        block.addEventListener('click', () => {
+            // 克隆公式内容
+            const clonedFormula = block.cloneNode(true);
+
+            // 移除克隆公式的点击事件和cursor样式
+            clonedFormula.style.cursor = 'default';
+            clonedFormula.style.margin = '0';
+            clonedFormula.style.boxShadow = 'none';
+            clonedFormula.style.border = 'none';
+            clonedFormula.style.background = 'transparent';
+            clonedFormula.style.padding = '0';
+
+            // 清空灯箱内容并插入新公式
+            mathLightboxContent.innerHTML = '';
+            mathLightboxContent.appendChild(clonedFormula);
+
+            // 显示灯箱
+            mathLightbox.style.display = 'flex';
+            setTimeout(() => mathLightbox.classList.add('active'), 10);
+        });
+    });
+
+    // 关闭灯箱
+    function closeMathLightbox() {
+        mathLightbox.classList.remove('active');
+        setTimeout(() => {
+            mathLightbox.style.display = 'none';
+            mathLightboxContent.innerHTML = '';
+        }, 300);
+    }
+
+    // 点击关闭按钮
+    mathLightboxClose.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeMathLightbox();
+    });
+
+    // 点击灯箱背景关闭
+    mathLightbox.addEventListener('click', (e) => {
+        if (e.target === mathLightbox) {
+            closeMathLightbox();
+        }
+    });
+
+    // ESC键关闭灯箱
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mathLightbox.classList.contains('active')) {
+            closeMathLightbox();
+        }
+    });
+
+    // ==================== 数学公式智能缩放 ====================
+    function smartScaleMathBlocks() {
+        const mathBlocks = document.querySelectorAll('.math-block-latex');
+        const paperSheet = document.querySelector('.paper-sheet');
+        if (!paperSheet) return;
+
+        mathBlocks.forEach(block => {
+            const katexElement = block.querySelector('.katex-display');
+            if (!katexElement) return;
+
+            // 重置状态
+            block.style.fontSize = '0.9em';
+            block.classList.remove('math-overflow');
+            block.style.maxWidth = 'fit-content';
+            block.style.overflow = 'hidden';
+
+            // 强制重新布局
+            block.offsetHeight;
+
+            // 等待KaTeX渲染完成
+            setTimeout(() => {
+                // 获取可用宽度（减去所有padding和margin）
+                const paperWidth = paperSheet.clientWidth;
+                const contentWidth = katexElement.scrollWidth;
+                const blockPadding = 56; // 28px * 2
+
+                // 计算实际需要的总宽度
+                const totalNeededWidth = contentWidth + blockPadding;
+
+                // 非常宽松的判断：只有明显超出时才处理
+                if (totalNeededWidth > paperWidth - 100) {
+                    // 策略1：尝试缩放到0.85倍
+                    block.style.fontSize = '0.85em';
+
+                    // 等待浏览器重新渲染后再次测量
+                    setTimeout(() => {
+                        const newContentWidth = katexElement.scrollWidth;
+                        const newTotalWidth = newContentWidth + blockPadding;
+
+                        // 极度宽松的判断：只有严重超出时才添加滚动条
+                        if (newTotalWidth > paperWidth - 50) {
+                            block.classList.add('math-overflow');
+                        }
+                    }, 100);
+                }
+            }, 100);
+        });
+    }
+
+    // 防抖函数
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    // 在KaTeX渲染完成后执行
+    if (typeof renderMathInElement !== 'undefined') {
+        // KaTeX auto-render已加载，等待渲染完成
+        window.addEventListener('load', () => {
+            setTimeout(smartScaleMathBlocks, 300);
+        });
+    } else {
+        // 降级：直接在load事件执行
+        window.addEventListener('load', () => {
+            setTimeout(smartScaleMathBlocks, 500);
+        });
+    }
+
+    // 窗口大小改变时重新计算
+    window.addEventListener('resize', debounce(smartScaleMathBlocks, 300));
+</script>
+
+</html>
